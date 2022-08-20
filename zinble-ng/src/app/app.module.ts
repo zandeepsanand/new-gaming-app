@@ -104,6 +104,7 @@ import { PlayersComponent } from './ggera/players/players.component';
 import { SubscriptionsComponent } from './ggera/subscriptions/subscriptions.component';
 import { UnderconstructionComponent } from './ggera/underconstruction/underconstruction.component';
 import { LazyLoadingComponent } from './ggera/lazy-loading/lazy-loading.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -209,7 +210,7 @@ import { LazyLoadingComponent } from './ggera/lazy-loading/lazy-loading.componen
     NgxStripeModule.forRoot('pk_test_51LT4FJSBGyD7UYjV7Uzl35ECOGv6TAtzwwYlAokpfqWpLNoXEZq1Ov3RoijNAxrN5fRhYqxzedauoF7tyFlbgr9q002zPPPLTa')
 
   ],
-  providers: [HeroService,
+  providers: [HeroService,AuthGuard,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

@@ -48,26 +48,27 @@ import { SingleProComponent } from './ggera/single-pro/single-pro.component';
 import { PlayersComponent } from './ggera/players/players.component';
 import { UnderconstructionComponent } from './ggera/underconstruction/underconstruction.component';
 import { LazyLoadingComponent } from './ggera/lazy-loading/lazy-loading.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-    {path: '', component: HomePageComponent},
+    {path: '', component: HomePageComponent,canActivate: [AuthGuard ]},
     {path: 'login', component: SigninComponent},
-    {path: 'account', component: AccountDetailsComponent},
-    {path: 'profile', component: ProfileComponent},
-    {path: 'join-party', component: JoinPartyComponent},
-    {path: 'home-page', component: HomePageComponent},
-    {path: 'coachings', component: ProRequestsComponent},
-    {path: 'player-page', component: PlayerPageComponent},
-    {path: 'my-orders', component: MyorderComponent},
-    {path: 'create-party', component: CreatePartyComponent},
-    {path: 'users', component: AdminUsersComponent},
-    {path: 'pro-requests', component: ProRequestsComponent},
-    {path: 'earnings', component: EarningsComponent},
-    {path: 'single-pro', component: SingleProComponent},
-    {path: 'players', component: PlayersComponent},
-    {path: 'loading', component: LazyLoadingComponent},
+    {path: 'account', canActivate: [AuthGuard ], component: AccountDetailsComponent} ,
+    {path: 'profile', canActivate: [AuthGuard ], component: ProfileComponent},
+    {path: 'join-party', canActivate: [AuthGuard ], component: JoinPartyComponent},
+    {path: 'home-page', canActivate: [AuthGuard ], component: HomePageComponent},
+    {path: 'coachings', canActivate: [AuthGuard ], component: ProRequestsComponent},
+    {path: 'player-page', canActivate: [AuthGuard ], component: PlayerPageComponent},
+    {path: 'my-orders', canActivate: [AuthGuard ], component: MyorderComponent},
+    {path: 'create-party', canActivate: [AuthGuard ], component: CreatePartyComponent},
+    {path: 'users', canActivate: [AuthGuard ], component: AdminUsersComponent},
+    {path: 'pro-requests', canActivate: [AuthGuard ], component: ProRequestsComponent},
+    {path: 'earnings', canActivate: [AuthGuard ], component: EarningsComponent},
+    {path: 'single-pro', canActivate: [AuthGuard ], component: SingleProComponent},
+    {path: 'players', canActivate: [AuthGuard ], component: PlayersComponent},
+    {path: 'loading', canActivate: [AuthGuard ], component: LazyLoadingComponent},
 
-    {path: '**', component: UnderconstructionComponent},
+    {path: '**', canActivate: [AuthGuard ], component: UnderconstructionComponent},
 
 
 

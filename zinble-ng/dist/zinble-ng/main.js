@@ -11,7 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppRoutingModule": () => (/* binding */ AppRoutingModule)
 /* harmony export */ });
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/router */ 124);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/router */ 124);
 /* harmony import */ var _ggera_signin_signin_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ggera/signin/signin.component */ 8281);
 /* harmony import */ var _ggera_profile_profile_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ggera/profile/profile.component */ 8669);
 /* harmony import */ var _ggera_account_details_account_details_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ggera/account-details/account-details.component */ 6359);
@@ -27,7 +27,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ggera_players_players_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ggera/players/players.component */ 3708);
 /* harmony import */ var _ggera_underconstruction_underconstruction_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ggera/underconstruction/underconstruction.component */ 2113);
 /* harmony import */ var _ggera_lazy_loading_lazy_loading_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./ggera/lazy-loading/lazy-loading.component */ 6561);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./auth.guard */ 2993);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/core */ 2560);
+
 
 
 
@@ -47,23 +49,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    { path: '', component: _ggera_home_page_home_page_component__WEBPACK_IMPORTED_MODULE_5__.HomePageComponent },
+    { path: '', component: _ggera_home_page_home_page_component__WEBPACK_IMPORTED_MODULE_5__.HomePageComponent, canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard] },
     { path: 'login', component: _ggera_signin_signin_component__WEBPACK_IMPORTED_MODULE_0__.SigninComponent },
-    { path: 'account', component: _ggera_account_details_account_details_component__WEBPACK_IMPORTED_MODULE_2__.AccountDetailsComponent },
-    { path: 'profile', component: _ggera_profile_profile_component__WEBPACK_IMPORTED_MODULE_1__.ProfileComponent },
-    { path: 'join-party', component: _ggera_join_party_join_party_component__WEBPACK_IMPORTED_MODULE_3__.JoinPartyComponent },
-    { path: 'home-page', component: _ggera_home_page_home_page_component__WEBPACK_IMPORTED_MODULE_5__.HomePageComponent },
-    { path: 'coachings', component: _ggera_pro_requests_pro_requests_component__WEBPACK_IMPORTED_MODULE_6__.ProRequestsComponent },
-    { path: 'player-page', component: _ggera_player_page_player_page_component__WEBPACK_IMPORTED_MODULE_4__.PlayerPageComponent },
-    { path: 'my-orders', component: _ggera_myorder_myorder_component__WEBPACK_IMPORTED_MODULE_7__.MyorderComponent },
-    { path: 'create-party', component: _ggera_create_party_create_party_component__WEBPACK_IMPORTED_MODULE_8__.CreatePartyComponent },
-    { path: 'users', component: _ggera_admin_users_admin_users_component__WEBPACK_IMPORTED_MODULE_9__.AdminUsersComponent },
-    { path: 'pro-requests', component: _ggera_pro_requests_pro_requests_component__WEBPACK_IMPORTED_MODULE_6__.ProRequestsComponent },
-    { path: 'earnings', component: _ggera_earnings_earnings_component__WEBPACK_IMPORTED_MODULE_10__.EarningsComponent },
-    { path: 'single-pro', component: _ggera_single_pro_single_pro_component__WEBPACK_IMPORTED_MODULE_11__.SingleProComponent },
-    { path: 'players', component: _ggera_players_players_component__WEBPACK_IMPORTED_MODULE_12__.PlayersComponent },
-    { path: 'loading', component: _ggera_lazy_loading_lazy_loading_component__WEBPACK_IMPORTED_MODULE_14__.LazyLoadingComponent },
-    { path: '**', component: _ggera_underconstruction_underconstruction_component__WEBPACK_IMPORTED_MODULE_13__.UnderconstructionComponent },
+    { path: 'account', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_account_details_account_details_component__WEBPACK_IMPORTED_MODULE_2__.AccountDetailsComponent },
+    { path: 'profile', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_profile_profile_component__WEBPACK_IMPORTED_MODULE_1__.ProfileComponent },
+    { path: 'join-party', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_join_party_join_party_component__WEBPACK_IMPORTED_MODULE_3__.JoinPartyComponent },
+    { path: 'home-page', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_home_page_home_page_component__WEBPACK_IMPORTED_MODULE_5__.HomePageComponent },
+    { path: 'coachings', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_pro_requests_pro_requests_component__WEBPACK_IMPORTED_MODULE_6__.ProRequestsComponent },
+    { path: 'player-page', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_player_page_player_page_component__WEBPACK_IMPORTED_MODULE_4__.PlayerPageComponent },
+    { path: 'my-orders', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_myorder_myorder_component__WEBPACK_IMPORTED_MODULE_7__.MyorderComponent },
+    { path: 'create-party', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_create_party_create_party_component__WEBPACK_IMPORTED_MODULE_8__.CreatePartyComponent },
+    { path: 'users', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_admin_users_admin_users_component__WEBPACK_IMPORTED_MODULE_9__.AdminUsersComponent },
+    { path: 'pro-requests', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_pro_requests_pro_requests_component__WEBPACK_IMPORTED_MODULE_6__.ProRequestsComponent },
+    { path: 'earnings', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_earnings_earnings_component__WEBPACK_IMPORTED_MODULE_10__.EarningsComponent },
+    { path: 'single-pro', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_single_pro_single_pro_component__WEBPACK_IMPORTED_MODULE_11__.SingleProComponent },
+    { path: 'players', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_players_players_component__WEBPACK_IMPORTED_MODULE_12__.PlayersComponent },
+    { path: 'loading', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_lazy_loading_lazy_loading_component__WEBPACK_IMPORTED_MODULE_14__.LazyLoadingComponent },
+    { path: '**', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_underconstruction_underconstruction_component__WEBPACK_IMPORTED_MODULE_13__.UnderconstructionComponent },
     // {path: '', component: MainHomeComponent},
     // {path: 'esports', component: EsportsHomeComponent},
     // {path: 'bosting', component: BostingHomeComponent},
@@ -99,9 +101,9 @@ const routes = [
 class AppRoutingModule {
 }
 AppRoutingModule.ɵfac = function AppRoutingModule_Factory(t) { return new (t || AppRoutingModule)(); };
-AppRoutingModule.ɵmod = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_15__["ɵɵdefineNgModule"]({ type: AppRoutingModule });
-AppRoutingModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_15__["ɵɵdefineInjector"]({ imports: [_angular_router__WEBPACK_IMPORTED_MODULE_16__.RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }), _angular_router__WEBPACK_IMPORTED_MODULE_16__.RouterModule] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_15__["ɵɵsetNgModuleScope"](AppRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_16__.RouterModule], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_16__.RouterModule] }); })();
+AppRoutingModule.ɵmod = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_16__["ɵɵdefineNgModule"]({ type: AppRoutingModule });
+AppRoutingModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_16__["ɵɵdefineInjector"]({ imports: [_angular_router__WEBPACK_IMPORTED_MODULE_17__.RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }), _angular_router__WEBPACK_IMPORTED_MODULE_17__.RouterModule] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_16__["ɵɵsetNgModuleScope"](AppRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_17__.RouterModule], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_17__.RouterModule] }); })();
 
 
 /***/ }),
@@ -177,9 +179,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppModule": () => (/* binding */ AppModule)
 /* harmony export */ });
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_93__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_94__ = __webpack_require__(/*! @angular/platform-browser/animations */ 7146);
-/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_96__ = __webpack_require__(/*! ng2-charts */ 1208);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_94__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_95__ = __webpack_require__(/*! @angular/platform-browser/animations */ 7146);
+/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_97__ = __webpack_require__(/*! ng2-charts */ 1208);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app-routing.module */ 158);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component */ 5041);
 /* harmony import */ var _components_common_preloader_preloader_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/common/preloader/preloader.component */ 4425);
@@ -250,10 +252,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_pages_match_details_page_match_details_page_component__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! ./components/pages/match-details-page/match-details-page.component */ 4772);
 /* harmony import */ var _components_pages_team_details_page_team_details_page_component__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(/*! ./components/pages/team-details-page/team-details-page.component */ 4315);
 /* harmony import */ var _components_pages_player_details_page_player_details_page_component__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(/*! ./components/pages/player-details-page/player-details-page.component */ 5539);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_97__ = __webpack_require__(/*! @angular/common/http */ 8987);
-/* harmony import */ var _abacritt_angularx_social_login__WEBPACK_IMPORTED_MODULE_92__ = __webpack_require__(/*! @abacritt/angularx-social-login */ 3218);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_95__ = __webpack_require__(/*! @angular/forms */ 2508);
-/* harmony import */ var ngx_stripe__WEBPACK_IMPORTED_MODULE_98__ = __webpack_require__(/*! ngx-stripe */ 6416);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_98__ = __webpack_require__(/*! @angular/common/http */ 8987);
+/* harmony import */ var _abacritt_angularx_social_login__WEBPACK_IMPORTED_MODULE_93__ = __webpack_require__(/*! @abacritt/angularx-social-login */ 3218);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_96__ = __webpack_require__(/*! @angular/forms */ 2508);
+/* harmony import */ var ngx_stripe__WEBPACK_IMPORTED_MODULE_99__ = __webpack_require__(/*! ngx-stripe */ 6416);
 /* harmony import */ var _ggera_g_a_settings_g_a_settings_component__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(/*! ./ggera/g-a-settings/g-a-settings.component */ 7856);
 /* harmony import */ var _ggera_signin_signin_component__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(/*! ./ggera/signin/signin.component */ 8281);
 /* harmony import */ var _hero_service__WEBPACK_IMPORTED_MODULE_72__ = __webpack_require__(/*! ./hero.service */ 2342);
@@ -275,7 +277,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ggera_subscriptions_subscriptions_component__WEBPACK_IMPORTED_MODULE_88__ = __webpack_require__(/*! ./ggera/subscriptions/subscriptions.component */ 3862);
 /* harmony import */ var _ggera_underconstruction_underconstruction_component__WEBPACK_IMPORTED_MODULE_89__ = __webpack_require__(/*! ./ggera/underconstruction/underconstruction.component */ 2113);
 /* harmony import */ var _ggera_lazy_loading_lazy_loading_component__WEBPACK_IMPORTED_MODULE_90__ = __webpack_require__(/*! ./ggera/lazy-loading/lazy-loading.component */ 6561);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_91__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_91__ = __webpack_require__(/*! ./auth.guard */ 2993);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_92__ = __webpack_require__(/*! @angular/core */ 2560);
 
 
 
@@ -378,19 +381,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 class AppModule {
 }
 AppModule.ɵfac = function AppModule_Factory(t) { return new (t || AppModule)(); };
-AppModule.ɵmod = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_91__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent] });
-AppModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_91__["ɵɵdefineInjector"]({ providers: [_hero_service__WEBPACK_IMPORTED_MODULE_72__.HeroService,
+AppModule.ɵmod = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_92__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent] });
+AppModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_92__["ɵɵdefineInjector"]({ providers: [_hero_service__WEBPACK_IMPORTED_MODULE_72__.HeroService, _auth_guard__WEBPACK_IMPORTED_MODULE_91__.AuthGuard,
         {
             provide: 'SocialAuthServiceConfig',
             useValue: {
                 autoLogin: false,
                 providers: [
                     {
-                        id: _abacritt_angularx_social_login__WEBPACK_IMPORTED_MODULE_92__.GoogleLoginProvider.PROVIDER_ID,
-                        provider: new _abacritt_angularx_social_login__WEBPACK_IMPORTED_MODULE_92__.GoogleLoginProvider('175613608118-or5k2udnug8clivm7enruru42qnk6qd4.apps.googleusercontent.com'),
+                        id: _abacritt_angularx_social_login__WEBPACK_IMPORTED_MODULE_93__.GoogleLoginProvider.PROVIDER_ID,
+                        provider: new _abacritt_angularx_social_login__WEBPACK_IMPORTED_MODULE_93__.GoogleLoginProvider('175613608118-or5k2udnug8clivm7enruru42qnk6qd4.apps.googleusercontent.com'),
                     }
                 ],
                 onError: (err) => {
@@ -398,16 +402,16 @@ AppModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_91__["ɵ�
                 }
             }
         },
-    ], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_93__.BrowserModule,
+    ], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_94__.BrowserModule,
         _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule,
-        _abacritt_angularx_social_login__WEBPACK_IMPORTED_MODULE_92__.SocialLoginModule,
-        _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_94__.BrowserAnimationsModule,
-        _angular_forms__WEBPACK_IMPORTED_MODULE_95__.FormsModule,
-        _angular_forms__WEBPACK_IMPORTED_MODULE_95__.ReactiveFormsModule,
-        ng2_charts__WEBPACK_IMPORTED_MODULE_96__.NgChartsModule,
-        _angular_common_http__WEBPACK_IMPORTED_MODULE_97__.HttpClientModule,
-        ngx_stripe__WEBPACK_IMPORTED_MODULE_98__.NgxStripeModule.forRoot('pk_test_51LT4FJSBGyD7UYjV7Uzl35ECOGv6TAtzwwYlAokpfqWpLNoXEZq1Ov3RoijNAxrN5fRhYqxzedauoF7tyFlbgr9q002zPPPLTa')] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_91__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent,
+        _abacritt_angularx_social_login__WEBPACK_IMPORTED_MODULE_93__.SocialLoginModule,
+        _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_95__.BrowserAnimationsModule,
+        _angular_forms__WEBPACK_IMPORTED_MODULE_96__.FormsModule,
+        _angular_forms__WEBPACK_IMPORTED_MODULE_96__.ReactiveFormsModule,
+        ng2_charts__WEBPACK_IMPORTED_MODULE_97__.NgChartsModule,
+        _angular_common_http__WEBPACK_IMPORTED_MODULE_98__.HttpClientModule,
+        ngx_stripe__WEBPACK_IMPORTED_MODULE_99__.NgxStripeModule.forRoot('pk_test_51LT4FJSBGyD7UYjV7Uzl35ECOGv6TAtzwwYlAokpfqWpLNoXEZq1Ov3RoijNAxrN5fRhYqxzedauoF7tyFlbgr9q002zPPPLTa')] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_92__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent,
         _components_common_preloader_preloader_component__WEBPACK_IMPORTED_MODULE_2__.PreloaderComponent,
         _components_pages_main_home_main_home_component__WEBPACK_IMPORTED_MODULE_3__.MainHomeComponent,
         _components_common_awards_awards_component__WEBPACK_IMPORTED_MODULE_4__.AwardsComponent,
@@ -495,14 +499,49 @@ AppModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_91__["ɵ�
         _ggera_players_players_component__WEBPACK_IMPORTED_MODULE_87__.PlayersComponent,
         _ggera_subscriptions_subscriptions_component__WEBPACK_IMPORTED_MODULE_88__.SubscriptionsComponent,
         _ggera_underconstruction_underconstruction_component__WEBPACK_IMPORTED_MODULE_89__.UnderconstructionComponent,
-        _ggera_lazy_loading_lazy_loading_component__WEBPACK_IMPORTED_MODULE_90__.LazyLoadingComponent], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_93__.BrowserModule,
+        _ggera_lazy_loading_lazy_loading_component__WEBPACK_IMPORTED_MODULE_90__.LazyLoadingComponent], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_94__.BrowserModule,
         _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule,
-        _abacritt_angularx_social_login__WEBPACK_IMPORTED_MODULE_92__.SocialLoginModule,
-        _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_94__.BrowserAnimationsModule,
-        _angular_forms__WEBPACK_IMPORTED_MODULE_95__.FormsModule,
-        _angular_forms__WEBPACK_IMPORTED_MODULE_95__.ReactiveFormsModule,
-        ng2_charts__WEBPACK_IMPORTED_MODULE_96__.NgChartsModule,
-        _angular_common_http__WEBPACK_IMPORTED_MODULE_97__.HttpClientModule, ngx_stripe__WEBPACK_IMPORTED_MODULE_98__.NgxStripeModule] }); })();
+        _abacritt_angularx_social_login__WEBPACK_IMPORTED_MODULE_93__.SocialLoginModule,
+        _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_95__.BrowserAnimationsModule,
+        _angular_forms__WEBPACK_IMPORTED_MODULE_96__.FormsModule,
+        _angular_forms__WEBPACK_IMPORTED_MODULE_96__.ReactiveFormsModule,
+        ng2_charts__WEBPACK_IMPORTED_MODULE_97__.NgChartsModule,
+        _angular_common_http__WEBPACK_IMPORTED_MODULE_98__.HttpClientModule, ngx_stripe__WEBPACK_IMPORTED_MODULE_99__.NgxStripeModule] }); })();
+
+
+/***/ }),
+
+/***/ 2993:
+/*!*******************************!*\
+  !*** ./src/app/auth.guard.ts ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AuthGuard": () => (/* binding */ AuthGuard)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 124);
+/* harmony import */ var _hero_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hero.service */ 2342);
+
+
+
+
+class AuthGuard {
+    constructor(_router, _auth) {
+        this._router = _router;
+        this._auth = _auth;
+    }
+    canActivate() {
+        if (this._auth.isLoggedIn())
+            return true;
+        this._router.navigate(['/login']);
+        return false;
+    }
+}
+AuthGuard.ɵfac = function AuthGuard_Factory(t) { return new (t || AuthGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_hero_service__WEBPACK_IMPORTED_MODULE_0__.HeroService)); };
+AuthGuard.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: AuthGuard, factory: AuthGuard.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
