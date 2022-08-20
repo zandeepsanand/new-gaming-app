@@ -53,7 +53,7 @@
 
         </div>
         <div class="  ptb-100">
-            <a (click)="coachReq(user.email)" class="default-btn p-2 " style="cursor: pointer;">Ask for Coaching</a>
+            <a (click)="coachReq(user.email)"  *ngIf="_auth.isNormal()" class="default-btn p-2 " style="cursor: pointer;">Ask for Coaching</a>
         </div>
     </div>
 </section>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import {  GoogleLoginProvider} from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 import { HeroService } from '../../hero.service';
@@ -16,6 +16,8 @@ export class SigninComponent implements OnInit {
   constructor(private authService: SocialAuthService,
     private router: Router,
     private _heroService: HeroService,
+    private _auth: HeroService,
+
     private activated: ActivatedRoute
   ) { }
 
@@ -58,8 +60,6 @@ export class SigninComponent implements OnInit {
                     setTimeout(() => {
                       this.router.navigate(['/profile'])
                     }, 1000);
-
-
 
                   })
 
@@ -106,7 +106,7 @@ export class SigninComponent implements OnInit {
   }
 
 
-  
+
 
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
@@ -114,11 +114,12 @@ export class SigninComponent implements OnInit {
         console.log(res, "res")
         setTimeout(() => {
           this.router.navigate(['/profile'])
-        }, 1000);      })
+        }, 1000);
+      })
 
   }
 
- 
+
 
   signInWithDiscord() {
     this._heroService.discordSign()
@@ -255,9 +256,9 @@ export class SigninComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 1500
               }).then(() => {
-              
-                  this.router.navigate(['/profile'])
-                
+
+                this.router.navigate(['/profile'])
+
               })
 
             }

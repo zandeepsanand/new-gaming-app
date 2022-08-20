@@ -14,7 +14,7 @@ export class SingleProComponent implements OnInit {
 
   constructor(private _hero: HeroService, 
     private _route: ActivatedRoute,
-    private _auth:HeroService,
+    public _auth:HeroService,
     private router:Router
     ) { }
 

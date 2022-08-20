@@ -49,6 +49,7 @@ import { PlayersComponent } from './ggera/players/players.component';
 import { UnderconstructionComponent } from './ggera/underconstruction/underconstruction.component';
 import { LazyLoadingComponent } from './ggera/lazy-loading/lazy-loading.component';
 import { AuthGuard } from './auth.guard';
+import { OrderListsComponent } from './ggera/order-lists/order-lists.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent,canActivate: [AuthGuard ]},
@@ -59,7 +60,7 @@ const routes: Routes = [
     {path: 'home-page', canActivate: [AuthGuard ], component: HomePageComponent},
     {path: 'coachings', canActivate: [AuthGuard ], component: ProRequestsComponent},
     {path: 'player-page', canActivate: [AuthGuard ], component: PlayerPageComponent},
-    {path: 'my-orders', canActivate: [AuthGuard ], component: MyorderComponent},
+    {path: 'my-orders', canActivate: [AuthGuard ], component: OrderListsComponent},
     {path: 'create-party', canActivate: [AuthGuard ], component: CreatePartyComponent},
     {path: 'users', canActivate: [AuthGuard ], component: AdminUsersComponent},
     {path: 'pro-requests', canActivate: [AuthGuard ], component: ProRequestsComponent},
@@ -67,6 +68,8 @@ const routes: Routes = [
     {path: 'single-pro', canActivate: [AuthGuard ], component: SingleProComponent},
     {path: 'players', canActivate: [AuthGuard ], component: PlayersComponent},
     {path: 'loading',  component: LazyLoadingComponent},
+    {path: 'pro-home',  component: MyorderComponent},
+
 
     {path: '**', canActivate: [AuthGuard ], component: UnderconstructionComponent},
 

@@ -15,20 +15,21 @@
                             <th scope="col">KDA </th>
                             <th scope="col">Kills </th>
                             <th scope="col">Platform</th>
-                            <th scope="col">Counntry</th>
+                            <th scope="col">Country</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr>
+
+                        <tr *ngFor=" let subscriber of subscribers">
                             <td class="product-thumbnail">
                                 <a routerLink="/single-products">
-                                    <img src="assets/img/products-img1.jpg" alt="item">
+                                    <img src={{subscriber.profile_pic}} alt="item">
                                 </a>
                             </td>
 
                             <td class="product-name">
-                                <a routerLink="/single-products">Akhil</a>
+                                <a routerLink="/single-products">{{subscriber.username}}</a>
                             </td>
 
                             <td class="product-price">
@@ -48,63 +49,7 @@
                                 </a>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="product-thumbnail">
-                                <a routerLink="/single-products">
-                                    <img src="assets/img/products-img1.jpg" alt="item">
-                                </a>
-                            </td>
-
-                            <td class="product-name">
-                                <a routerLink="/single-products">Akhil</a>
-                            </td>
-
-                            <td class="product-price">
-                                <span class="unit-amount">50</span>
-                            </td>
-                            <td class="product-price">
-                                <span class="unit-amount">500</span>
-                            </td>
-                            <td class="product-price">
-                                <span class="unit-amount">pc</span>
-                            </td>
-
-                            <td class="product-subtotal">
-                                <span class="subtotal-amount">India</span>
-                                <a routerLink="/cart" class="remove"><button type="button" class="btn btn-success">Accept</button>&nbsp;
-                                    <button type="button" class="btn btn-danger">Reject</button>
-                                </a>
-                            </td>
-                        </tr>
-                         
-                        <tr>
-                            <td class="product-thumbnail">
-                                <a routerLink="/single-products">
-                                    <img src="assets/img/products-img1.jpg" alt="item">
-                                </a>
-                            </td>
-
-                            <td class="product-name">
-                                <a routerLink="/single-products">Akhil</a>
-                            </td>
-
-                            <td class="product-price">
-                                <span class="unit-amount">50</span>
-                            </td>
-                            <td class="product-price">
-                                <span class="unit-amount">500</span>
-                            </td>
-                            <td class="product-price">
-                                <span class="unit-amount">pc</span>
-                            </td>
-
-                            <td class="product-subtotal">
-                                <span class="subtotal-amount">India</span>
-                                <a routerLink="/cart" class="remove"><button type="button" class="btn btn-success">Accept</button>&nbsp;
-                                    <button type="button" class="btn btn-danger">Reject</button>
-                                </a>
-                            </td>
-                        </tr>
+                   
 
                     </tbody>
                 </table>

@@ -20,7 +20,9 @@
 
                 <div class="collapse navbar-collapse mean-menu">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a routerLink="/" class="nav-link">Home </a></li>
+                        <li class="nav-item" *ngIf="_auth.isNormal()"><a routerLink="/" class="nav-link">Home </a></li>
+                        <li class="nav-item"*ngIf="!_auth.isNormal()" ><a routerLink="/pro-home" class="nav-link">Dashboard </a></li>
+
                         <li class="nav-item"><a routerLink="/subscriptions" class="nav-link">Subscriptions </a> </li>
 
 
@@ -160,7 +162,6 @@
 
                 <div class="  pt-5 ">
 
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Wallet()">Wallet<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;"
                         (click)="myOrders()">Orders<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Profile()">Edit
@@ -168,13 +169,13 @@
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Wallet()"
                         *ngIf="_auth.isPro()">Premade
                         Parties<br></a>
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Wallet()"
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Profile()"
                         *ngIf="_auth.isPro()">Rank<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;">Settings<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;">Support<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;">Special Events<br></a>
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Logout()"
-                        *ngIf="_auth.isPro()">Coaching
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" 
+                        *ngIf="!_auth.isPro()">Coaching
                         Program<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Logout()">Logout<br></a>
 

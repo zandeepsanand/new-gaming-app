@@ -134,8 +134,11 @@ export class HeroService {
   }
 
   getCoachingList() {
-    return this.http.get<any>(`${this.server_address}/proplayer/coaching`,);
+    return this.http.get<any>(`${this.server_address}/proplayer/coaching-requests`,);
   }
+
+
+  
   sendLinkApprove(id: any, pro_id: any) {
     console.log(id)
     return this.http.post<any>(`${this.server_address}/proplayer/sendLink_approve`, { id: id, pro_id: pro_id });

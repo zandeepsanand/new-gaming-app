@@ -9,8 +9,8 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-12">
                         <div class="products-details-image">
-                            <a href="assets/img/products-img1.jpg" data-fancybox="gallery">
-                                <img src="assets/img/products-img1.jpg" alt="image">
+                            <a  data-fancybox="gallery">
+                                <img src={{user.profile_pic}} alt="image">
                             </a>
                         </div>
                     </div>
@@ -19,28 +19,24 @@
             </div>
             <div class="col-lg-7 col-md-12">
                 <div class="products-details-desc">
-                    <h3>Xlsx Syltherine</h3>
+                    <h3>{{user.username}}</h3>
                     <div class="price">
                         <span class="new-price">Country : </span>
-                        <span class="old-price">Slovenia</span>
+                        <span class="old-price">{{user.country}}</span>
                     </div>
 
                     <div class="products-meta">
-                        <span><span class="spanlimit">Kills</span> <span class="sku">12560</span></span>
-                        <span><span class="spanlimit">KO</span><span class="sku">28658</span></span>
-                        <span><span class="spanlimit">W/O</span> <span class="sku">52%</span></span>
-                        <span><span class="spanlimit">Wins</span><span class="sku">2658</span></span>
+                        <span><span class="spanlimit">Kills</span> <span class="sku">{{user.kills}}</span></span>
+                        <span><span class="spanlimit">KO</span><span class="sku">{{user.kd}}</span></span>
+                        <span><span class="spanlimit">W/O</span> <span class="sku">{{user.winrate}}</span></span>
+                        <span><span class="spanlimit">Wins</span><span class="sku">{{user.wins}}</span></span>
                     </div>
 
-                    <p class="pt-2">Xlsx Syltherine who travels from his homeland in Spain to the Egyptian desert in
-                        search of a
-                        treasure buried near the Pyramids. Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod
-                        tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt et.</p>
+                    <p class="pt-2">{{user.about}}</p>
 
                     <div class="products-add-to-cart">
 
-                        <button type="submit" class="default-btn">Edit</button>
+                        <button type="submit" class="default-btn" (click)="profile()">Edit</button>
                     </div>
 
                 </div>

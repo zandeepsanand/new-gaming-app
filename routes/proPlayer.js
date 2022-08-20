@@ -109,10 +109,12 @@ router.get('/party', async (req, res) => {
     }
 })
 
-router.get('/coaching', async (req, res) => {
+
+// to fetch lists of requests 
+router.get('/coaching-requests', async (req, res) => {
     try {
 
-        const userLists = await TuitionData.find()
+        const userLists = await CoachData.find()
         res.send(userLists)
     } catch (error) {
         console.log(error)

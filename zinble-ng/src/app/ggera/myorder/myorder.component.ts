@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgChartsModule } from 'ng2-charts';
 import { ChartConfiguration } from 'chart.js';
+import { HeroService } from 'src/app/hero.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-myorder',
@@ -39,10 +41,30 @@ export class MyorderComponent implements OnInit {
     responsive: true,
   };
 
+  user:any
 
-  constructor() { }
+
+  constructor(private _heroService:HeroService,
+    private router:Router) { }
 
   ngOnInit(): void {
+    this.userData()
   }
 
+
+  userData() {
+    if(this._heroService.getEmail()){
+      let email = this._heroService.getEmail()
+      this._heroService.getUserDetail(email).
+        subscribe(res => {
+          this.user = res
+         
+        })
+    }
+ 
+  }
+
+  profile(){
+    this.router.navigate(['/profile'])
+  }
 }

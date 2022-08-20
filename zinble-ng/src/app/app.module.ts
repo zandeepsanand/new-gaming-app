@@ -105,6 +105,7 @@ import { SubscriptionsComponent } from './ggera/subscriptions/subscriptions.comp
 import { UnderconstructionComponent } from './ggera/underconstruction/underconstruction.component';
 import { LazyLoadingComponent } from './ggera/lazy-loading/lazy-loading.component';
 import { AuthGuard } from './auth.guard';
+import { OrderListsComponent } from './ggera/order-lists/order-lists.component';
 
 @NgModule({
   declarations: [
@@ -197,6 +198,7 @@ import { AuthGuard } from './auth.guard';
     SubscriptionsComponent,
     UnderconstructionComponent,
     LazyLoadingComponent,
+    OrderListsComponent,
   ],
   imports: [
     BrowserModule,

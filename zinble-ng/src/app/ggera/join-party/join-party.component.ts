@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HeroService } from 'src/app/hero.service';
 
 @Component({
   selector: 'app-join-party',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JoinPartyComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _auth: HeroService,
+    private _router: Router) { }
 
   ngOnInit(): void {
   }
-
+  newParty() {
+    this._router.navigate(['create-party'])
+  }
 }

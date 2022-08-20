@@ -22,29 +22,29 @@ export class ProfileComponent implements OnInit {
 
 
   ProfileForm: any = new FormGroup({
-    'username':  new FormControl(''),
-    'language':  new FormControl(''),
-    'profile_pic':new FormControl(''),
-    'country':  new FormControl(''),
-    'email':  new FormControl(''),
-    'gamer':  new FormControl(''),
-    'gamerID':  new FormControl(''),
-    'wr':  new FormControl(''),
-    'discord_id':  new FormControl(''),
-    'channel_name':  new FormControl(''),
-    'kd':  new FormControl(''),
+    'username': new FormControl(''),
+    'language': new FormControl(''),
+    'profile_pic': new FormControl(''),
+    'country': new FormControl(''),
+    'email': new FormControl(''),
+    'gamer': new FormControl(''),
+    'gamerID': new FormControl(''),
+    'wr': new FormControl(''),
+    'discord_id': new FormControl(''),
+    'channel_name': new FormControl(''),
+    'kd': new FormControl(''),
     'elo': new FormControl(''),
     'winrate': new FormControl(''),
     'kills': new FormControl(''),
     'wins': new FormControl(''),
-    'platform':  new FormControl(''),
-    'account_name':  new FormControl(''),
+    'platform': new FormControl(''),
+    'account_name': new FormControl(''),
     'account_number': new FormControl(''),
-    'bank_name':  new FormControl(''),
-    'flawless':  new FormControl(''),
-    'pro_cost':  new FormControl(''),
-    'vip_cost':  new FormControl(''),
-    'about':  new FormControl('')
+    'bank_name': new FormControl(''),
+    'flawless': new FormControl(''),
+    'pro_cost': new FormControl(''),
+    'vip_cost': new FormControl(''),
+    'about': new FormControl('')
   })
 
 
@@ -111,8 +111,13 @@ export class ProfileComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 1500
               }).then(() => {
+                if (this.hero.isNormal()) {
+                  this.router.navigate(['/home-page'])
 
-                this.router.navigate(['/home-page'])
+                } else {
+                  this.router.navigate(['/pro-home'])
+
+                }
 
 
               })
