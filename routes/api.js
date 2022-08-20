@@ -184,6 +184,17 @@ router.get('/users', async (req, res) => {
     }
 })
 
+router.get('/user/:id', async (req, res) => {
+    try {
+
+        let id = req.params.id
+        const userLists = await USERDATA.findById(id)
+        res.send(userLists)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 
 // chats 
 router.post('/messages', async (req, res) => {

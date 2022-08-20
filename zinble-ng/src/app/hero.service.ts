@@ -154,6 +154,11 @@ export class HeroService {
     return this.http.get<any>(`${this.server_address}/users`);
   }
 
+  getUserById(id:any){
+    return this.http.get<any>(`${this.server_address}/user/${id}`);
+
+  }
+
   getchatlist(email: any) {
     return this.http.post<any>(`${this.server_address}/chatLists`, email)
 

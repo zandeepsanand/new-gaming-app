@@ -62,109 +62,20 @@
             </div>
         </section>
         <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let privateUser of privateUsers.slice(0,4)">
                 <div class="single-team-member">
-                    <img src="assets/img/team-member1.jpg" alt="image">
+                    <img src={{privateUser.profile_pic}} alt="image">
 
                     <div class="content">
-                        <h3>Sarah Taylor</h3>
-                        <span>Sarah3s</span>
+                        <h3>{{privateUser.username}}</h3>
+                        <span>{{privateUser.gamerID}}</span>
                     </div>
 
                     <a routerLink="/single-pro" class="link-btn"></a>
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-team-member">
-                    <img src="assets/img/team-member2.jpg" alt="image">
 
-                    <div class="content">
-                        <h3>Merv Adrian</h3>
-                        <span>Zelda3s</span>
-                    </div>
-
-                    <a routerLink="/single-pro" class="link-btn"></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-team-member">
-                    <img src="assets/img/team-member3.jpg" alt="image">
-
-                    <div class="content">
-                        <h3>Carla Gentry</h3>
-                        <span>3s.King</span>
-                    </div>
-
-                    <a routerLink="/single-pro" class="link-btn"></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-team-member">
-                    <img src="assets/img/team-member4.jpg" alt="image">
-
-                    <div class="content">
-                        <h3>Liam Oliver</h3>
-                        <span>Junior.Zelda</span>
-                    </div>
-
-                    <a routerLink="/single-pro" class="link-btn"></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-team-member">
-                    <img src="assets/img/team-member5.jpg" alt="image">
-
-                    <div class="content">
-                        <h3>Emma Olivia</h3>
-                        <span>King.Zelda</span>
-                    </div>
-
-                    <a routerLink="/single-pro" class="link-btn"></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-team-member">
-                    <img src="assets/img/team-member6.jpg" alt="image">
-
-                    <div class="content">
-                        <h3>Elijah William</h3>
-                        <span>Zelda</span>
-                    </div>
-
-                    <a routerLink="/single-pro" class="link-btn"></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-team-member">
-                    <img src="assets/img/team-member8.jpg" alt="image">
-
-                    <div class="content">
-                        <h3>Kylo Jennar</h3>
-                        <span>Zelda.Kylo</span>
-                    </div>
-
-                    <a routerLink="/single-pro" class="link-btn"></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="single-team-member">
-                    <img src="assets/img/team-member7.jpg" alt="image">
-
-                    <div class="content">
-                        <h3>Lucas Luiz</h3>
-                        <span>luiz.zelda</span>
-                    </div>
-
-                    <a routerLink="/single-pro" class="link-btn"></a>
-                </div>
-            </div>
         </div>
 
     </div>
