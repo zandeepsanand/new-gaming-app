@@ -38,7 +38,7 @@ passport.use(new Strategy({
 
     clientID: process.env.DISCORD_CLIENT_ID,
     clientSecret: process.env.DISCORD_CLIENT_SECRET,
-    callbackURL: 'http://localhost:8887/api/auth/discord/redirect',
+    callbackURL: 'https://newggera.herokuapp.com/api/auth/discord/redirect/api/auth/discord/redirect',
     scope: ['identify', 'email']
 },
     async (accessToken, refreshToken, profile, done) => {
