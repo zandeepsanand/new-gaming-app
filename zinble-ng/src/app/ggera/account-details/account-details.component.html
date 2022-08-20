@@ -1,0 +1,152 @@
+<div class="pb-100">
+    <app-nav-bar> </app-nav-bar>
+</div>
+
+<section class=" ptb-100">
+
+    <div class="container">
+
+        <div class="row ">
+            <div class="col-lg-5 col-sm-5 col-md-5  ">
+                <h1 class=" p-2">Current Balance</h1>
+                <h2 class="  p-2 fs-1">0$</h2>
+                <div class="  p-2">
+                     <a routerLink="/cart"
+                        class="default-btn p-2 ">Withdraw</a></div>
+                <h6 class=" p-2">Minimum amount to Withdraw is 30$</h6>
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="container ptb-100">
+        <div>
+            <h1>Latest Transactions</h1>
+        </div><br>
+        <div class="matches-tabs">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="all-matches-tab" data-bs-toggle="tab"
+                        data-bs-target="#all-matches" type="button" role="tab" aria-controls="all-matches"
+                        aria-selected="true">All</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="upcoming-matches-tab" data-bs-toggle="tab"
+                        data-bs-target="#upcoming-matches" type="button" role="tab" aria-controls="upcoming-matches"
+                        aria-selected="true">Sessions Salary</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="latest-result-tab" data-bs-toggle="tab" data-bs-target="#latest-result"
+                        type="button" role="tab" aria-controls="latest-result" aria-selected="true">Bonus</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="latest-result-tab" data-bs-toggle="tab" data-bs-target="#latest-result"
+                        type="button" role="tab" aria-controls="latest-result" aria-selected="true">Tips</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="latest-result-tab" data-bs-toggle="tab" data-bs-target="#latest-result"
+                        type="button" role="tab" aria-controls="latest-result" aria-selected="true">Withdrawal &
+                        Fine</button>
+                </li>
+            </ul>
+        </div>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <!-- <th scope="col">Product</th> -->
+                    <th scope="col">Type</th>
+                    <th scope="col">Date </th>
+                    <th scope="col">Order Id</th>
+                    <th scope="col">Amount</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td class="product-name">
+                        <a routerLink="/single-products">Withdrawal</a>
+                    </td>
+
+                    <td class="product-price">
+                        <span class="unit-amount">12/5/22</span>
+                    </td>
+
+                    <td class="product-quantity">
+                        <span class="unit-amount">ADE12323E</span>
+
+                    </td>
+
+                    <td class="product-subtotal">
+                        <span class="subtotal-amount">$99.00</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="product-name">
+                        <a routerLink="/single-products">Withdrawal</a>
+                    </td>
+
+                    <td class="product-price">
+                        <span class="unit-amount">12/5/22</span>
+                    </td>
+
+                    <td class="product-quantity">
+                        <span class="unit-amount">ADE12323E</span>
+
+                    </td>
+
+                    <td class="product-subtotal">
+                        <span class="subtotal-amount">$99.00</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="product-name">
+                        <a routerLink="/single-products">Bonus</a>
+                    </td>
+
+                    <td class="product-price">
+                        <span class="unit-amount">12/5/22</span>
+                    </td>
+
+                    <td class="product-quantity">
+                        <span class="unit-amount">ADE12323E</span>
+
+                    </td>
+
+                    <td class="product-subtotal">
+                        <span class="subtotal-amount">$99.00</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="product-name">
+                        <a routerLink="/single-products">Withdrawal</a>
+                    </td>
+
+                    <td class="product-price">
+                        <span class="unit-amount">12/5/22</span>
+                    </td>
+
+                    <td class="product-quantity">
+                        <span class="unit-amount">ADE12323E</span>
+
+                    </td>
+
+                    <td class="product-subtotal">
+                        <span class="subtotal-amount">$99.00</span>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+
+    </div>
+</section>
+<section class="social-area pt-100 pb-70">
+    <app-social></app-social>
+</section>
+<footer class="footer-area">
+    <app-new-footer></app-new-footer>
+</footer>
