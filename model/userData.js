@@ -8,6 +8,7 @@ const userDataSchema = new Schema({
     username: String,
     otp: Number,
     profile_pic: String,
+    language: String,
     phone_number: String,
     channel_name: String,
     email: String,
@@ -28,7 +29,14 @@ const userDataSchema = new Schema({
     kills: String,
     wins: String,
     platform: String,
-    status:{type:String , default:'offline'}
+    account_name: String,
+    account_number: String,
+    bank_name: String,
+    flawless:String,
+    pro_cost:String,
+    vip_cost:String,
+    about:String,
+    status: { type: String, default: 'offline' }
 
 });
 

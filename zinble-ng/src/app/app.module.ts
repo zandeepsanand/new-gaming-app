@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgChartsModule } from 'ng2-charts';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PreloaderComponent } from './components/common/preloader/preloader.component';
@@ -102,6 +103,7 @@ import { SingleProComponent } from './ggera/single-pro/single-pro.component';
 import { PlayersComponent } from './ggera/players/players.component';
 import { SubscriptionsComponent } from './ggera/subscriptions/subscriptions.component';
 import { UnderconstructionComponent } from './ggera/underconstruction/underconstruction.component';
+import { LazyLoadingComponent } from './ggera/lazy-loading/lazy-loading.component';
 
 @NgModule({
   declarations: [
@@ -193,6 +195,7 @@ import { UnderconstructionComponent } from './ggera/underconstruction/underconst
     PlayersComponent,
     SubscriptionsComponent,
     UnderconstructionComponent,
+    LazyLoadingComponent,
   ],
   imports: [
     BrowserModule,

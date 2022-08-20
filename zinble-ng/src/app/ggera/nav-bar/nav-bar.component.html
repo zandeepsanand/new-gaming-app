@@ -12,7 +12,7 @@
     </div>
 
     <div class="zinble-nav">
-        <div class="{{containerClass}}">
+        <div class="container-fluid">
             <nav class="navbar navbar-expand-md navbar-light">
                 <a class="navbar-brand" routerLink="/">
                     <img style="width:100px ;" src="assets/img/circle gry black gredient.png" alt="logo">
@@ -26,7 +26,8 @@
 
 
 
-                        <li class="nav-item"><a class="nav-link">Pro+ <i class="flaticon-down-arrow"></i></a>
+                        <li class="nav-item" *ngIf="_auth.isPro()"><a class="nav-link">Pro+ <i
+                                    class="flaticon-down-arrow"></i></a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a routerLink="/join-party" class="nav-link"
                                         routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Parties</a>
@@ -59,7 +60,8 @@
                         <li class="nav-item"><a href="javascript:void(0)" class="nav-link">Players </a>
 
                         </li>
-                        <li class="nav-item"><a class="nav-link">Admin <i class="flaticon-down-arrow"></i></a>
+                        <li class="nav-item" *ngIf="_auth.isSuperAdmin()"><a class="nav-link">Admin <i
+                                    class="flaticon-down-arrow"></i></a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a routerLink="/users" class="nav-link" routerLinkActive="active"
                                         [routerLinkActiveOptions]="{exact: true}">Users</a>
@@ -136,7 +138,9 @@
             <div class="modal-body flex align-items-center">
                 <div class="logo ptb-100">
                     <h2>
-                        <h2 class="pb-2">xxxSpyderxxx</h2>
+                        <h2 class="pb-2" *ngIf="!user">Anonymous</h2>
+                        <h2 class="pb-2" *ngIf="user?.username != undefined">{{user?.username}}</h2>
+
                     </h2>
                     <div class="lang-switcher">
                         <select>
@@ -156,25 +160,23 @@
 
                 <div class="  pt-5 ">
 
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Wallet()">Wallet</a><br>
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Wallet()">Wallet<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;"
-                        (click)="myOrders()">Orders</a><br>
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Wallet()">Edit
-                        Profile</a><br>
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Wallet()">Premade
-                        Parties</a><br>
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Wallet()">Rank</a><br>
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;"
-                        (click)="Logout()">Settings</a><br>
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Logout()">Support</a><br>
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Logout()">Special
-                        Events</a><br>
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Logout()">Coaching
-                        Program</a><br>
-
-
-
-                    <a (click)="Logout()">Logout</a><br>
+                        (click)="myOrders()">Orders<br></a>
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Profile()">Edit
+                        Profile<br></a>
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Wallet()"
+                        *ngIf="_auth.isPro()">Premade
+                        Parties<br></a>
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Wallet()"
+                        *ngIf="_auth.isPro()">Rank<br></a>
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;">Settings<br></a>
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;">Support<br></a>
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;">Special Events<br></a>
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Logout()"
+                        *ngIf="_auth.isPro()">Coaching
+                        Program<br></a>
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Logout()">Logout<br></a>
 
                 </div>
                 <ul class="social-list ">

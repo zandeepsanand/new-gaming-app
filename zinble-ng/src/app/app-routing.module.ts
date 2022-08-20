@@ -47,6 +47,7 @@ import { EarningsComponent } from './ggera/earnings/earnings.component';
 import { SingleProComponent } from './ggera/single-pro/single-pro.component';
 import { PlayersComponent } from './ggera/players/players.component';
 import { UnderconstructionComponent } from './ggera/underconstruction/underconstruction.component';
+import { LazyLoadingComponent } from './ggera/lazy-loading/lazy-loading.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent},
@@ -64,6 +65,8 @@ const routes: Routes = [
     {path: 'earnings', component: EarningsComponent},
     {path: 'single-pro', component: SingleProComponent},
     {path: 'players', component: PlayersComponent},
+    {path: 'loading', component: LazyLoadingComponent},
+
     {path: '**', component: UnderconstructionComponent},
 
 

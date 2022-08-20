@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { HeroService } from 'src/app/hero.service';
 
 
 @Component({
@@ -11,30 +12,26 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 export class NavBarComponent implements OnInit {
 
 
-  location: any;
-  containerClass: any;
+
+  user:any
 
   constructor(
     private router: Router,
-    location: Location
-  ) {
-    this.router.events
-      .subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          this.location = this.router.url;
-          if (this.location == '/bosting' || this.location == '/magazine' || this.location == '/tournaments' || this.location == '/streaming') {
-            this.containerClass = 'container';
-          } else {
-            this.containerClass = 'container-fluid';
-          }
-        }
-      });
-  }
+    private _heroService:HeroService,
+    public _auth:HeroService
+    
+  ) {  }
+
   ngOnInit(): void {
+    this.userData();
   }
 
   Wallet() {
     this.router.navigate(['/wallet'])
+  }
+
+  Profile() {
+    this.router.navigate(['/profile'])
   }
 
   myOrders() {
@@ -43,8 +40,20 @@ export class NavBarComponent implements OnInit {
   }
 
   Logout(){
+    localStorage.clear()
     this.router.navigate(['/login'])
-
   }
 
+
+  userData() {
+    if(this._heroService.getEmail()){
+      let email = this._heroService.getEmail()
+      this._heroService.getUserDetail(email).
+        subscribe(res => {
+          this.user = res
+         
+        })
+    }
+ 
+  }
 }

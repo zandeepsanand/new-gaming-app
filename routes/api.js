@@ -61,7 +61,7 @@ router.put('/stripe', async (req, res) => {
         console.log(req.body)
         let email = req.body.data
         let amount = req.body.amount
- 
+
 
         const savedIdData = await USERDATA.updateOne(
             { email: email }, { $inc: { current_balance: amount } }
@@ -133,9 +133,12 @@ router.put('/user', async (req, res) => {
         console.log(req.body)
 
         let item = {
-            'username': req.body.profile.name,
+            'username': req.body.profile.username,
+            'language': req.body.profile.language,
             'country': req.body.profile.country,
+            'email': req.body.profile.email,
             'gamer': req.body.profile.gamer,
+            'profile_pic':req.body.profile_pic,
             'gamerID': req.body.profile.gamerID,
             'wr': req.body.profile.wr,
             'discord_id': req.body.profile.discord_id,
@@ -145,7 +148,14 @@ router.put('/user', async (req, res) => {
             'winrate': req.body.profile.winrate,
             'kills': req.body.profile.kills,
             'wins': req.body.profile.wins,
-            'platform': req.body.profile.platform
+            'platform': req.body.profile.platform,
+            'account_name': req.body.profile.account_name,
+            'account_number': req.body.profile.account_number,
+            'bank_name': req.body.profile.bank_name,
+            'flawless': req.body.profile.flawless,
+            'pro_cost': req.body.profile.pro_cost,
+            'vip_cost': req.body.profile.vip_cost,
+            'about': req.body.profile.about
         }
 
         let updateData = { $set: item };
@@ -206,25 +216,25 @@ router.post('/chatLists', async (req, res) => {
 
 
 //chat
-router.post("/listFriends",async function(req, res){
+router.post("/listFriends", async function (req, res) {
 
     try {
         const userLists = await USERDATA.find()
-        
+
         res.send(userLists)
     } catch (error) {
         console.log(error)
     }
     // var clonedArray = usersCollection.slice();
-  
+
     // Getting the userId from the request body as this is just a demo 
     // Ideally in a production application you would change this to a session value or something else
     // var i = usersCollection.findIndex(x => x.participant.id == req.body.userId);
-  
+
     // clonedArray.splice(i,1);
-  
+
     // res.json(clonedArray);
-  });
+});
 
 
 
