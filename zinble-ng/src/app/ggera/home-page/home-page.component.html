@@ -62,7 +62,7 @@
             </div>
         </section>
         <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let privateUser of privateUsers.slice(0,4)">
+            <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let privateUser of privateUsers.slice(0,4)" (click)="singlePro(privateUser._id)" style="cursor:pointer ;">
                 <div class="single-team-member">
                     <img src={{privateUser.profile_pic}} alt="image">
 
@@ -71,7 +71,6 @@
                         <span>{{privateUser.gamerID}}</span>
                     </div>
 
-                    <a routerLink="/single-pro" class="link-btn"></a>
                 </div>
             </div>
 

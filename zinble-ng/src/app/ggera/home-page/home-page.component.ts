@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HeroService } from 'src/app/hero.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { HeroService } from 'src/app/hero.service';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private _hero: HeroService) { }
+  constructor(private _hero: HeroService,
+    private route:Router) { }
 
   public privateUsers: any;
 
@@ -21,6 +23,10 @@ export class HomePageComponent implements OnInit {
         this.privateUsers = filterDATA;
       })
 
+  }
+
+  singlePro(id:any){
+    this.route.navigate([`/single-pro`],{ queryParams: { id: id }})
   }
 
 }
