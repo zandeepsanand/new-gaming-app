@@ -64,7 +64,7 @@ const routes = [
     { path: 'earnings', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_earnings_earnings_component__WEBPACK_IMPORTED_MODULE_10__.EarningsComponent },
     { path: 'single-pro', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_single_pro_single_pro_component__WEBPACK_IMPORTED_MODULE_11__.SingleProComponent },
     { path: 'players', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_players_players_component__WEBPACK_IMPORTED_MODULE_12__.PlayersComponent },
-    { path: 'loading', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_lazy_loading_lazy_loading_component__WEBPACK_IMPORTED_MODULE_14__.LazyLoadingComponent },
+    { path: 'loading', component: _ggera_lazy_loading_lazy_loading_component__WEBPACK_IMPORTED_MODULE_14__.LazyLoadingComponent },
     { path: '**', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_underconstruction_underconstruction_component__WEBPACK_IMPORTED_MODULE_13__.UnderconstructionComponent },
     // {path: '', component: MainHomeComponent},
     // {path: 'esports', component: EsportsHomeComponent},
