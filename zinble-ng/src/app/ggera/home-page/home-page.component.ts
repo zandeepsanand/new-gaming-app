@@ -29,4 +29,10 @@ export class HomePageComponent implements OnInit {
     this.route.navigate([`/single-pro`],{ queryParams: { id: id }})
   }
 
+  twitch(id:string) {
+    localStorage.setItem('twitch',id)
+    this.route.navigate(['/twitch-player'])
+   
+  }
+
 }
