@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeroService } from 'src/app/hero.service';
 
 @Component({
   selector: 'app-admin-users',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminUsersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _hero:HeroService) { }
+
+  public privateUsers: any;
+  public subscribers: any;
+
+
 
   ngOnInit(): void {
+
+    this._hero.getAllUsers()
+    .subscribe((res) => {
+      let filterDATA = res.filter((ol) => {
+        return ol.proPlayer === true
+      })
+      this.privateUsers = filterDATA;
+
+
+      let subDATA = res.filter((ol)=>{
+        return ol.proPlayer ===false && ol.superAdmin===false
+      })
+
+      this.subscribers = subDATA;
+    })
+
   }
 
 }

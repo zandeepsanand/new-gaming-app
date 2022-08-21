@@ -41,7 +41,8 @@ export class MyorderComponent implements OnInit {
     responsive: true,
   };
 
-  user:any
+  user:any;
+  subscribers:any;
 
 
   constructor(private _heroService:HeroService,
@@ -57,12 +58,19 @@ export class MyorderComponent implements OnInit {
       let email = this._heroService.getEmail()
       this._heroService.getUserDetail(email).
         subscribe(res => {
-          this.user = res
-         
+          this.user = res         
         })
+
+        this._heroService.getCoach(email).
+        subscribe(res => {
+          this.subscribers = res    
+          console.log(this.subscribers)    
+        })
+
     }
  
   }
+
 
   profile(){
     this.router.navigate(['/profile'])

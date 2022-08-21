@@ -81,6 +81,21 @@ router.get('/coach', async (req, res) => {
 })
 
 
+router.get('/:id/coach', async (req, res) => {
+    try {
+
+        let id = req.params.id
+        console.log(id)
+
+        const userLists = await CoachData.find({email:id})
+        
+        res.send(userLists)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
 
 router.post('/party', async (req, res) => {
     try {

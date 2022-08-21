@@ -107,8 +107,8 @@ export class HeroService {
 
   }
 
-  getCoach() {
-    return this.http.get<any>(`${this.server_address}/proplayer/coach`);
+  getCoach(id:any) {
+    return this.http.get<any>(`${this.server_address}/proplayer/${id}/coach`);
   }
 
 

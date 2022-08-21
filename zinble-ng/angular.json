@@ -52,6 +52,7 @@
                 "src/assets/js/parallax.min.js",
                 "src/assets/js/wow.min.js",
                 "src/assets/js/main.js"
+               
             ],
             "vendorChunk": true,
             "extractLicenses": false,

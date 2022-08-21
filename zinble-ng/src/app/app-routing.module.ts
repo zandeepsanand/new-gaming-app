@@ -50,28 +50,29 @@ import { UnderconstructionComponent } from './ggera/underconstruction/underconst
 import { LazyLoadingComponent } from './ggera/lazy-loading/lazy-loading.component';
 import { AuthGuard } from './auth.guard';
 import { OrderListsComponent } from './ggera/order-lists/order-lists.component';
+import { TwitchComponent } from './ggera/twitch/twitch.component';
 
 const routes: Routes = [
-    {path: '', component: HomePageComponent,canActivate: [AuthGuard ]},
-    {path: 'login', component: SigninComponent},
-    {path: 'account', canActivate: [AuthGuard ], component: AccountDetailsComponent} ,
-    {path: 'profile', canActivate: [AuthGuard ], component: ProfileComponent},
-    {path: 'join-party', canActivate: [AuthGuard ], component: JoinPartyComponent},
-    {path: 'home-page', canActivate: [AuthGuard ], component: HomePageComponent},
-    {path: 'coachings', canActivate: [AuthGuard ], component: ProRequestsComponent},
-    {path: 'player-page', canActivate: [AuthGuard ], component: PlayerPageComponent},
-    {path: 'my-orders', canActivate: [AuthGuard ], component: OrderListsComponent},
-    {path: 'create-party', canActivate: [AuthGuard ], component: CreatePartyComponent},
-    {path: 'users', canActivate: [AuthGuard ], component: AdminUsersComponent},
-    {path: 'pro-requests', canActivate: [AuthGuard ], component: ProRequestsComponent},
-    {path: 'earnings', canActivate: [AuthGuard ], component: EarningsComponent},
-    {path: 'single-pro', canActivate: [AuthGuard ], component: SingleProComponent},
-    {path: 'players', canActivate: [AuthGuard ], component: PlayersComponent},
-    {path: 'loading',  component: LazyLoadingComponent},
-    {path: 'pro-home',  component: MyorderComponent},
+    { path: '', component: HomePageComponent, canActivate: [AuthGuard] },
+    { path: 'login', component: SigninComponent },
+    { path: 'account', canActivate: [AuthGuard], component: AccountDetailsComponent },
+    { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
+    { path: 'join-party', canActivate: [AuthGuard], component: JoinPartyComponent },
+    { path: 'home-page', canActivate: [AuthGuard], component: HomePageComponent },
+    { path: 'coachings', canActivate: [AuthGuard], component: ProRequestsComponent },
+    { path: 'player-page', canActivate: [AuthGuard], component: PlayerPageComponent },
+    { path: 'my-orders', canActivate: [AuthGuard], component: OrderListsComponent },
+    { path: 'create-party', canActivate: [AuthGuard], component: CreatePartyComponent },
+    { path: 'users', canActivate: [AuthGuard], component: AdminUsersComponent },
+    { path: 'pro-requests', canActivate: [AuthGuard], component: ProRequestsComponent },
+    { path: 'earnings', canActivate: [AuthGuard], component: EarningsComponent },
+    { path: 'single-pro', canActivate: [AuthGuard], component: SingleProComponent },
+    { path: 'players', canActivate: [AuthGuard], component: PlayersComponent },
+    { path: 'loading', component: LazyLoadingComponent },
+    { path: 'pro-home', component: MyorderComponent },
+    { path: 'twitch-player', component: TwitchComponent },
 
-
-    {path: '**', canActivate: [AuthGuard ], component: UnderconstructionComponent},
+    { path: '**', canActivate: [AuthGuard], component: UnderconstructionComponent },
 
 
 
@@ -118,7 +119,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+    imports: [RouterModule.forRoot(routes,  {
+        scrollPositionRestoration: 'enabled'
+    })],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }

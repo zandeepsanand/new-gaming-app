@@ -106,6 +106,7 @@ import { UnderconstructionComponent } from './ggera/underconstruction/underconst
 import { LazyLoadingComponent } from './ggera/lazy-loading/lazy-loading.component';
 import { AuthGuard } from './auth.guard';
 import { OrderListsComponent } from './ggera/order-lists/order-lists.component';
+import { TwitchComponent } from './ggera/twitch/twitch.component';
 
 @NgModule({
   declarations: [
@@ -199,6 +200,7 @@ import { OrderListsComponent } from './ggera/order-lists/order-lists.component';
     UnderconstructionComponent,
     LazyLoadingComponent,
     OrderListsComponent,
+    TwitchComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { Router, NavigationStart, NavigationCancel, NavigationEnd } from '@angul
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { filter } from 'rxjs/operators';
 declare let $: any;
+declare var SDK: any;
 
 @Component({
     selector: 'app-root',
