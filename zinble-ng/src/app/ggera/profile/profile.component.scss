@@ -347,3 +347,57 @@ section{
 @media only screen and (min-width: 1550px) {
 
 }
+
+.live-stream-tabs {
+    .nav-tabs {
+        background-color: var(--blackColor);
+        border: none;
+
+        .nav-item {
+            margin-bottom: -1px;
+
+            .nav-link {
+                border: none;
+                padding: 12px 45px 7px 30px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                color: var(--whiteColor);
+                -webkit-clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+                clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+                font: {
+                    size: 22px;
+                    weight: 600;
+                };
+                border: {
+                    top: {
+                        left: {
+                            radius: 0;
+                        };
+                        right: {
+                            radius: 0;
+                        };
+                    };
+                };
+                &.active {
+                    background-color: var(--mainColor) !important;
+                    color: var(--whiteColor) !important;
+                }
+                &:hover {
+                    color: var(--mainColor);
+                }
+            }
+        }
+    }
+    .tab-content {
+        background-color: transparent;
+        padding: 0;
+
+        .row {
+            margin: 0;
+
+            .col-lg-7, .col-lg-5, .col-lg-4 {
+                padding: 0;
+            }
+        }
+    }
+}

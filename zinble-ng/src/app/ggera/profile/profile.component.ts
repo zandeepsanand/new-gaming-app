@@ -38,15 +38,23 @@ export class ProfileComponent implements OnInit {
     'kills': new FormControl(''),
     'wins': new FormControl(''),
     'platform': new FormControl(''),
-    'account_name': new FormControl(''),
-    'account_number': new FormControl(''),
-    'bank_name': new FormControl(''),
+    // 'account_name': new FormControl(''),
+    // 'account_number': new FormControl(''),
+    // 'bank_name': new FormControl(''),
     'flawless': new FormControl(''),
     'pro_cost': new FormControl(''),
     'vip_cost': new FormControl(''),
     'about': new FormControl('')
   })
 
+
+  AccountForm: any = new FormGroup({
+  
+    'account_name': new FormControl(''),
+    'account_number': new FormControl(''),
+    'bank_name': new FormControl(''),
+
+  })
 
   ngOnInit(): void {
 
@@ -77,16 +85,18 @@ export class ProfileComponent implements OnInit {
           'winrate': res.winrate,
           'kills': res.kills,
           'wins': res.wins,
-          'platform': res.platform,
-          'account_name': res.account_name,
-          'account_number': res.account_number,
-          'bank_name': res.bank_name,
+          'platform': res.platform,        
           'flawless': res.flawless,
           'pro_cost': res.pro_cost,
           'vip_cost': res.vip_cost,
           'about': res.about
+        })
 
+        this.AccountForm = this.fb.group({
 
+          'account_name': res.account_name,
+          'account_number': res.account_number,
+          'bank_name': res.bank_name,
         })
       })
 
@@ -141,4 +151,50 @@ export class ProfileComponent implements OnInit {
 
   }
 
+
+  Account(){
+
+    let email = this.hero.getEmail();
+    let accountUpdate = this.AccountForm.value
+
+    this.hero.updateProfile(accountUpdate, email)
+      .subscribe(
+        {
+          next: (res) => {
+            if (res) {
+
+              Swal.fire({
+                icon: 'success',
+                title: 'Updated successfully',
+                showConfirmButton: false,
+                timer: 1500
+              }).then(() => {
+                if (this.hero.isNormal()) {
+                  this.router.navigate(['/home-page'])
+
+                } else {
+                  this.router.navigate(['/pro-home'])
+
+                }
+
+
+              })
+
+            }
+          },
+          error: (err) => {
+
+            Swal.fire({
+              icon: 'error',
+              title: 'Network Error. Please try again',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(() => {
+              this.router.navigate(['/login'])
+
+            })
+          }
+        })
+
+  }
 }
