@@ -107,6 +107,7 @@ import { LazyLoadingComponent } from './ggera/lazy-loading/lazy-loading.componen
 import { AuthGuard } from './auth.guard';
 import { OrderListsComponent } from './ggera/order-lists/order-lists.component';
 import { TwitchComponent } from './ggera/twitch/twitch.component';
+import { StatsComponent } from './ggera/stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -201,6 +202,7 @@ import { TwitchComponent } from './ggera/twitch/twitch.component';
     LazyLoadingComponent,
     OrderListsComponent,
     TwitchComponent,
+    StatsComponent,
   ],
   imports: [
     BrowserModule,

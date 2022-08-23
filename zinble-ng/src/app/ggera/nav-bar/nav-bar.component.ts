@@ -36,8 +36,12 @@ export class NavBarComponent implements OnInit {
 
   myOrders() {
     this.router.navigate(['/my-orders'])
-
   }
+
+  Stats() {
+    this.router.navigate(['/stats'])
+  }
+
 
   PreParty(){
     this.router.navigate(['/join-party'])

@@ -51,6 +51,7 @@ import { LazyLoadingComponent } from './ggera/lazy-loading/lazy-loading.componen
 import { AuthGuard } from './auth.guard';
 import { OrderListsComponent } from './ggera/order-lists/order-lists.component';
 import { TwitchComponent } from './ggera/twitch/twitch.component';
+import { StatsComponent } from './ggera/stats/stats.component';
 
 const routes: Routes = [
     { path: '', component: HomePageComponent, canActivate: [AuthGuard] },
@@ -71,6 +72,8 @@ const routes: Routes = [
     { path: 'loading', component: LazyLoadingComponent },
     { path: 'pro-home', component: MyorderComponent },
     { path: 'twitch-player', component: TwitchComponent },
+    { path: 'stats', component: StatsComponent },
+
 
     { path: '**', canActivate: [AuthGuard], component: UnderconstructionComponent },
 
