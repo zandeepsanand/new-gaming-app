@@ -1,68 +1,165 @@
 <div class="pb-100">
     <app-nav-bar> </app-nav-bar>
 </div>
-
-<section class="cart-area ptb-100">
-
-   
-    <div class="container">
-        <form>
-            <div class="cart-table table-responsive">
-                
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Name</th>
-                            <th scope="col">KDA </th>
-                            <th scope="col">Kills </th>
-                            <th scope="col">Platform</th>
-                            <th scope="col">Country</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        <tr *ngFor=" let subscriber of subscribers">
-                            <td class="product-thumbnail">
-                                <a routerLink="/single-products">
-                                    <img src={{subscriber.profile_pic}} alt="item">
-                                </a>
-                            </td>
-
-                            <td class="product-name">
-                                <a routerLink="/single-products">{{subscriber.username}}</a>
-                            </td>
-
-                            <td class="product-price">
-                                <span class="unit-amount">50</span>
-                            </td>
-                            <td class="product-price">
-                                <span class="unit-amount">500</span>
-                            </td>
-                            <td class="product-price">
-                                <span class="unit-amount">pc</span>
-                            </td>
-
-                            <td class="product-subtotal">
-                                <span class="subtotal-amount">India</span>
-                                <a routerLink="/cart" class="remove"><button type="button" class="btn btn-success">Accept</button>&nbsp;
-                                    <button type="button" class="btn btn-danger">Reject</button>
-                                </a>
-                            </td>
-                        </tr>
-                   
-
-                    </tbody>
-                </table>
-            </div>
-
-            
-
-        </form>
+<section>
+<div class="container ptb-100">
+    <div class="section-title">
+        <h2>Requests</h2>
     </div>
-</section>
 
+    <div class="col-lg-12 col-md-12">
+        <div class="products-details-tabs">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+       
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#requests"
+                        type="button" role="tab" aria-controls="requests" aria-selected="true">
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+        
+
+                <div class="tab-pane fade show active" id="requests" role="tabpanel">
+
+                    <div class="products-review-comments">
+                        <div class="user-review">
+                            <img src="assets/img/user1.jpg" alt="image">
+                            <div class="review-rating">
+                                <span class="d-inline-block">James Anderson</span>
+                            </div>
+                            <div class="d-flex ">
+                                <div class="box1">
+                                    <span class="d-block sub-comment">Country</span>
+                                    <p>India</p>
+                                </div>
+                                <div class="box1">
+                                    <span class="d-block sub-comment">KDA</span>
+                                    <p>4.05</p>
+                                </div>
+                                <div class="box1">
+                                    <span class="d-block sub-comment">Kills</span>
+                                    <p>25568</p>
+                                </div>
+                                <div class="box1">
+                                    <span class="d-block sub-comment">Platform</span>
+                                    <p>PC</p>
+                                </div>
+                                <div class="px-2">
+                                    <button type="submit" class="default-btn">Accept</button>
+
+                                </div>
+                                <div class="">
+                                    <button type="submit" class="default-btn">Reject</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-review">
+                            <img src="assets/img/user1.jpg" alt="image">
+                            <div class="review-rating">
+                                <span class="d-inline-block">James Anderson</span>
+                            </div>
+                            <div class="d-flex ">
+                                <div class="box1">
+                                    <span class="d-block sub-comment">Country</span>
+                                    <p>India</p>
+                                </div>
+                                <div class="box1">
+                                    <span class="d-block sub-comment">KDA</span>
+                                    <p>4.05</p>
+                                </div>
+                                <div class="box1">
+                                    <span class="d-block sub-comment">Kills</span>
+                                    <p>25568</p>
+                                </div>
+                                <div class="box1">
+                                    <span class="d-block sub-comment">Platform</span>
+                                    <p>PC</p>
+                                </div>
+                                <div class="px-2">
+                                    <button type="submit" class="default-btn">Accept</button>
+
+                                </div>
+                                <div class="">
+                                    <button type="submit" class="default-btn">Reject</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-review">
+                            <img src="assets/img/user1.jpg" alt="image">
+                            <div class="review-rating">
+                                <span class="d-inline-block">James Anderson</span>
+                            </div>
+                            <div class="d-flex ">
+                                <div class="box1">
+                                    <span class="d-block sub-comment">Country</span>
+                                    <p>India</p>
+                                </div>
+                                <div class="box1">
+                                    <span class="d-block sub-comment">KDA</span>
+                                    <p>4.05</p>
+                                </div>
+                                <div class="box1">
+                                    <span class="d-block sub-comment">Kills</span>
+                                    <p>25568</p>
+                                </div>
+                                <div class="box1">
+                                    <span class="d-block sub-comment">Platform</span>
+                                    <p>PC</p>
+                                </div>
+                                <div class="px-2">
+                                    <button type="submit" class="default-btn">Accept</button>
+
+                                </div>
+                                <div class="">
+                                    <button type="submit" class="default-btn">Reject</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-review">
+                            <img src="assets/img/user1.jpg" alt="image">
+                            <div class="review-rating">
+                                <span class="d-inline-block">James Anderson</span>
+                            </div>
+                            <div class="d-flex ">
+                                <div class="box1">
+                                    <span class="d-block sub-comment">Country</span>
+                                    <p>India</p>
+                                </div>
+                                <div class="box1">
+                                    <span class="d-block sub-comment">KDA</span>
+                                    <p>4.05</p>
+                                </div>
+                                <div class="box1">
+                                    <span class="d-block sub-comment">Kills</span>
+                                    <p>25568</p>
+                                </div>
+                                <div class="box1">
+                                    <span class="d-block sub-comment">Platform</span>
+                                    <p>PC</p>
+                                </div>
+                                <div class="px-2">
+                                    <button type="submit" class="default-btn">Accept</button>
+
+                                </div>
+                                <div class="">
+                                    <button type="submit" class="default-btn">Reject</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
 <footer class="footer-area">
     <app-new-footer></app-new-footer>
 </footer>
