@@ -14,7 +14,10 @@
     <div class="zinble-nav">
         <div class="container-fluid">
             <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" routerLink="/">
+                <a class="navbar-brand" routerLink="/" *ngIf="_auth.isNormal()" >
+                    <img style="width:100px ;" src="assets/img/circle gry black gredient.png" alt="logo">
+                </a>
+                <a class="navbar-brand" routerLink="/pro-home" *ngIf="!_auth.isNormal()">
                     <img style="width:100px ;" src="assets/img/circle gry black gredient.png" alt="logo">
                 </a>
 
