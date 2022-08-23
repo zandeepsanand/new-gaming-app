@@ -39,6 +39,21 @@ export class NavBarComponent implements OnInit {
 
   }
 
+  PreParty(){
+    this.router.navigate(['/join-party'])
+  }
+
+  referals(){
+    this.router.navigate(['/referrals'])
+
+  }
+
+  account(){
+    console.log('account')
+    this.router.navigate(['/account'])
+
+
+  }
   Logout(){
     localStorage.clear()
     this.router.navigate(['/login'])
