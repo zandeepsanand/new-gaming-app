@@ -3,7 +3,6 @@ const router = express.Router()
 const USERDATA = require('../model/userData');
 const createError = require('http-errors')
 const CoachData = require('../model/coachData')
-const PartyData = require('../model/partyData')
 const TuitionData = require('../model/proCoachData')
 const { botMessage } = require('../controller/bot')
 
@@ -45,42 +44,6 @@ router.post('/pro', async (req, res) => {
     }
 })
 
-
-router.post('/coach', async (req, res) => {
-
-    try {
-
-        let item = {
-            email: req.body.email,
-            approve: false,
-            pro: req.body.pro_id
-        }
-
-
-        const USER = new CoachData(item)
-        const savedIdData = await USER.save()
-
-        res.send(savedIdData)
-
-    } catch (error) {
-        console.log(error)
-    }
-
-
-
-})
-
-router.get('/coach', async (req, res) => {
-    try {
-
-        const userLists = await CoachData.find()
-        res.send(userLists)
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-
 router.get('/:id/coach', async (req, res) => {
     try {
 
@@ -95,36 +58,6 @@ router.get('/:id/coach', async (req, res) => {
     }
 })
 
-
-
-router.post('/party', async (req, res) => {
-    try {
-
-        let item = {
-            game: req.body.data.game,
-            email: req.body.email
-        }
-        console.log(req.body)
-        const USER = new PartyData(item)
-        const savedIdData = await USER.save()
-        res.send(savedIdData)
-
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-router.get('/party', async (req, res) => {
-    try {
-
-        const userLists = await PartyData.find()
-        res.send(userLists)
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-
 // to fetch lists of requests 
 router.get('/coaching-requests', async (req, res) => {
     try {
@@ -135,7 +68,6 @@ router.get('/coaching-requests', async (req, res) => {
         console.log(error)
     }
 })
-
 
 router.post('/sendlink_approve', async (req, res) => {
 

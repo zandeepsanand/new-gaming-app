@@ -12,7 +12,7 @@ module.exports = {
                 
             }
 
-            const secret = 'secretCode123'
+            const secret = process.env.JWT_SECRET_CODE
 
            
 
@@ -37,7 +37,7 @@ module.exports = {
         const bearerToken = authHeader.split(' ')
         const token = bearerToken[1]
         console.log(token,'token')
-        JWT.verify(token, 'secretCode123', (err, payload) => {
+        JWT.verify(token, process.env.JWT_SECRET_CODE, (err, payload) => {
             if (err) {
                 
                 const message = err.name === 'JsonWebTokenError' ? 'Unauthorized' : err.message

@@ -1,6 +1,7 @@
 module.exports = {
   role: {
     admin: "ADMIN",
-    student: "USER"
+    pro: "PRO",
+    subscriber:"SUBSCRIBER"
   },
 };

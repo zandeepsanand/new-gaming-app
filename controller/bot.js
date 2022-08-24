@@ -13,7 +13,6 @@ bot.on('ready', () => {
 
 const botMessage = (id, twitch,idPro) => {
     try {
-        console.log(id, "iddddddddd")
         let string = id
         bot.users.fetch(string)
             .then(channel => {

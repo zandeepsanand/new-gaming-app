@@ -19,7 +19,7 @@ require('./helpers/init_mongodb')
 require('./controller/bot')
 require('./controller/discord')
 // app.use 
-app.use(express.static(__dirname + '/zinble-ng/dist/zinble-ng'));
+app.use(express.static(__dirname + '/Client-Side/dist/client'));
 
 app.use(express.static('public'));
 app.use(logger('dev'));
@@ -75,13 +75,12 @@ const PORT = process.env.PORT || 8887;
 const api = require('./routes/api')
 const dashboard1 = require('./routes/dashboard')
 const forbidden = require('./routes/forbidden')
-const chat = require('./routes/chat')
+
 
 
 app.use('/api', api)
 app.use('/forbidden', forbidden)
 app.use('/dashboard1', dashboard1)
-app.use('/chat', chat)
 
 
 
@@ -109,7 +108,7 @@ app.use('/chat', chat)
 
 
 app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname + '/zinble-ng/dist/zinble-ng/index.html'));
+    res.sendFile(path.join(__dirname + '/Client-Side/dist/client/index.html'));
 });
 
 

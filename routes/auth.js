@@ -120,7 +120,7 @@ router.post('/verifyOTP', async (req, res, next) => {
 })
 
 
-// Discord Login
+//! Discord Login
 router.get('/discord', passport.authenticate('discord'), (err) => {
     if (err) {
         console.log(err, 'errorrrr')
@@ -137,7 +137,7 @@ router.get('/discord/redirect', passport.authenticate('discord', {
 
 
 
-//google Save
+//!google Save
 
 router.post('/googleSave', async (req, res, next) => {
 

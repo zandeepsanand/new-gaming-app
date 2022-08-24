@@ -3,10 +3,10 @@ const nodemailer = require('nodemailer');
 //email
 
 var transporter = nodemailer.createTransport({
-    service: "gmail",
+    service:process.env.NODEMAILER_SERVICE,
     auth: {
-        user: "ashin209@gmail.com",
-        pass: "vippbflmysnszhro",
+        user: process.env.NODEMAILER_USER,
+        pass: process.env.NODEMAILER_PASSWORD,
     },
 });
 
@@ -27,16 +27,15 @@ const otp_mail = (email, otp) => {
 
 const Welcome_mail = (email) => {
 
-    let uRL = 'https://discord.gg/XjRAn7RK'
+    let Url = process.env.DISCORD_URL_NODEMAILER
     var mailOptions = {
         to: email,
         subject: "Welcome to GGEra ",
         html: `<h3>Join our Dicord Channel </h3>
                 <h1 style='font-weight:bold;'>
-                 ${uRL} 
+                 ${Url} 
                 </h1>` // html body
     };
-    console.log('welcome mail')
     return mailOptions
 }
 

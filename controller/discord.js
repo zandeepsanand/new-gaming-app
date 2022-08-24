@@ -1,10 +1,7 @@
 const createError = require('http-errors');
-
 const passport = require('passport')
 const { Strategy } = require('passport-discord');
-
 const USERDATA = require('../model/userData');
-
 const {Welcome_Mailer} = require('./nodemailer')
 
 
@@ -19,12 +16,8 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
     try {
-
         console.log( 'deserializer')
-
         const user = await USERDATA.findById(id)
- 
-
         done(null, user)
 
     } catch (err) {
@@ -38,7 +31,7 @@ passport.use(new Strategy({
 
     clientID: process.env.DISCORD_CLIENT_ID,
     clientSecret: process.env.DISCORD_CLIENT_SECRET,
-    callbackURL: 'https://newggera.herokuapp.com/api/auth/discord/redirect',
+    callbackURL: process.env.DISCORD_CALLBACK_URL,
     scope: ['identify', 'email']
 },
     async (accessToken, refreshToken, profile, done) => {
@@ -49,11 +42,9 @@ passport.use(new Strategy({
 
             if (discordUser) {
                 if (discordUser.provider === 'discord') {
-                    console.log('user is found')
                     return done(null, discordUser)
                 }
                 else {
-                    console.log("User Exists")
                     return done(null, null)
 
                 }
@@ -79,9 +70,7 @@ passport.use(new Strategy({
 
 
         } catch (err) {
-            console.log(' catch error',err);
             return done(err, null)
-
         }
 
     })
