@@ -1,16 +1,21 @@
+.border{
+    border-color: #ff6e30 !important;
+}
+
+
 .cart-table {
     table {
         margin-bottom: 0;
 
         thead {
             tr {
-                border: none;
+                border: none ;
 
                 th {
                     border-bottom-width: 0px;
                     vertical-align: middle;
                     padding: 0 0 15px;
-                    text-transform: uppercase;
+                    text-transform: uppercase ;
                     color: var(--whiteColor);
                     border: none;
                     white-space: nowrap;
