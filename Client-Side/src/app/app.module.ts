@@ -45,6 +45,7 @@ import { PreloaderComponent } from './ggera/preloader/preloader.component';
 import { SocialComponent } from './ggera/social/social.component';
 import { MakeMeProComponent } from './ggera/make-me-pro/make-me-pro.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import { MakeMeProComponent } from './ggera/make-me-pro/make-me-pro.component';
     StatsComponent,
     SearchFilterPipe,
     SocialComponent,
-    MakeMeProComponent,
+    MakeMeProComponent
+    
   ],
   imports: [
     BrowserModule,

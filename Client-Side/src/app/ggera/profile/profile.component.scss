@@ -3,7 +3,9 @@ section{
     background-repeat: repeat;
     background-size:contain;
 }
-
+.border{
+    border-color: #ed4100 !important;
+}
 
 .user-actions {
     background-color: #22152c;
@@ -70,8 +72,9 @@ section{
         }
         select {
             background-color: #22152c;
-            border: none;
+            // border: none;
             display: block;
+            border-color: #ed4100;
             width: 100%;
             height: 50px;
             line-height: 50px;

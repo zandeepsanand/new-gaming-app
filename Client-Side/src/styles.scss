@@ -9,7 +9,7 @@
     --fontFamily: 'Teko', sans-serif;
     --fontFamily2: VerminVibes;
     --fontFamily3: 'Poppins', sans-serif;
-    --mainColor: #fc0820;
+    --mainColor: #ed4100;
     --whiteColor: #ffffff;
     --blackColor: #0c0305;
     --fontSize: 18px;
@@ -243,12 +243,13 @@ p {
     height: 50px;
     color: var(--whiteColor);
     background-color: #22152c !important;
+    border-color: #ed4100 !important;
     display: block;
     width: 100%;
     border-radius: 5px;
     padding: 2px 0 0 15px;
     box-shadow: unset !important;
-    border: none;
+    // border: none;
     transition: var(--transition);
     font: {
         family: var(--fontFamily3);
@@ -1316,6 +1317,7 @@ textarea.form-control {
     }
     .widget_match_list {
         background-color: #22152c;
+        border-color: #93530a;
         box-shadow: 0 10px 27px 0 rgba(14,8,18,.5);
 
         .single-match-list {
