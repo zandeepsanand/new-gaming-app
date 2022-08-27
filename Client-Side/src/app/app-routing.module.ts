@@ -22,6 +22,7 @@ import { AuthGuard } from './auth.guard';
 import { OrderListsComponent } from './ggera/order-lists/order-lists.component';
 import { TwitchComponent } from './ggera/twitch/twitch.component';
 import { StatsComponent } from './ggera/stats/stats.component';
+import { MakeMeProComponent } from './ggera/make-me-pro/make-me-pro.component';
 
 const routes: Routes = [
     
@@ -44,6 +45,8 @@ const routes: Routes = [
     { path: 'pro-home', component: MyorderComponent },
     { path: 'twitch-player', component: TwitchComponent },
     { path: 'stats', component: StatsComponent },
+    { path: 'makeme-pro', component: MakeMeProComponent },
+
 
 
     { path: '**', canActivate: [AuthGuard], component: UnderconstructionComponent },

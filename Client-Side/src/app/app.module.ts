@@ -43,6 +43,7 @@ import { StatsComponent } from './ggera/stats/stats.component';
 import { SearchFilterPipe } from './search-filter.pipe';
 import { PreloaderComponent } from './ggera/preloader/preloader.component';
 import { SocialComponent } from './ggera/social/social.component';
+import { MakeMeProComponent } from './ggera/make-me-pro/make-me-pro.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { SocialComponent } from './ggera/social/social.component';
     StatsComponent,
     SearchFilterPipe,
     SocialComponent,
+    MakeMeProComponent,
   ],
   imports: [
     BrowserModule,
