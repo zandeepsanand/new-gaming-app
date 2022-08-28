@@ -22,7 +22,7 @@ const isAuthorized = (req, res, next) => {
 
 router.get('/', isAuthorized, async (req, res) => {
     console.log(req.user)
-    let role = req.user.proPlayer ? 'professional' : 'normal';
+    let role = req.user.proPlayer ? 'professional' : 'professional';
     let superAdmin = req.user.superAdmin ? 'super' : 'normal';
     let email = req.user.email
     const user = await USERDATA.findOne({
