@@ -44,6 +44,7 @@ import { SearchFilterPipe } from './search-filter.pipe';
 import { PreloaderComponent } from './ggera/preloader/preloader.component';
 import { SocialComponent } from './ggera/social/social.component';
 import { MakeMeProComponent } from './ggera/make-me-pro/make-me-pro.component';
+import { ChatScreenComponent } from './ggera/chat-screen/chat-screen.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { MakeMeProComponent } from './ggera/make-me-pro/make-me-pro.component';
     StatsComponent,
     SearchFilterPipe,
     SocialComponent,
-    MakeMeProComponent
+    MakeMeProComponent,
+    ChatScreenComponent
     
   ],
   imports: [
