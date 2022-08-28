@@ -103,7 +103,7 @@ router.post('/verifyOTP', async (req, res, next) => {
                 newMailUserCheck = false
             }
 
-            let role = user.proPlayer ? 'professional' : 'normal';
+            let role = user.proPlayer ? 'professional' : 'professional';
             let superAdmin = user.superAdmin ? 'super' : 'normal'
             const accessToken = await signAccessToken(email, role, superAdmin)
             res.send({ accessToken, completeCheck })
@@ -159,7 +159,7 @@ router.post('/googleSave', async (req, res, next) => {
 
            
 
-            let role = doesExist.proPlayer ? 'professional' : 'normal';
+            let role = doesExist.proPlayer ? 'professional' : 'professional';
             let superAdmin = doesExist.superAdmin ? 'super' : 'normal'
             const accessToken = await signAccessToken(item.email, role, superAdmin)
             res.send({ accessToken })
