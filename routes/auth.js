@@ -22,18 +22,22 @@ var completeCheck = false
 
 router.post('/signUp', async (req, res, next) => {
 
- 
+
     try {
+
+        let otp = generateOTP()
+
         const result = await authEmailJoi.validateAsync({ email: req.body.email }) //Joi Validation for incoming registeration details
-  
+
         let item = {
-            email: result.email,
+            email: req.body.email,
             provider: 'mail',
             proPlayer: false,
             superAdmin: false,
             otp: otp,
-            discordID: 1002465326342094858
+            discordID: '1002465326342094858'
         }
+        console.log(item , 'item')
 
         const doesExist = await USERDATA.findOne({ email: item.email })
 
@@ -54,34 +58,26 @@ router.post('/signUp', async (req, res, next) => {
             res.send({ email: savedIdData.email })
         }
         else {
-
-
             let otpUpdate = { otp: otp }
             let updateData = { $set: otpUpdate };
             const savedData = await USERDATA.findByIdAndUpdate({ "_id": doesExist._id }, updateData)
-            console.log("otp updated")
             res.send(savedData)
-
         }
-
-
     }
-
-
-
+    
     catch (error) {
-        if (error.isJoi === true) {
-            res.status(422)
-            res.send('Enter email')
-        } else {
-            res.send({
-                error: {
-                    status: error.status || 500,
-                    message: error.message
-                }
-            })
-        }
+    if (error.isJoi === true) {
+        res.status(422)
+        res.send('Enter email')
+    } else {
+        res.send({
+            error: {
+                status: error.status || 500,
+                message: error.message
+            }
+        })
     }
+}
 })
 
 
@@ -91,36 +87,36 @@ router.post('/verifyOTP', async (req, res, next) => {
     try {
 
         const result = await authOTPJoi.validateAsync({ otp: req.body.data.otp })
+        if (result) {
+            let otp = req.body.data.otp
+            let email = req.body.email
 
-        let otp = req.body.data.otp
-        let email = req.body.email
+            const user = await USERDATA.findOne({
+                email: email
+            });
 
-        const user = await USERDATA.findOne({
-            email: email
-        });
-
-        if (!user.username != null || user.email != null || user.profile_pic != null) {
-            completeCheck = true
-        }
-
-        if (!user) throw createError.Conflict(`${req.body.email} not found`)
-
-        else if (user && user.otp !== otp) throw createError(401, 'Wrong OTP')
-        else {
-
-            if (newMailUserCheck) {
-                const welcomeMessage = await Welcome_Mailer(email)
-                newMailUserCheck = false
+            if (!user.username != null || user.email != null || user.profile_pic != null) {
+                completeCheck = true
             }
 
-            let role = user.proPlayer ? 'professional' : 'professional';
-            let superAdmin = user.superAdmin ? 'super' : 'normal'
-            const accessToken = await signAccessToken(email, role, superAdmin)
-            res.send({ accessToken, completeCheck })
+            if (!user) throw createError.Conflict(`${req.body.email} not found`)
 
+            else if (user && user.otp !== otp) throw createError(401, 'Wrong OTP')
+            else {
 
+                if (newMailUserCheck) {
+                    const welcomeMessage = await Welcome_Mailer(email)
+                    newMailUserCheck = false
+                }
+
+                let role = user.proPlayer ? 'professional' : 'professional';
+                let superAdmin = user.superAdmin ? 'super' : 'normal'
+                const accessToken = await signAccessToken(email, role, superAdmin)
+                res.send({ accessToken, completeCheck })
+
+            }
         }
-    }   catch (error) {
+    } catch (error) {
         if (error.isJoi === true) {
             res.status(422)
             res.send('Enter email')

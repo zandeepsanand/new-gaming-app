@@ -72,7 +72,7 @@ const routes = [
     { path: 'earnings', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_earnings_earnings_component__WEBPACK_IMPORTED_MODULE_10__.EarningsComponent },
     { path: 'single-pro', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_single_pro_single_pro_component__WEBPACK_IMPORTED_MODULE_11__.SingleProComponent },
     { path: 'players', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_players_players_component__WEBPACK_IMPORTED_MODULE_12__.PlayersComponent },
-    { path: 'loading', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_lazy_loading_lazy_loading_component__WEBPACK_IMPORTED_MODULE_14__.LazyLoadingComponent },
+    { path: 'loading', component: _ggera_lazy_loading_lazy_loading_component__WEBPACK_IMPORTED_MODULE_14__.LazyLoadingComponent },
     { path: 'pro-home', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_myorder_myorder_component__WEBPACK_IMPORTED_MODULE_7__.MyorderComponent },
     { path: 'twitch-player', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_twitch_twitch_component__WEBPACK_IMPORTED_MODULE_17__.TwitchComponent },
     { path: 'stats', canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_15__.AuthGuard], component: _ggera_stats_stats_component__WEBPACK_IMPORTED_MODULE_18__.StatsComponent },
@@ -1843,7 +1843,7 @@ class LazyLoadingComponent {
                 timer: 1500
             }).then(() => {
                 if (this.completeCheck) {
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/profile']);
                 }
                 else {
                     this.router.navigate(['/profile']);

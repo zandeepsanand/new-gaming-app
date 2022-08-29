@@ -43,7 +43,7 @@ const routes: Routes = [
     { path: 'earnings',canActivate: [AuthGuard ], component: EarningsComponent },
     { path: 'single-pro', canActivate: [AuthGuard ], component: SingleProComponent },
     { path: 'players',canActivate: [AuthGuard ],  component: PlayersComponent },
-    { path: 'loading',canActivate: [AuthGuard ], component: LazyLoadingComponent },
+    { path: 'loading', component: LazyLoadingComponent },
     { path: 'pro-home',canActivate: [AuthGuard ], component: MyorderComponent },
     { path: 'twitch-player',canActivate: [AuthGuard ], component: TwitchComponent },
     { path: 'stats',canActivate: [AuthGuard ], component: StatsComponent },
