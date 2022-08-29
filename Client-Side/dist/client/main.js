@@ -4495,6 +4495,17 @@ class SigninComponent {
                         this.modal = false;
                     });
                 }
+                else if (err.status === 422) {
+                    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+                        icon: 'error',
+                        title: 'Enter proper email id',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.router.navigate(['/login']);
+                        this.modal = false;
+                    });
+                }
                 else {
                     sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
                         icon: 'error',
@@ -4538,6 +4549,17 @@ class SigninComponent {
                     }).then(() => {
                         localStorage.clear();
                         this.router.navigate(['/login']);
+                    });
+                }
+                else if (err.status === 422) {
+                    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+                        icon: 'error',
+                        title: 'Enter OTP.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.router.navigate(['/login']);
+                        this.modal = false;
                     });
                 }
                 else {
