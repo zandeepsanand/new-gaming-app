@@ -3804,7 +3804,7 @@ class ProRequestsComponent {
                             this.router.navigate(['/home-page']);
                         }
                         else {
-                            this.router.navigate(['/pro-home']);
+                            window.location.reload();
                         }
                     });
                 }
@@ -3836,7 +3836,7 @@ class ProRequestsComponent {
                             this.router.navigate(['/home-page']);
                         }
                         else {
-                            this.router.navigate(['/pro-home']);
+                            window.location.reload();
                         }
                     });
                 }

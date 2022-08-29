@@ -132,7 +132,7 @@ router.post('/sendlink_approve', async (req, res) => {
 
 })
 
-router.post('/sendLinkReject',async(req,res)=>{
+router.post('/sendLink_reject',async(req,res)=>{
     try {
         let id = req.body.id
         const userReject = await CoachData.findOneAndUpdate(

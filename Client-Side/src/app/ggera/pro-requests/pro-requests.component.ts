@@ -48,8 +48,7 @@ export class ProRequestsComponent implements OnInit {
                   this.router.navigate(['/home-page'])
 
                 } else {
-                  this.router.navigate(['/pro-home'])
-
+                  window.location.reload()
                 }
 
 
@@ -90,8 +89,7 @@ export class ProRequestsComponent implements OnInit {
                   this.router.navigate(['/home-page'])
 
                 } else {
-                  this.router.navigate(['/pro-home'])
-
+                  window.location.reload()
                 }
 
 
