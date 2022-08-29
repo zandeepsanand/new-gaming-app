@@ -8,7 +8,7 @@
                     <form *ngIf="!otp" [formGroup]="SignUpForm" (ngSubmit)="SignUp()">
                         <div class="form-group">
                             <input type="text" class="form-control" formControlName="email"
-                                placeholder="Username or email">
+                                placeholder="Username or email" >
                         </div>
                         <button type="submit">Send OTP</button>
                     </form>

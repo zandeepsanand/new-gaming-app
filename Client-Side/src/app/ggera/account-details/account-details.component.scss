@@ -104,11 +104,11 @@
                             }
                             input {
                                 height: 45px;
-                                color: var(--whiteColor);
+                                color: #f1efef;
                                 outline: 0;
                                 display: block;
                                 border: none;
-                                background-color: #000000;
+                                background-color: #f1efef;
                                 text-align: center;
                                 width: 100%;
                                 padding-top: 4px;
@@ -117,7 +117,7 @@
                                     weight: 600;
                                 }
                                 &::placeholder {
-                                    color: var(--whiteColor);
+                                    color: #f1efef;
                                 }
                             }
                         }
@@ -709,4 +709,8 @@
     background-image: url('../../../assets/img/ddd.png');
     background-repeat: repeat;
     background-size:contain;
+}
+
+.form-control{
+    color: white !important;
 }
