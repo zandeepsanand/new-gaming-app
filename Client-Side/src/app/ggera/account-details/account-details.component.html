@@ -12,13 +12,43 @@
                 <h1 class=" p-2">Current Balance</h1>
                 <h2 class="  p-2 fs-1">0$</h2>
                 <div class="  p-2">
-                     <a routerLink="/cart"
-                        class="default-btn p-2 ">Withdraw</a></div>
+                     <a 
+                        class="default-btn  pl-5 pr-5 " data-bs-toggle="modal" data-bs-target="#exampleModal">Withdraw</a></div>
                 <h6 class=" p-2">Minimum amount to Withdraw is 30$</h6>
             </div>
         </div>
 
     </div>
+    <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="container">
+
+            <div class="row ">
+                <div class="col-lg-12 col-sm-10 col-md-10  card bg-black border">
+                    <h1 class=" p-2 text-center pt-5">Withdraw Amount</h1>
+                    <h6 class="  p-2 text-center">Your request will be gone to the admin</h6>
+                    <form action="">
+                        <input class="form-control" type="text" placeholder="hai">
+                    
+                    <div class="  p-2 d-flex justify-content-center pb-5 pt-5">
+                         <a 
+                            class="default-btn  pl-5 pr-5 ">Submit</a>
+                        </div>
+                        </form>
+                  
+                </div>
+            </div>
+    
+        </div>
+    </div>
+  </div>
+
+
+  
 
     <br>
 
