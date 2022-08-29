@@ -70,6 +70,7 @@ export class MyorderComponent implements OnInit {
       })
         this.pendingSubscribers = filterDATA;
         this.approvedSubscribers = newfilterData
+        console.log(this.pendingSubscribers)
       })
   }
 
@@ -85,7 +86,6 @@ export class MyorderComponent implements OnInit {
         this._heroService.getCoach(email).
         subscribe(res => {
           this.subscribers = res    
-          console.log(this.subscribers)    
         })
 
     }
