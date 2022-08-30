@@ -24,9 +24,11 @@ import { TwitchComponent } from './ggera/twitch/twitch.component';
 import { StatsComponent } from './ggera/stats/stats.component';
 import { MakeMeProComponent } from './ggera/make-me-pro/make-me-pro.component';
 import { PartyListComponent } from './ggera/party-list/party-list.component';
+import { RanksComponent } from './ggera/ranks/ranks.component';
 
 const routes: Routes = [
     
+
 
     { path: '', canActivate: [AuthGuard ], component: HomePageComponent, },
     { path: 'login',  component: SigninComponent },
@@ -48,7 +50,6 @@ const routes: Routes = [
     { path: 'twitch-player',canActivate: [AuthGuard ], component: TwitchComponent },
     { path: 'stats',canActivate: [AuthGuard ], component: StatsComponent },
     { path: 'makeme-pro',canActivate: [AuthGuard ],component: MakeMeProComponent },
-
 
 
 
