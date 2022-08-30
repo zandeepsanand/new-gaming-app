@@ -46,7 +46,6 @@ import { SocialComponent } from './ggera/social/social.component';
 import { MakeMeProComponent } from './ggera/make-me-pro/make-me-pro.component';
 import { ChatScreenComponent } from './ggera/chat-screen/chat-screen.component';
 import { PartyListComponent } from './ggera/party-list/party-list.component';
-import { RanksComponent } from './ggera/ranks/ranks.component';
 
 
 @NgModule({
@@ -80,8 +79,7 @@ import { RanksComponent } from './ggera/ranks/ranks.component';
     SocialComponent,
     MakeMeProComponent,
     ChatScreenComponent,
-    PartyListComponent,
-    RanksComponent
+    PartyListComponent
     
   ],
   imports: [
