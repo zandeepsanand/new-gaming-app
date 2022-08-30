@@ -2,7 +2,28 @@ const express = require('express');
 const router = express.Router()
 const USERDATA = require('../model/userData');
 
+/* multer start */
+const multer = require('multer');
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/images');
+    },
+    filename: (req, file, cb) => {
+        cb(
+            null,
+            `${file.fieldname}-${+Date.now()}.${file.originalname.split('.')[1]}`
+        );
+    }
+});
+
+const upload = multer({ storage: storage });
+
+
+const cpUpload = upload.fields([
+    { name: 'image', maxCount: 1 }
+]);
+/* multer end */
 
 router.post('/', async (req, res) => {
     try {
@@ -23,6 +44,7 @@ router.post('/', async (req, res) => {
 router.put('/', async (req, res) => {
     try {
 
+        console.log(req.body)
         let email = req.body.email
 
         let item = {
@@ -31,7 +53,7 @@ router.put('/', async (req, res) => {
             'country': req.body.profile.country,
             'email': req.body.profile.email,
             'gamer': req.body.profile.gamer,
-            'profile_pic':req.body.profile_pic,
+            'profile_pic': req.body.profile_pic, //photo gets proper string name (without fake path)
             'gamerID': req.body.profile.gamerID,
             'wr': req.body.profile.wr,
             'discord_id': req.body.profile.discord_id,
@@ -50,6 +72,7 @@ router.put('/', async (req, res) => {
             'vip_cost': req.body.profile.vip_cost,
             'about': req.body.profile.about
         }
+
 
         let updateData = { $set: item };
 

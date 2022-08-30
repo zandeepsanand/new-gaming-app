@@ -86,8 +86,8 @@ export class HeroService {
   makePayment(stripeToken: any) {
     return this.http.post<any>(`${this.server_address}/stripe`, { token: stripeToken });
   }
-  addMoney(data:any,amount:number){
-    return this.http.put<any>(`${this.server_address}/stripe`, {data,amount});
+  addMoney(data: any, amount: number) {
+    return this.http.put<any>(`${this.server_address}/stripe`, { data, amount });
   }
 
 
@@ -106,7 +106,7 @@ export class HeroService {
 
   }
 
-  getCoach(id:any) {
+  getCoach(id: any) {
     return this.http.get<any>(`${this.server_address}/proplayer/${id}/coach`);
   }
   coachingGo(data: any, email: any) {
@@ -136,11 +136,10 @@ export class HeroService {
 
 
 
-//! Pro related 
-  
-  sendLinkApprove(id: any, pro_id: any) {
-    console.log(id)
-    return this.http.post<any>(`${this.server_address}/proplayer/sendLink_approve`, { id: id, pro_id: pro_id });
+  //! Pro related 
+
+  sendLinkApprove(id: any, pro_id: any, sub_id: any) {
+    return this.http.post<any>(`${this.server_address}/proplayer/sendLink_approve`, { id: id, pro_id: pro_id, sub_id: sub_id });
   }
 
   sendLinkReject(id: any) {
@@ -158,7 +157,7 @@ export class HeroService {
     return this.http.get<any>(`${this.server_address}/user/all`);
   }
 
-  getUserById(id:any){
+  getUserById(id: any) {
     return this.http.get<any>(`${this.server_address}/user/single/${id}`);
   }
   getUserDetail(data: any) {

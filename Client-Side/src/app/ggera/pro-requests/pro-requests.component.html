@@ -24,134 +24,39 @@
                 <div class="tab-pane fade show active" id="requests" role="tabpanel">
 
                     <div class="products-review-comments">
-                        <div class="user-review">
-                            <img src="assets/img/user1.jpg" alt="image">
+                        <div class="user-review" *ngFor="let sub of subscribers; let i = index">
+                            <img src={{sub.alldata[0].profile_pic}} alt="image">
                             <div class="review-rating">
-                                <span class="d-inline-block">James Anderson</span>
+                                <span class="d-inline-block">{{sub.alldata[0].username}}</span>
                             </div>
                             <div class="d-flex ">
                                 <div class="box1">
                                     <span class="d-block sub-comment">Country</span>
-                                    <p>India</p>
+                                    <p>{{sub.alldata[0].country}}</p>
                                 </div>
                                 <div class="box1">
                                     <span class="d-block sub-comment">KDA</span>
-                                    <p>4.05</p>
+                                    <p>{{sub.alldata[0].kda}}</p>
                                 </div>
                                 <div class="box1">
                                     <span class="d-block sub-comment">Kills</span>
-                                    <p>25568</p>
+                                    <p>{{sub.alldata[0].kills}}</p>
                                 </div>
                                 <div class="box1">
                                     <span class="d-block sub-comment">Platform</span>
-                                    <p>PC</p>
+                                    <p>{{sub.alldata[0].platform}}</p>
                                 </div>
                                 <div class="px-2">
-                                    <button type="submit" class="default-btn">Accept</button>
+                                    <button type="submit" class="default-btn" (click)="approved(sub._id,sub.pro,sub.subscriber)" >Accept</button>
 
                                 </div>
                                 <div class="">
-                                    <button type="submit" class="default-btn">Reject</button>
+                                    <button type="submit" class="default-btn" (click)="rejected(sub._id)">Reject</button>
 
                                 </div>
                             </div>
                         </div>
-                        <div class="user-review">
-                            <img src="assets/img/user1.jpg" alt="image">
-                            <div class="review-rating">
-                                <span class="d-inline-block">James Anderson</span>
-                            </div>
-                            <div class="d-flex ">
-                                <div class="box1">
-                                    <span class="d-block sub-comment">Country</span>
-                                    <p>India</p>
-                                </div>
-                                <div class="box1">
-                                    <span class="d-block sub-comment">KDA</span>
-                                    <p>4.05</p>
-                                </div>
-                                <div class="box1">
-                                    <span class="d-block sub-comment">Kills</span>
-                                    <p>25568</p>
-                                </div>
-                                <div class="box1">
-                                    <span class="d-block sub-comment">Platform</span>
-                                    <p>PC</p>
-                                </div>
-                                <div class="px-2">
-                                    <button type="submit" class="default-btn">Accept</button>
-
-                                </div>
-                                <div class="">
-                                    <button type="submit" class="default-btn">Reject</button>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-review">
-                            <img src="assets/img/user1.jpg" alt="image">
-                            <div class="review-rating">
-                                <span class="d-inline-block">James Anderson</span>
-                            </div>
-                            <div class="d-flex ">
-                                <div class="box1">
-                                    <span class="d-block sub-comment">Country</span>
-                                    <p>India</p>
-                                </div>
-                                <div class="box1">
-                                    <span class="d-block sub-comment">KDA</span>
-                                    <p>4.05</p>
-                                </div>
-                                <div class="box1">
-                                    <span class="d-block sub-comment">Kills</span>
-                                    <p>25568</p>
-                                </div>
-                                <div class="box1">
-                                    <span class="d-block sub-comment">Platform</span>
-                                    <p>PC</p>
-                                </div>
-                                <div class="px-2">
-                                    <button type="submit" class="default-btn">Accept</button>
-
-                                </div>
-                                <div class="">
-                                    <button type="submit" class="default-btn">Reject</button>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-review">
-                            <img src="assets/img/user1.jpg" alt="image">
-                            <div class="review-rating">
-                                <span class="d-inline-block">James Anderson</span>
-                            </div>
-                            <div class="d-flex ">
-                                <div class="box1">
-                                    <span class="d-block sub-comment">Country</span>
-                                    <p>India</p>
-                                </div>
-                                <div class="box1">
-                                    <span class="d-block sub-comment">KDA</span>
-                                    <p>4.05</p>
-                                </div>
-                                <div class="box1">
-                                    <span class="d-block sub-comment">Kills</span>
-                                    <p>25568</p>
-                                </div>
-                                <div class="box1">
-                                    <span class="d-block sub-comment">Platform</span>
-                                    <p>PC</p>
-                                </div>
-                                <div class="px-2">
-                                    <button type="submit" class="default-btn">Accept</button>
-
-                                </div>
-                                <div class="">
-                                    <button type="submit" class="default-btn">Reject</button>
-
-                                </div>
-                            </div>
-                        </div>
+            
                     </div>
 
                 </div>

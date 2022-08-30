@@ -35,7 +35,7 @@ export class LazyLoadingComponent implements OnInit {
         timer: 1500
       }).then(() => {
         if (this.completeCheck) {
-          this.router.navigate(['/'])
+          this.router.navigate(['/profile'])
 
         } else {
           this.router.navigate(['/profile'])

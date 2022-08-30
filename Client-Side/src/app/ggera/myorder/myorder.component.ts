@@ -43,13 +43,35 @@ export class MyorderComponent implements OnInit {
 
   user:any;
   subscribers:any;
+  pendingSubscribers:any
+  approvedSubscribers:any
 
 
-  constructor(private _heroService:HeroService,
+
+  constructor(private _heroService:HeroService , private _auth:HeroService,private _hero:HeroService,
     private router:Router) { }
 
   ngOnInit(): void {
     this.userData()
+    this.coachingList()
+  }
+
+  coachingList(){
+    let email = this._auth.getEmail()
+    this._hero.getCoachingList()
+      .subscribe((res) => {
+
+        let filterDATA = res.filter((ol) => {
+          return ol.pro === email && ol.approve === 'pending';
+        })
+
+      let newfilterData = res.filter((ol) => {
+        return ol.pro === email && ol.approve === 'true';
+      })
+        this.pendingSubscribers = filterDATA;
+        this.approvedSubscribers = newfilterData
+        console.log(this.pendingSubscribers)
+      })
   }
 
 
@@ -64,7 +86,6 @@ export class MyorderComponent implements OnInit {
         this._heroService.getCoach(email).
         subscribe(res => {
           this.subscribers = res    
-          console.log(this.subscribers)    
         })
 
     }

@@ -1,23 +1,28 @@
 .border{
     border-color: #ff6e30 !important;
+
     color: #f6a566;
+
+
 }
 
 
 .cart-table {
     table {
         margin-bottom: 0;
+        color: white !important;
 
         thead {
             tr {
                 border: none ;
+                color: white !important;
 
                 th {
                     border-bottom-width: 0px;
                     vertical-align: middle;
                     padding: 0 0 15px;
                     text-transform: uppercase ;
-                    color: var(--whiteColor);
+                    color: white !important;
                     border: none;
                     white-space: nowrap;
                     font: {
@@ -33,12 +38,14 @@
                 
                 td {
                     vertical-align: middle;
-                    color: var(--whiteColor);
+                    color: white !important;
                     white-space: nowrap;
                     text-transform: uppercase;
                     font: {
                         weight: 600;
                         size: 17px;
+                        color: white !important;
+
                     };
                     padding: {
                         left: 0;
@@ -85,7 +92,7 @@
                                 top: 0;
                                 background-color: #22152c;
                                 cursor: pointer;
-                                color: var(--whiteColor);
+                                color: white;
                                 width: 40px;
                                 height: 100%;
                                 line-height: 56px;
@@ -99,17 +106,17 @@
                                     right: 0;
                                 }
                                 &:hover {
-                                    color: var(--whiteColor);
+                                    color: white;
                                     background-color: var(--mainColor);
                                 }
                             }
                             input {
                                 height: 45px;
-                                color: var(--whiteColor);
+                                color: #f1efef;
                                 outline: 0;
                                 display: block;
                                 border: none;
-                                background-color: #000000;
+                                background-color: #f1efef;
                                 text-align: center;
                                 width: 100%;
                                 padding-top: 4px;
@@ -118,7 +125,7 @@
                                     weight: 600;
                                 }
                                 &::placeholder {
-                                    color: var(--whiteColor);
+                                    color: #f1efef;
                                 }
                             }
                         }
@@ -160,7 +167,7 @@
             };
             &:hover {
                 background-color: var(--mainColor);
-                color: var(--whiteColor);
+        color: white !important;
             }
         }
     }
@@ -210,13 +217,13 @@
                     top: none;
                 };
                 span {
-                    color: var(--whiteColor);
+            color: white !important;
                     font-weight: 600;
                 }
             }
             span {
                 float: right;
-                color: var(--whiteColor);
+        color: white !important;
                 font: {
                     weight: normal;
                 };
@@ -378,7 +385,7 @@
                         color: #bcb6b8;
 
                         &:hover {
-                            color: var(--whiteColor);
+                    color: white !important;
                         }
                     }
                     &:last-child {
@@ -491,7 +498,7 @@
                 padding: 12px 45px 6px 30px;
                 text-transform: uppercase;
                 letter-spacing: 2px;
-                color: var(--whiteColor);
+        color: white !important;
                 -webkit-clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
                 clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
                 font: {
@@ -710,4 +717,8 @@
     background-image: url('../../../assets/img/ddd.png');
     background-repeat: repeat;
     background-size:contain;
+}
+
+.form-control{
+    color: white !important;
 }
