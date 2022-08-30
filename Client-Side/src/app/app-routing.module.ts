@@ -25,6 +25,7 @@ import { StatsComponent } from './ggera/stats/stats.component';
 import { MakeMeProComponent } from './ggera/make-me-pro/make-me-pro.component';
 import { PartyListComponent } from './ggera/party-list/party-list.component';
 import { RanksComponent } from './ggera/ranks/ranks.component';
+import { PlayersNewPageComponent } from './ggera/players-new-page/players-new-page.component';
 
 const routes: Routes = [
     
@@ -50,6 +51,7 @@ const routes: Routes = [
     { path: 'makeme-pro', component: MakeMeProComponent },
     { path: 'party-list', component: PartyListComponent },
     { path: 'ranks', component: RanksComponent },
+    { path: 'players-new', component: PlayersNewPageComponent },
 
 
 
