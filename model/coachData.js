@@ -4,11 +4,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CoachDataSchema = new Schema({
-
-    email: String,
-    pro:String,
-    approve:Boolean
-    
+    order_no: String,
+    subscriber: String,
+    pro: String,
+    approve: String
 
 });
 

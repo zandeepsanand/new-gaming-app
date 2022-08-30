@@ -221,6 +221,18 @@ export class SigninComponent implements OnInit {
 
               })
             }
+            else if (err.status === 422) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Enter proper email id',
+                showConfirmButton: false,
+                timer: 1500
+              }).then(() => {
+                this.router.navigate(['/login'])
+                this.modal = false
+
+              })
+            }
             else {
               Swal.fire({
                 icon: 'error',
@@ -273,6 +285,17 @@ export class SigninComponent implements OnInit {
               }).then(() => {
                 localStorage.clear()
                 this.router.navigate(['/login'])
+
+              })
+            } else if (err.status === 422) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Enter OTP.',
+                showConfirmButton: false,
+                timer: 1500
+              }).then(() => {
+                this.router.navigate(['/login'])
+                this.modal = false
 
               })
             }

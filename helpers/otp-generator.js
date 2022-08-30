@@ -1,4 +1,3 @@
-const otpGenerator = require('otp-generator');
 
 
 const generateOTP = () => {
@@ -7,7 +6,7 @@ const generateOTP = () => {
   var otp = Math.random();
   otp = otp * 1000000;
   otp = parseInt(otp);
-  console.log(otp);
+  console.log('otp', otp);
 
   return otp;
 };

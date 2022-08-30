@@ -8,6 +8,7 @@ const USERDATA = require('../model/userData');
 const { signAccessToken } = require('../helpers/jwt_helper')
 const { OTP_Mailer, Welcome_Mailer } = require('../controller/nodemailer')
 const { generateOTP } = require('../helpers/otp-generator');
+const { authEmailJoi, authOTPJoi } = require('../helpers/validation_schema')
 
 
 var newMailUserCheck = false;  //to check new user and send welcome message
@@ -21,9 +22,12 @@ var completeCheck = false
 
 router.post('/signUp', async (req, res, next) => {
 
+
     try {
 
-        const otp = generateOTP()
+        let otp = generateOTP()
+
+        const result = await authEmailJoi.validateAsync({ email: req.body.email }) //Joi Validation for incoming registeration details
 
         let item = {
             email: req.body.email,
@@ -31,8 +35,9 @@ router.post('/signUp', async (req, res, next) => {
             proPlayer: false,
             superAdmin: false,
             otp: otp,
-            discordID: 1002465326342094858
+            discordID: '1002465326342094858'
         }
+        console.log(item , 'item')
 
         const doesExist = await USERDATA.findOne({ email: item.email })
 
@@ -53,28 +58,26 @@ router.post('/signUp', async (req, res, next) => {
             res.send({ email: savedIdData.email })
         }
         else {
-
-
             let otpUpdate = { otp: otp }
             let updateData = { $set: otpUpdate };
             const savedData = await USERDATA.findByIdAndUpdate({ "_id": doesExist._id }, updateData)
-            console.log("otp updated")
             res.send(savedData)
-
         }
-
-
     }
-
-
-
+    
     catch (error) {
-
-        console.log("Email error", error)
-        next(error)
+    if (error.isJoi === true) {
+        res.status(422)
+        res.send('Enter email')
+    } else {
+        res.send({
+            error: {
+                status: error.status || 500,
+                message: error.message
+            }
+        })
     }
-
-
+}
 })
 
 
@@ -82,36 +85,49 @@ router.post('/verifyOTP', async (req, res, next) => {
 
 
     try {
-        let otp = req.body.data.otp
-        let email = req.body.email
 
-        const user = await USERDATA.findOne({
-            email: email
-        });
+        const result = await authOTPJoi.validateAsync({ otp: req.body.data.otp })
+        if (result) {
+            let otp = req.body.data.otp
+            let email = req.body.email
 
-        if (!user.username != null || user.email != null || user.profile_pic != null) {
-            completeCheck = true
-        }
+            const user = await USERDATA.findOne({
+                email: email
+            });
 
-        if (!user) throw createError.Conflict(`${req.body.email} not found`)
-
-        else if (user && user.otp !== otp) throw createError(401, 'Wrong OTP')
-        else {
-
-            if (newMailUserCheck) {
-                const welcomeMessage = await Welcome_Mailer(email)
-                newMailUserCheck = false
+            if (!user.username != null || user.email != null || user.profile_pic != null) {
+                completeCheck = true
             }
 
-            let role = user.proPlayer ? 'professional' : 'professional';
-            let superAdmin = user.superAdmin ? 'super' : 'normal'
-            const accessToken = await signAccessToken(email, role, superAdmin)
-            res.send({ accessToken, completeCheck })
+            if (!user) throw createError.Conflict(`${req.body.email} not found`)
 
+            else if (user && user.otp !== otp) throw createError(401, 'Wrong OTP')
+            else {
 
+                if (newMailUserCheck) {
+                    const welcomeMessage = await Welcome_Mailer(email)
+                    newMailUserCheck = false
+                }
+
+                let role = user.proPlayer ? 'professional' : 'professional';
+                let superAdmin = user.superAdmin ? 'super' : 'normal'
+                const accessToken = await signAccessToken(email, role, superAdmin)
+                res.send({ accessToken, completeCheck })
+
+            }
         }
     } catch (error) {
-        next(error)
+        if (error.isJoi === true) {
+            res.status(422)
+            res.send('Enter email')
+        } else {
+            res.send({
+                error: {
+                    status: error.status || 500,
+                    message: error.message
+                }
+            })
+        }
     }
 
 
@@ -157,7 +173,7 @@ router.post('/googleSave', async (req, res, next) => {
             if (doesExist.provider != item.provider) throw createError.Conflict(`${item.email} is already been registered by ${doesExist.provider}. Use it to login`)
 
 
-           
+
 
             let role = doesExist.proPlayer ? 'professional' : 'professional';
             let superAdmin = doesExist.superAdmin ? 'super' : 'normal'
@@ -171,8 +187,8 @@ router.post('/googleSave', async (req, res, next) => {
             const welcomeMessage = await Welcome_Mailer(item.email)
 
 
-            let role =  'normal';
-            let superAdmin =  'normal'
+            let role = 'normal';
+            let superAdmin = 'normal'
             const accessToken = await signAccessToken(item.email, role, superAdmin)
             res.send({ accessToken })
 

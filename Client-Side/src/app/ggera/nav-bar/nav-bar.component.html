@@ -3,7 +3,10 @@
         <div class="container">
             <div class="zinble-responsive-menu">
                 <div class="logo">
-                    <a routerLink="/">
+                    <a routerLink="/" *ngIf="_auth.isNormal()">
+                        <img style="width:100px ;" src="assets/img/circle gry black gredient.png" alt="logo">
+                    </a>
+                    <a routerLink="/" *ngIf="_auth.isPro()">
                         <img style="width:100px ;" src="assets/img/circle gry black gredient.png" alt="logo">
                     </a>
                 </div>

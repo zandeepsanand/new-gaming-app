@@ -50,8 +50,8 @@ router.get('/:id/coach', async (req, res) => {
         let id = req.params.id
         console.log(id)
 
-        const userLists = await CoachData.find({email:id})
-        
+        const userLists = await CoachData.find({ email: id })
+
         res.send(userLists)
     } catch (error) {
         console.log(error)
@@ -62,7 +62,18 @@ router.get('/:id/coach', async (req, res) => {
 router.get('/coaching-requests', async (req, res) => {
     try {
 
-        const userLists = await CoachData.find()
+        const userLists = await CoachData.aggregate([
+            {
+                $lookup:
+                {
+                    from: 'userdatas',
+                    localField: 'subscriber',
+                    foreignField: 'email',
+                    as: 'alldata'
+                }
+            }
+        ])
+        console.log('test', userLists[1].alldata)
         res.send(userLists)
     } catch (error) {
         console.log(error)
@@ -72,8 +83,14 @@ router.get('/coaching-requests', async (req, res) => {
 router.post('/sendlink_approve', async (req, res) => {
 
     try {
-        let email = req.body.id
+        let id = req.body.id
+        let email = req.body.sub_id
         let pro_id = req.body.pro_id
+        console.log(id, email, pro_id)
+        const userApprove = await CoachData.findOneAndUpdate(
+            { "_id": id },
+            { "approve": 'true' }
+        )
 
         const doesExist = await USERDATA.findOne({ email: email })
         const proExist = await USERDATA.findOne({ email: pro_id })
@@ -113,14 +130,20 @@ router.post('/sendlink_approve', async (req, res) => {
         console.log(err)
     }
 
-
-
-
-
-
-
 })
 
+router.post('/sendLink_reject',async(req,res)=>{
+    try {
+        let id = req.body.id
+        const userReject = await CoachData.findOneAndUpdate(
+            { "_id": id },
+            { "approve": 'false' }
+        )
+        res.send(userReject)
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 router.post('/joinparty', async (req, res) => {
     try {
