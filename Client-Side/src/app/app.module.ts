@@ -46,8 +46,10 @@ import { SocialComponent } from './ggera/social/social.component';
 import { MakeMeProComponent } from './ggera/make-me-pro/make-me-pro.component';
 import { ChatScreenComponent } from './ggera/chat-screen/chat-screen.component';
 import { PartyListComponent } from './ggera/party-list/party-list.component';
+
 import { RanksComponent } from './ggera/ranks/ranks.component';
 import { PlayersNewPageComponent } from './ggera/players-new-page/players-new-page.component';
+
 
 
 @NgModule({
@@ -81,9 +83,11 @@ import { PlayersNewPageComponent } from './ggera/players-new-page/players-new-pa
     SocialComponent,
     MakeMeProComponent,
     ChatScreenComponent,
+
     PartyListComponent,
     RanksComponent,
     PlayersNewPageComponent
+
     
   ],
   imports: [
