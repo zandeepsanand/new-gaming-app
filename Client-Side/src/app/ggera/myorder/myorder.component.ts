@@ -3,6 +3,8 @@ import { NgChartsModule } from 'ng2-charts';
 import { ChartConfiguration } from 'chart.js';
 import { HeroService } from 'src/app/hero.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-myorder',
@@ -95,5 +97,88 @@ export class MyorderComponent implements OnInit {
 
   profile(){
     this.router.navigate(['/profile'])
+  }
+
+
+  approved(id: any, pro: any, sub: any) {
+
+    this._hero.sendLinkApprove(id, pro, sub)
+      .subscribe(
+        {
+          next: (res) => {
+            if (res) {
+
+              Swal.fire({
+                icon: 'success',
+                title: 'approved successfully',
+                showConfirmButton: false,
+                timer: 1500
+              }).then(() => {
+                if (this._hero.isNormal()) {
+                  this.router.navigate(['/home-page'])
+
+                } else {
+                  window.location.reload()
+                }
+
+
+              })
+
+            }
+          },
+          error: (err) => {
+
+            Swal.fire({
+              icon: 'error',
+              title: 'Network Error. Please try again',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(() => {
+              this.router.navigate(['/login'])
+
+            })
+          }
+        })
+
+  }
+
+  rejected(id: any) {
+    this._hero.sendLinkReject(id)
+      .subscribe(
+        {
+          next: (res) => {
+            if (res) {
+
+              Swal.fire({
+                icon: 'success',
+                title: 'rejected successfully',
+                showConfirmButton: false,
+                timer: 1500
+              }).then(() => {
+                if (this._hero.isNormal()) {
+                  this.router.navigate(['/home-page'])
+
+                } else {
+                  window.location.reload()
+                }
+
+
+              })
+
+            }
+          },
+          error: (err) => {
+
+            Swal.fire({
+              icon: 'error',
+              title: 'Network Error. Please try again',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(() => {
+              this.router.navigate(['/login'])
+
+            })
+          }
+        })
   }
 }

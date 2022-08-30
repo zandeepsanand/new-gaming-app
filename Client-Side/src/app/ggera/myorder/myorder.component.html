@@ -117,7 +117,15 @@
                                             <div class="box1">
                                                 <span class="d-block sub-comment">Platform</span>
                                                 <p>{{sub.alldata[0].platform}}</p>
-                                            </div>                                   
+                                            </div>   
+                                            <div class="px-2">
+                                                <button type="submit" class="default-btn" (click)="approved(sub._id,sub.pro,sub.subscriber)" >Accept</button>
+            
+                                            </div>
+                                            <div class="">
+                                                <button type="submit" class="default-btn" (click)="rejected(sub._id)">Reject</button>
+            
+                                            </div>                                
                                         </div>
                                     </div>
                                 </div>
