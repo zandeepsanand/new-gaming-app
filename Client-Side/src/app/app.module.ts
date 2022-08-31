@@ -49,8 +49,12 @@ import { PartyListComponent } from './ggera/party-list/party-list.component';
 
 import { RanksComponent } from './ggera/ranks/ranks.component';
 import { PlayersNewPageComponent } from './ggera/players-new-page/players-new-page.component';
+
 import { MyOrderNormalComponent } from './ggera/my-order-normal/my-order-normal.component';
 import { HomePageNew1Component } from './ggera/home-page-new1/home-page-new1.component';
+
+import { RangeFilterPipe } from './range-filter.pipe';
+
 
 
 
@@ -89,8 +93,12 @@ import { HomePageNew1Component } from './ggera/home-page-new1/home-page-new1.com
     PartyListComponent,
     RanksComponent,
     PlayersNewPageComponent,
+
     MyOrderNormalComponent,
-    HomePageNew1Component
+    HomePageNew1Component,
+
+    RangeFilterPipe
+
 
     
   ],

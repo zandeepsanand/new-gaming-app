@@ -18,9 +18,12 @@ export class PlayersNewPageComponent implements OnInit {
   public checkedUsers: any = [];
 
   public searchFilter: any = '';
+  public rangeFilter:any=''
+  
+
   query1 = 'All Pros';
   query2 = '';
-  query3 = 'Any';
+  query3 = 0 ;
   query4 = 'Any';
   query5 = '';
   public modalOpen: boolean = false;
@@ -53,6 +56,9 @@ export class PlayersNewPageComponent implements OnInit {
     console.log('After-uncheck', this.privateUsers)
   }
 
+  filterUser(user: any) {
+    return user.kills >= this.query3
+  }
 
   singleUser(userDetail: any) {
     this.privateUser1 = userDetail
