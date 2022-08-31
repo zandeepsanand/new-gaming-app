@@ -27,6 +27,10 @@ import { PartyListComponent } from './ggera/party-list/party-list.component';
 
 import { RanksComponent } from './ggera/ranks/ranks.component';
 import { PlayersNewPageComponent } from './ggera/players-new-page/players-new-page.component';
+import { MyOrderNormalComponent } from './ggera/my-order-normal/my-order-normal.component';
+import { HomePageNew1Component } from './ggera/home-page-new1/home-page-new1.component';
+
+
 
 
 const routes: Routes = [
@@ -57,6 +61,11 @@ const routes: Routes = [
     { path: 'makeme-pro',canActivate: [AuthGuard ],component: MakeMeProComponent },
     { path: 'ranks', component: RanksComponent },
     { path: 'players-new', component: PlayersNewPageComponent },
+    { path: 'my-order-normal', component: MyOrderNormalComponent },
+    { path: 'home', component: HomePageNew1Component },
+   
+
+  
 
 
 
