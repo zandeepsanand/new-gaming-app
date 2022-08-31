@@ -115,8 +115,8 @@
                         <li class="nav-item" *ngIf="_auth.isNormal()"><a routerLink="/" class="nav-link">Home </a></li>
                         <li class="nav-item" *ngIf="!_auth.isNormal()"><a routerLink="/pro-home"
                                 class="nav-link">Dashboard </a></li>
-                        <li class="nav-item"><a routerLink="/subscriptions" class="nav-link"
-                                *ngIf="_auth.isNormal()">Subscriptions </a> </li>
+                        <!-- <li class="nav-item"><a routerLink="/subscriptions" class="nav-link"
+                                *ngIf="_auth.isNormal()">Subscriptions </a> </li> -->
 
                         <li class="nav-item" *ngIf="_auth.isPro()"><a class="nav-link">Pro+ <i
                                     class="flaticon-down-arrow"></i></a>
@@ -136,8 +136,7 @@
 
                         <li class="nav-item" *ngIf="!_auth.isNormal()"><a routerLink="/pro-home"
                                 class="nav-link">Requests </a></li>
-                        <li class="nav-item"><a routerLink="/tour" class="nav-link">Tournaments </a>
-                        </li>
+                      
 
                         <li class="nav-item"><a class="nav-link" *ngIf="_auth.isNormal()">Games <i
                                     class="flaticon-down-arrow"></i></a>
