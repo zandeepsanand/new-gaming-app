@@ -42,6 +42,10 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['/my-orders'])
   }
 
+  myOrders2() {
+    this.router.navigate(['/my-orders2'])
+  }
+
   Stats() {
     this.router.navigate(['/stats'])
   }
@@ -55,15 +59,21 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['/join-party'])
   }
 
+  PreParty2(){
+    this.router.navigate(['/pre-party'])
+  }
+
   referals(){
     this.router.navigate(['/referrals'])
 
   }
 
   account(){
-    console.log('account')
     this.router.navigate(['/account'])
 
+  }
+  Players(){
+    this.router.navigate(['/players'])
 
   }
   Logout(){
