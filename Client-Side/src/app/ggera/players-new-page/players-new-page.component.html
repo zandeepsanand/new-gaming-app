@@ -7,10 +7,12 @@
             <h2><span class="color"> PRO PLAYERS</span> 1212</h2>
         </div>
         <div class="button">
-            <button class="default-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-              </svg> refresh</button>
+            <button class="default-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                    <path
+                        d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                </svg> refresh</button>
         </div>
     </div>
     <h3>Filters</h3>
@@ -34,13 +36,10 @@
                     <div class="form-group">
                         <div class="select-box">
                             <select [(ngModel)]="query2">
-                                <option value="All" disabled selected>
+                                <option value=""  selected>
                                     All regions
                                 </option>
-                                <option
-                                    value="{{ privateUser.country }}"
-                                    *ngFor="let privateUser of privateUsers"
-                                >
+                                <option value="{{ privateUser.country }}" *ngFor="let privateUser of privateUsers  " >
                                     {{ privateUser.country }}
                                 </option>
                             </select>
@@ -50,49 +49,23 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 pt-3 d-flex checkboxes">
                         <div class="form-check">
-                            <input
-                                type="checkbox"
-                                class="form-check-input"
-                                id="ship-different-address"
-                            />
-                            <label
-                                class="form-check-label"
-                                for="ship-different-address"
-                                >Good for coaching</label
-                            >
+                            <input type="checkbox" class="form-check-input" id="ship-different-address" />
+                            <label class="form-check-label" for="ship-different-address">Good for coaching</label>
                         </div>
 
                         <div class="form-check">
-                            <input
-                                type="checkbox"
-                                class="form-check-input"
-                                name=""
-                                id=""
-                                [(ngModel)]="checkboxFilter.ps"
-                                (ngModelChange)="filterChange()"
-                            />
+                            <input type="checkbox" class="form-check-input" name="" id=""
+                                [(ngModel)]="checkboxFilter.ps" (ngModelChange)="filterChange()" />
                             <label for="">PS</label>
                         </div>
                         <div class="form-check">
-                            <input
-                                type="checkbox"
-                                class="form-check-input"
-                                name=""
-                                id=""
-                                [(ngModel)]="checkboxFilter.xbox"
-                                (ngModelChange)="filterChange()"
-                            />
+                            <input type="checkbox" class="form-check-input" name="" id=""
+                                [(ngModel)]="checkboxFilter.xbox" (ngModelChange)="filterChange()" />
                             <label for="">XBox</label>
                         </div>
                         <div class="form-check">
-                            <input
-                                type="checkbox"
-                                class="form-check-input"
-                                name=""
-                                id=""
-                                [(ngModel)]="checkboxFilter.win"
-                                (ngModelChange)="filterChange()"
-                            />
+                            <input type="checkbox" class="form-check-input" name="" id=""
+                                [(ngModel)]="checkboxFilter.win" (ngModelChange)="filterChange()" />
                             <label for="">Win</label>
                         </div>
                     </div>
@@ -104,12 +77,7 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group">
                                 <div class="select-box">
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Search"
-                                        [(ngModel)]="query5"
-                                    />
+                                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="query5" />
                                 </div>
                             </div>
                         </div>
@@ -147,458 +115,171 @@
         </div>
     </div>
     <div class="d-flex justify-content-center pt-5">
-        <div class="col-lg-12 col-sm-12 col-md-12 pt-4">
-            <div class="pt-5 pb-5">
-                <div class="card bg border  "  
-            
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample">
-               
-              
-                <div class="d-flex flex-row">
-                    <div class="img p-2">
-                        <img src="../../../assets/img/user1.jpg" alt="" srcset="" />
-    
-                        <!-- <img src="../../../assets/img/awards4.png" alt="" style="position: absolute;height: 20px;"> -->
-                        <p class="text-center p-1 "><u>Profile</u> </p>
-                    </div>
-                    <div class="col-lg-10">
-                        <div class="d-flex flex-row">
-                            <h3 class="p-2 pt-3">Flipperinio
-                            </h3>
-                            <img class="" src="../../../assets/img/awards2.png" alt="" style="height: 60px; padding-top: 10px;" srcset="">
-                        </div>
-                        
-                        <p class="p-2">10+ years of experience in FPS games | Top player . Let's get some ...
-                        </p>
-                       
+        <div class="col-lg-12 col-sm-12 col-md-12 pt-4 pb-5">
+            <div class="pt-5 " *ngFor="let privateUser of privateUsers  |searchFilter: query5 |searchFilter: query2">
+                <div class="card bg border" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                    aria-controls="offcanvasExample" (click)="singleUser(privateUser)">
 
-                       <div class="d-flex justify-content-between">
-                        <div class="d-flex flex-row">
-                           <div class="p-1">
-                            <button class="default-btn ">340 orders <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg> 5</button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">Platform <br>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="white" class="bi bi-windows" viewBox="0 0 16 16">
-                                    <path d="M6.555 1.375 0 2.237v5.45h6.555V1.375zM0 13.795l6.555.933V8.313H0v5.482zm7.278-5.4.026 6.378L16 16V8.395H7.278zM16 0 7.33 1.244v6.414H16V0z"/>
-                                  </svg> </button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">Country <br>
-                               <span class="bold">Romania</span>  </button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">KD<br>
-                                3.69 </button>
-                           </div>
-                           
-                            
-                            
 
-                        </div>
-                       
-                        <div class="d-flex flex-row">
-                            <div class="p-1">
-                                <button class="default-btn"> <span class="bold">Pick this pro</span>  <br>$16
-                                     </button>
-                               </div>
-                               <div class="p-1">
-                                <button class="default-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
-                                        <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                      </svg> </button>
-                               </div>
-                        </div>
-                      
+                    <div class="d-flex flex-row">
+                        <div class="img p-2">
+                            <img src={{privateUser.profile_pic}} alt="" srcset="" />
 
+                            <!-- <img src="../../../assets/img/awards4.png" alt="" style="position: absolute;height: 20px;"> -->
+                            <p class="text-center p-1 " style="cursor: pointer;"><u>Profile</u> </p>
                         </div>
-                       
-                    </div>
-                </div>
-            </div>
-            </div>
-            <div class="pb-5">
-                <div class="card bg-green border-green "  
-            
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample">
-               
-              
-                <div class="d-flex flex-row">
-                    <div class="img p-2">
-                        <img src="../../../assets/img/user1.jpg" alt="" srcset="" />
-    
-                        <!-- <img src="../../../assets/img/awards4.png" alt="" style="position: absolute;height: 20px;"> -->
-                        <p class="text-center p-1 "><u>Profile</u> </p>
-                    </div>
-                    <div class="col-lg-10">
-                        <div class="d-flex flex-row">
-                            <h3 class="p-2 pt-3">Flipperinio
-                            </h3>
-                            <img class="" src="../../../assets/img/awards2.png" alt="" style="height: 60px; padding-top: 10px;" srcset="">
-                        </div>
-                        
-                        <p class="p-2">10+ years of experience in FPS games | Top player . Let's get some ...
-                        </p>
-                       
+                        <div class="col-lg-10">
+                            <div class="d-flex flex-row">
+                                <h3 class="p-2 pt-3">{{privateUser.username}}
+                                </h3>
+                                <img class="" src="../../../assets/img/awards2.png" alt=""
+                                    style="height: 60px; padding-top: 10px;" srcset="">
+                            </div>
 
-                       <div class="d-flex justify-content-between">
-                        <div class="d-flex flex-row">
-                           <div class="p-1">
-                            <button class="default-btn ">340 orders <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg> 5</button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">Platform <br>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="white" class="bi bi-windows" viewBox="0 0 16 16">
-                                    <path d="M6.555 1.375 0 2.237v5.45h6.555V1.375zM0 13.795l6.555.933V8.313H0v5.482zm7.278-5.4.026 6.378L16 16V8.395H7.278zM16 0 7.33 1.244v6.414H16V0z"/>
-                                  </svg> </button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">Country <br>
-                               <span class="bold">Romania</span>  </button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">KD<br>
-                                3.69 </button>
-                           </div>
-                           
-                            
-                            
+                            <p class="p-2">10+ years of experience in FPS games | Top player . Let's get some ...
+                            </p>
+
+
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-row">
+                                    <div class="p-1">
+                                        <button class="default-btn ">340 orders <br> <svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow"
+                                                class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg> 5</button>
+                                    </div>
+                                    <div class="p-1">
+                                        <button class="default-btn">Platform <br>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="white"
+                                                class="bi bi-windows" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M6.555 1.375 0 2.237v5.45h6.555V1.375zM0 13.795l6.555.933V8.313H0v5.482zm7.278-5.4.026 6.378L16 16V8.395H7.278zM16 0 7.33 1.244v6.414H16V0z" />
+                                            </svg> </button>
+                                    </div>
+                                    <div class="p-1">
+                                        <button class="default-btn">Country <br>
+                                            <span class="bold">{{privateUser.country}}</span> </button>
+                                    </div>
+                                    <div class="p-1">
+                                        <button class="default-btn">KD<br>
+                                            {{privateUser.kd}} </button>
+                                    </div>
+
+
+
+
+                                </div>
+
+                                <div class="d-flex flex-row">
+                                    <div class="p-1">
+                                        <button class="default-btn"> <span class="bold">Pick this pro</span>
+                                            <br>${{privateUser.vip_cost}}
+                                        </button>
+                                    </div>
+                                    <div class="p-1">
+                                        <button class="default-btn">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                            </svg> </button>
+                                    </div>
+                                </div>
+
+
+                            </div>
 
                         </div>
-                       
-                        <div class="d-flex flex-row">
-                            <div class="p-1">
-                                <button class="default-btn"> <span class="bold">Pick this pro</span>  <br>$16
-                                     </button>
-                               </div>
-                               <div class="p-1">
-                                <button class="default-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
-                                        <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                      </svg> </button>
-                               </div>
-                        </div>
-                      
-
-                        </div>
-                       
                     </div>
                 </div>
             </div>
-            </div>
-            <div class="pb-5">
-                <div class="card bg border "  
-            
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample">
-               
-              
-                <div class="d-flex flex-row">
-                    <div class="img p-2">
-                        <img src="../../../assets/img/user1.jpg" alt="" srcset="" />
-    
-                        <!-- <img src="../../../assets/img/awards4.png" alt="" style="position: absolute;height: 20px;"> -->
-                        <p class="text-center p-1 "><u>Profile</u> </p>
-                    </div>
-                    <div class="col-lg-10">
-                        <div class="d-flex flex-row">
-                            <h3 class="p-2 pt-3">Flipperinio
-                            </h3>
-                            <img class="" src="../../../assets/img/awards2.png" alt="" style="height: 60px; padding-top: 10px;" srcset="">
-                        </div>
-                        
-                        <p class="p-2">10+ years of experience in FPS games | Top player . Let's get some ...
-                        </p>
-                       
 
-                       <div class="d-flex justify-content-between">
-                        <div class="d-flex flex-row">
-                           <div class="p-1">
-                            <button class="default-btn ">340 orders <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg> 5</button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">Platform <br>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="white" class="bi bi-windows" viewBox="0 0 16 16">
-                                    <path d="M6.555 1.375 0 2.237v5.45h6.555V1.375zM0 13.795l6.555.933V8.313H0v5.482zm7.278-5.4.026 6.378L16 16V8.395H7.278zM16 0 7.33 1.244v6.414H16V0z"/>
-                                  </svg> </button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">Country <br>
-                               <span class="bold">Romania</span>  </button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">KD<br>
-                                3.69 </button>
-                           </div>
-                           
-                            
-                            
 
-                        </div>
-                       
-                        <div class="d-flex flex-row">
-                            <div class="p-1">
-                                <button class="default-btn"> <span class="bold">Pick this pro</span>  <br>$16
-                                     </button>
-                               </div>
-                               <div class="p-1">
-                                <button class="default-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
-                                        <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                      </svg> </button>
-                               </div>
-                        </div>
-                      
 
-                        </div>
-                       
-                    </div>
-                </div>
-            </div>
-            </div>
-            <div class="pb-5">
-                <div class="card bg-green border-green "  
-            
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample">
-               
-              
-                <div class="d-flex flex-row">
-                    <div class="img p-2">
-                        <img src="../../../assets/img/user1.jpg" alt="" srcset="" />
-    
-                        <!-- <img src="../../../assets/img/awards4.png" alt="" style="position: absolute;height: 20px;"> -->
-                        <p class="text-center p-1 "><u>Profile</u> </p>
-                    </div>
-                    <div class="col-lg-10">
-                        <div class="d-flex flex-row">
-                            <h3 class="p-2 pt-3">Flipperinio
-                            </h3>
-                            <img class="" src="../../../assets/img/awards2.png" alt="" style="height: 60px; padding-top: 10px;" srcset="">
-                        </div>
-                        
-                        <p class="p-2">10+ years of experience in FPS games | Top player . Let's get some ...
-                        </p>
-                       
-
-                       <div class="d-flex justify-content-between">
-                        <div class="d-flex flex-row">
-                           <div class="p-1">
-                            <button class="default-btn ">340 orders <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg> 5</button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">Platform <br>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="white" class="bi bi-windows" viewBox="0 0 16 16">
-                                    <path d="M6.555 1.375 0 2.237v5.45h6.555V1.375zM0 13.795l6.555.933V8.313H0v5.482zm7.278-5.4.026 6.378L16 16V8.395H7.278zM16 0 7.33 1.244v6.414H16V0z"/>
-                                  </svg> </button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">Country <br>
-                               <span class="bold">Romania</span>  </button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">KD<br>
-                                3.69 </button>
-                           </div>
-                           
-                            
-                            
-
-                        </div>
-                       
-                        <div class="d-flex flex-row">
-                            <div class="p-1">
-                                <button class="default-btn"> <span class="bold">Pick this pro</span>  <br>$16
-                                     </button>
-                               </div>
-                               <div class="p-1">
-                                <button class="default-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
-                                        <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                      </svg> </button>
-                               </div>
-                        </div>
-                      
-
-                        </div>
-                       
-                    </div>
-                </div>
-            </div>
-            </div>
-            <div class="pb-5">
-                <div class="card bg border "  
-            
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample">
-               
-              
-                <div class="d-flex flex-row">
-                    <div class="img p-2">
-                        <img src="../../../assets/img/user1.jpg" alt="" srcset="" />
-    
-                        <!-- <img src="../../../assets/img/awards4.png" alt="" style="position: absolute;height: 20px;"> -->
-                        <p class="text-center p-1 "><u>Profile</u> </p>
-                    </div>
-                    <div class="col-lg-10">
-                        <div class="d-flex flex-row">
-                            <h3 class="p-2 pt-3">Flipperinio
-                            </h3>
-                            <img class="" src="../../../assets/img/awards2.png" alt="" style="height: 60px; padding-top: 10px;" srcset="">
-                        </div>
-                        
-                        <p class="p-2">10+ years of experience in FPS games | Top player . Let's get some ...
-                        </p>
-                       
-
-                       <div class="d-flex justify-content-between">
-                        <div class="d-flex flex-row">
-                           <div class="p-1">
-                            <button class="default-btn ">340 orders <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg> 5</button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">Platform <br>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="white" class="bi bi-windows" viewBox="0 0 16 16">
-                                    <path d="M6.555 1.375 0 2.237v5.45h6.555V1.375zM0 13.795l6.555.933V8.313H0v5.482zm7.278-5.4.026 6.378L16 16V8.395H7.278zM16 0 7.33 1.244v6.414H16V0z"/>
-                                  </svg> </button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">Country <br>
-                               <span class="bold">Romania</span>  </button>
-                           </div>
-                           <div class="p-1">
-                            <button class="default-btn">KD<br>
-                                3.69 </button>
-                           </div>
-                           
-                            
-                            
-
-                        </div>
-                       
-                        <div class="d-flex flex-row">
-                            <div class="p-1">
-                                <button class="default-btn"> <span class="bold">Pick this pro</span>  <br>$16
-                                     </button>
-                               </div>
-                               <div class="p-1">
-                                <button class="default-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
-                                        <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                      </svg> </button>
-                               </div>
-                        </div>
-                      
-
-                        </div>
-                       
-                    </div>
-                </div>
-            </div>
-            </div>
-            
-            
-            
         </div>
     </div>
 
-  
 
-    <div
-        class="offcanvas offcanvas-start"
-        tabindex="-1"
-        id="offcanvasExample"
-        aria-labelledby="offcanvasExampleLabel"
-    >
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title p-3" id="offcanvasExampleLabel">
-                Flipperinio is back
+              {{privateUser1.username}}  is back
             </h5>
-            <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-            ></button>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
 
         <div class="offcanvas-body">
             <div class="d-flex flex-row">
-                <img class="img" src="../../../assets/img/user1.jpg" alt="" srcset="">
+                <img class="img" src={{privateUser1.profile_pic}} alt="">
                 <div class="p-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                      </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-star-fill"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg>
                 </div>
                 <div class="p-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="white" class="bi bi-windows" viewBox="0 0 16 16">
-                        <path d="M6.555 1.375 0 2.237v5.45h6.555V1.375zM0 13.795l6.555.933V8.313H0v5.482zm7.278-5.4.026 6.378L16 16V8.395H7.278zM16 0 7.33 1.244v6.414H16V0z"/>
-                      </svg> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="white" class="bi bi-windows"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M6.555 1.375 0 2.237v5.45h6.555V1.375zM0 13.795l6.555.933V8.313H0v5.482zm7.278-5.4.026 6.378L16 16V8.395H7.278zM16 0 7.33 1.244v6.414H16V0z" />
+                    </svg>
                 </div>
-                
+
             </div>
             <div class="d-flex flex-row">
                 <div class="p-3 pt-2">
-                    <button class="default-btn ">340 orders <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                      </svg> 5</button>
-                   </div>
-                   <div class="p-1">
-                    <button class="default-btn ">340 orders <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                      </svg> 5</button>
-                   </div>
-                   <div class="p-1">
-                    <button class="default-btn ">340 orders <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                      </svg> 5</button>
-                   </div>
-                   <div class="p-1">
-                    <button class="default-btn ">340 orders <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                      </svg> 5</button>
-                   </div>
+                    <button class="default-btn ">340 orders <br> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg> 5</button>
+                </div>
+                <div class="p-1">
+                    <button class="default-btn ">340 orders <br> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg> 5</button>
+                </div>
+                <div class="p-1">
+                    <button class="default-btn ">340 orders <br> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg> 5</button>
+                </div>
+                <div class="p-1">
+                    <button class="default-btn ">340 orders <br> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg> 5</button>
+                </div>
             </div>
             <div class="pt-3 p-3">
                 <h4>About me</h4>
             </div>
             <div class="pt-3 p-3">
-                <p>Previously top - ranked 20 in the world on Warzone's
-                    kills leaderboard . I love to teach aggressive
-                    gameplay & movement mechanics .</p>
+                <p>{{privateUser1.about}}</p>
             </div>
 
             <div class="pt-3 p-3">
                 <h4>Highlights</h4>
             </div>
             <div class="pt-3 p-3">
-                <iframe width="600" height="498" src="https://www.youtube.com/embed/v-hL3sks2qI?list=RD2NrpwkyoTrI" title="Paiya - Thuli Thuli Video | Karthi, Tamannah | Yuvan Shankar Raja" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="600" height="498" src="https://www.youtube.com/embed/v-hL3sks2qI?list=RD2NrpwkyoTrI"
+                    title="Paiya - Thuli Thuli Video | Karthi, Tamannah | Yuvan Shankar Raja" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
             </div>
 
             <div class="dropdown mt-3">
-                <button
-                    class="btn btn-secondary dropdown-toggle"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                >
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                     Dropdown button
                 </button>
                 <ul class="dropdown-menu">
@@ -607,9 +288,7 @@
                         <a class="dropdown-item" href="#">Another action</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#"
-                            >Something else here</a
-                        >
+                        <a class="dropdown-item" href="#">Something else here</a>
                     </li>
                 </ul>
             </div>

@@ -13,12 +13,13 @@ export class PlayersNewPageComponent implements OnInit {
     private router: Router) { }
 
   public privateUsers: any = [];
+  privateUser1: any
   public tempData: any = [];
   public checkedUsers: any = [];
 
   public searchFilter: any = '';
   query1 = 'All Pros';
-  query2 = 'All';
+  query2 = '';
   query3 = 'Any';
   query4 = 'Any';
   query5 = '';
@@ -51,6 +52,10 @@ export class PlayersNewPageComponent implements OnInit {
   }
 
 
+  singleUser(userDetail: any) {
+    this.privateUser1 = userDetail
+  }
+
 
 
   ngOnInit(): void {
@@ -61,9 +66,11 @@ export class PlayersNewPageComponent implements OnInit {
         })
         this.privateUsers = filterDATA;
         this.tempData = filterDATA;
-       
-        })
-       
+        this.privateUser1 = this.privateUsers[0]
+
+
+      })
+
 
   }
 
