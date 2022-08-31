@@ -38,7 +38,7 @@ router.post('/signUp', async (req, res, next) => {
             otp: otp,
             discordID: '1002465326342094858'
         }
-        console.log(item , 'item')
+        console.log(item, 'item')
 
         const doesExist = await USERDATA.findOne({ email: item.email })
 
@@ -65,20 +65,20 @@ router.post('/signUp', async (req, res, next) => {
             res.send(savedData)
         }
     }
-    
+
     catch (error) {
-    if (error.isJoi === true) {
-        res.status(422)
-        res.send('Enter email')
-    } else {
-        res.send({
-            error: {
-                status: error.status || 500,
-                message: error.message
-            }
-        })
+        if (error.isJoi === true) {
+            res.status(422)
+            res.send('Enter email')
+        } else {
+            res.send({
+                error: {
+                    status: error.status || 500,
+                    message: error.message
+                }
+            })
+        }
     }
-}
 })
 
 
@@ -118,20 +118,19 @@ router.post('/verifyOTP', async (req, res, next) => {
             }
         }
     } catch (error) {
+        console.log(error.status)
         if (error.isJoi === true) {
             res.status(422)
-            res.send('Enter email')
-        } else {
-            res.send({
-                error: {
-                    status: error.status || 500,
-                    message: error.message
-                }
-            })
+            res.send('Enter OTP')
+        } else if (error.status === 401) {
+            res.status(401)
+            res.send('Wrong OTP')
+        }
+        else {
+            res.status(500)
+
         }
     }
-
-
 
 
 })
@@ -159,8 +158,6 @@ router.get('/discord/redirect', passport.authenticate('discord', {
 router.post('/googleSave', async (req, res, next) => {
 
     try {
-
-
         let item = {
             username: req.body.name,
             email: req.body.email,
@@ -168,13 +165,9 @@ router.post('/googleSave', async (req, res, next) => {
             proPlayer: false,
             superAdmin: false
         }
-
         const doesExist = await USERDATA.findOne({ email: item.email })
         if (doesExist) {
             if (doesExist.provider != item.provider) throw createError.Conflict(`${item.email} is already been registered by ${doesExist.provider}. Use it to login`)
-
-
-
 
             let role = doesExist.proPlayer ? 'professional' : 'normal';
             let superAdmin = doesExist.superAdmin ? 'super' : 'normal'
@@ -198,7 +191,6 @@ router.post('/googleSave', async (req, res, next) => {
     }
 
     catch (error) {
-
         console.log("error1", error)
         next(error)
     }

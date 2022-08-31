@@ -259,16 +259,15 @@ export class SigninComponent implements OnInit {
         {
           next: (res) => {
             if (res) {
-              localStorage.removeItem('email')
               localStorage.setItem('accessToken', res.accessToken)
-
+              console.log('res'  , res)
               Swal.fire({
                 icon: 'success',
                 title: 'Sign Up successfully',
                 showConfirmButton: false,
                 timer: 1500
               }).then(() => {
-
+                localStorage.removeItem('email')
                 this.router.navigate(['/profile'])
 
               })
@@ -283,7 +282,6 @@ export class SigninComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 1500
               }).then(() => {
-                localStorage.clear()
                 this.router.navigate(['/login'])
 
               })
@@ -306,6 +304,7 @@ export class SigninComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 1500
               }).then(() => {
+                localStorage.removeItem('email')
                 this.router.navigate(['/login'])
 
               })
