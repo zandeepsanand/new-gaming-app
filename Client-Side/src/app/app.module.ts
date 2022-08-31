@@ -49,6 +49,7 @@ import { PartyListComponent } from './ggera/party-list/party-list.component';
 
 import { RanksComponent } from './ggera/ranks/ranks.component';
 import { PlayersNewPageComponent } from './ggera/players-new-page/players-new-page.component';
+import { RangeFilterPipe } from './range-filter.pipe';
 
 
 
@@ -86,7 +87,8 @@ import { PlayersNewPageComponent } from './ggera/players-new-page/players-new-pa
 
     PartyListComponent,
     RanksComponent,
-    PlayersNewPageComponent
+    PlayersNewPageComponent,
+    RangeFilterPipe
 
     
   ],
