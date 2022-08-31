@@ -52,17 +52,14 @@ const routes: Routes = [
     { path: 'single-pro', canActivate: [AuthGuard ], component: SingleProComponent },
     { path: 'players',canActivate: [AuthGuard ],  component: PlayersNewPageComponent },
     { path: 'loading', component: LazyLoadingComponent },
-
-    
-
     { path: 'pro-home',canActivate: [AuthGuard ], component: MyorderComponent },
     { path: 'twitch-player',canActivate: [AuthGuard ], component: TwitchComponent },
     { path: 'stats',canActivate: [AuthGuard ], component: StatsComponent },
     { path: 'makeme-pro',canActivate: [AuthGuard ],component: MakeMeProComponent },
     { path: 'ranks', component: RanksComponent },
-    { path: 'players-new', component: PlayersNewPageComponent },
-    { path: 'my-order-normal', component: MyOrderNormalComponent },
-    { path: 'home', component: HomePageNew1Component },
+    { path: 'players', component: PlayersNewPageComponent },
+    { path: 'my-orders2', component: MyOrderNormalComponent },
+    { path: 'pre-party', component: HomePageNew1Component },
    
 
   
