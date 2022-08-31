@@ -23,6 +23,8 @@ export class PlayersNewPageComponent implements OnInit {
   query3 = 'Any';
   query4 = 'Any';
   query5 = '';
+  public modalOpen: boolean = false;
+
 
   selectedItem: any = {
     profile_pic: '',
@@ -127,4 +129,11 @@ export class PlayersNewPageComponent implements OnInit {
       )
   }
 
+  openForm() {
+    this.modalOpen = true;
+  }
+
+  closeForm() {
+    this.modalOpen = false;
+  }
 }
