@@ -25,7 +25,8 @@ router.post('/signUp', async (req, res, next) => {
 
     try {
 
-        let otp = generateOTP()
+        // let otp = generateOTP()
+        let otp = 123456;
 
         const result = await authEmailJoi.validateAsync({ email: req.body.email }) //Joi Validation for incoming registeration details
 

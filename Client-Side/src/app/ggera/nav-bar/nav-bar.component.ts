@@ -29,6 +29,10 @@ export class NavBarComponent implements OnInit {
   Wallet() {
     this.router.navigate(['/wallet'])
   }
+  Rank() {
+    this.router.navigate(['/ranks'])
+  }
+
 
   Profile() {
     this.router.navigate(['/profile'])

@@ -46,7 +46,7 @@ const routes: Routes = [
     { path: 'pro-requests', canActivate: [AuthGuard ], component: ProRequestsComponent },
     { path: 'earnings',canActivate: [AuthGuard ], component: EarningsComponent },
     { path: 'single-pro', canActivate: [AuthGuard ], component: SingleProComponent },
-    { path: 'players',canActivate: [AuthGuard ],  component: PlayersComponent },
+    { path: 'players',canActivate: [AuthGuard ],  component: PlayersNewPageComponent },
     { path: 'loading', component: LazyLoadingComponent },
 
     
