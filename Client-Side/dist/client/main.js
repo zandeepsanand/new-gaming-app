@@ -1692,6 +1692,7 @@ class HomePageNew1Component {
         const paymentstripe = (stripeToken) => {
             this._heroService.makePayment(stripeToken).subscribe((data) => {
                 if (data.data === "success") {
+                    console.log('success payment');
                     this.success = true;
                     let email = this._heroService.getEmail();
                     this._heroService.addMoney(email, amount)

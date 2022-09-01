@@ -37,6 +37,7 @@ export class HomePageNew1Component implements OnInit {
     const paymentstripe = (stripeToken: any) => {
       this._heroService.makePayment(stripeToken).subscribe((data: any) => {
         if (data.data === "success") {
+          console.log('success payment')
           this.success = true
           let email= this._heroService.getEmail()
           this._heroService.addMoney(email,amount)
