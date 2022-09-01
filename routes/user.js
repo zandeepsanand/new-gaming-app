@@ -53,7 +53,7 @@ router.put('/', async (req, res) => {
             'country': req.body.profile.country,
             'email': req.body.profile.email,
             'gamer': req.body.profile.gamer,
-            'profile_pic': req.body.profile_pic, //photo gets proper string name (without fake path)
+            'profile_pic': req.body.profile.profile_pic, //photo gets proper string name (without fake path)
             'gamerID': req.body.profile.gamerID,
             'wr': req.body.profile.wr,
             'discord_id': req.body.profile.discord_id,
