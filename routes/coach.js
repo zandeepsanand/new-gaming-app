@@ -11,8 +11,9 @@ router.post('/', async (req, res) => {
     try {
 
         let item = {
-            email: req.body.email,
-            approve: false,
+            
+            subscriber: req.body.email,
+            approve: 'pending',
             pro: req.body.pro_id
         }
 

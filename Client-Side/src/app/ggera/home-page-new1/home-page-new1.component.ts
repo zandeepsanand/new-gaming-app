@@ -41,7 +41,7 @@ export class HomePageNew1Component implements OnInit {
           let email= this._heroService.getEmail()
           this._heroService.addMoney(email,amount)
           .subscribe(res=>{
-            this.router.navigate(['/dashboard'])
+            this.router.navigate(['/twitch-player'])
           })
         }
         else {

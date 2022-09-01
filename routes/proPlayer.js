@@ -62,6 +62,7 @@ router.get('/:id/coach', async (req, res) => {
 router.get('/coaching-requests', async (req, res) => {
     try {
 
+        console.log("reached")
         const userLists = await CoachData.aggregate([
             {
                 $lookup:
@@ -73,7 +74,6 @@ router.get('/coaching-requests', async (req, res) => {
                 }
             }
         ])
-        console.log('test', userLists[1].alldata)
         res.send(userLists)
     } catch (error) {
         console.log(error)

@@ -21,20 +21,20 @@ export class MyorderComponent implements OnInit {
   public barChartData: ChartConfiguration<'bar'>['data'] = {
     datasets: [{
       data: [45, 25, 40, 80],
-  }],
-  labels: ['June', 'July', 'August', 'September']
+    }],
+    labels: ['June', 'July', 'August', 'September']
   };
 
 
-  public donutColors=[
+  public donutColors = [
     {
       backgroundColor: [
-          'rgba(92, 184, 92,1)',
-          'rgba(255, 195, 0, 1)',
-          'rgba(217, 83, 79,1)',
-          'rgba(129, 78, 40, 1)',
-          'rgba(129, 199, 111, 1)'
-    ]
+        'rgba(92, 184, 92,1)',
+        'rgba(255, 195, 0, 1)',
+        'rgba(217, 83, 79,1)',
+        'rgba(129, 78, 40, 1)',
+        'rgba(129, 199, 111, 1)'
+      ]
     }
   ];
 
@@ -43,59 +43,59 @@ export class MyorderComponent implements OnInit {
     responsive: true,
   };
 
-  user:any;
-  subscribers:any;
-  pendingSubscribers:any
-  approvedSubscribers:any
+  user: any;
+  subscribers: any;
+  pendingSubscribers: any
+  approvedSubscribers: any
 
 
 
-  constructor(private _heroService:HeroService , private _auth:HeroService,private _hero:HeroService,
-    private router:Router) { }
+  constructor(private _heroService: HeroService, private _auth: HeroService, private _hero: HeroService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.userData()
     this.coachingList()
   }
 
-  coachingList(){
+  coachingList() {
     let email = this._auth.getEmail()
     this._hero.getCoachingList()
       .subscribe((res) => {
-
+        console.log('res',email, res)
         let filterDATA = res.filter((ol) => {
           return ol.pro === email && ol.approve === 'pending';
         })
 
-      let newfilterData = res.filter((ol) => {
-        return ol.pro === email && ol.approve === 'true';
-      })
+        let newfilterData = res.filter((ol) => {
+          return ol.pro === email && ol.approve === 'true';
+        })
         this.pendingSubscribers = filterDATA;
         this.approvedSubscribers = newfilterData
-        console.log(this.pendingSubscribers)
+        console.log('pending', this.pendingSubscribers)
       })
   }
 
 
   userData() {
-    if(this._heroService.getEmail()){
+    if (this._heroService.getEmail()) {
       let email = this._heroService.getEmail()
       this._heroService.getUserDetail(email).
         subscribe(res => {
-          this.user = res         
+          this.user = res
         })
 
-        this._heroService.getCoach(email).
+      this._heroService.getCoach(email).
         subscribe(res => {
-          this.subscribers = res    
+          this.subscribers = res
         })
 
     }
- 
+
   }
 
 
-  profile(){
+  profile() {
     this.router.navigate(['/profile'])
   }
 
