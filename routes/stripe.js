@@ -22,8 +22,8 @@ router.post('/', async (req, res) => {
             }],
             mode: 'payment',
 
-            success_url: `http://localhost:4200/twitch-player`,
-            cancel_url: `http://localhost:4200/twitch-player`,
+            success_url: `https://newggera.herokuapp.com/twitch-player`,
+            cancel_url: `https://newggera.herokuapp.com/twitch-player`,
         })
         res.json({ url: session.url })
     } catch (e) {
