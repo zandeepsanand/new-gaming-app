@@ -86,7 +86,7 @@
         <div class="container">
             <div class="zinble-responsive-menu">
                 <div class="logo">
-                    <a routerLink="/" *ngIf="_auth.isNormal()">
+                    <a routerLink="/pre-party" *ngIf="_auth.isNormal()">
                         <img style="width:100px ;" src="assets/img/circle gry black gredient.png" alt="logo">
                     </a>
                     <a routerLink="/" *ngIf="_auth.isPro()">
@@ -100,7 +100,7 @@
     <div class="zinble-nav">
         <div class="container-fluid">
             <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" routerLink="/" *ngIf="_auth.isNormal()">
+                <a class="navbar-brand" routerLink="/pre-party"  *ngIf="_auth.isNormal()">
                     <img style="width:100px ;" src="assets/img/circle gry black gredient.png" alt="logo">
                 </a>
                 <a class="navbar-brand" routerLink="/pro-home" *ngIf="!_auth.isNormal()">
@@ -112,11 +112,11 @@
 
                 <div class="collapse navbar-collapse mean-menu">
                     <ul class="navbar-nav">
-                        <li class="nav-item" *ngIf="_auth.isNormal()"><a routerLink="/" class="nav-link">Home </a></li>
+                        <li class="nav-item" *ngIf="_auth.isNormal()"><a routerLink="/pre-party" class="nav-link">Home </a></li>
                         <li class="nav-item" *ngIf="!_auth.isNormal()"><a routerLink="/pro-home"
                                 class="nav-link">Dashboard </a></li>
-                        <li class="nav-item"><a routerLink="/subscriptions" class="nav-link"
-                                *ngIf="_auth.isNormal()">Subscriptions </a> </li>
+                        <!-- <li class="nav-item"><a routerLink="/subscriptions" class="nav-link"
+                                *ngIf="_auth.isNormal()">Subscriptions </a> </li> -->
 
                         <li class="nav-item" *ngIf="_auth.isPro()"><a class="nav-link">Pro+ <i
                                     class="flaticon-down-arrow"></i></a>
@@ -136,8 +136,7 @@
 
                         <li class="nav-item" *ngIf="!_auth.isNormal()"><a routerLink="/pro-home"
                                 class="nav-link">Requests </a></li>
-                        <li class="nav-item"><a routerLink="/tour" class="nav-link">Tournaments </a>
-                        </li>
+                      
 
                         <li class="nav-item"><a class="nav-link" *ngIf="_auth.isNormal()">Games <i
                                     class="flaticon-down-arrow"></i></a>

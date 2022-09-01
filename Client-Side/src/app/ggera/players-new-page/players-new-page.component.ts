@@ -88,6 +88,8 @@ export class PlayersNewPageComponent implements OnInit {
 
 
   coachReq(pro_id: any) {
+    console.log('clicked')
+
     let email = this._auth.getEmail()
     this._auth.coach(email, pro_id)
       .subscribe(
@@ -142,4 +144,6 @@ export class PlayersNewPageComponent implements OnInit {
   closeForm() {
     this.modalOpen = false;
   }
+
+ 
 }
