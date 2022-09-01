@@ -1678,56 +1678,12 @@ class HomePageNew1Component {
         this.failure = false;
     }
     ngOnInit() {
-        this.invokeStripe();
     }
-    makePayment(amount) {
-        const paymentHandler = window.StripeCheckout.configure({
-            key: 'pk_test_51LT4FJSBGyD7UYjV7Uzl35ECOGv6TAtzwwYlAokpfqWpLNoXEZq1Ov3RoijNAxrN5fRhYqxzedauoF7tyFlbgr9q002zPPPLTa',
-            locale: 'auto',
-            token: function (stripeToken) {
-                console.log(stripeToken);
-                paymentstripe(stripeToken);
-            },
+    newStripe() {
+        this._heroService.newStripe(50)
+            .subscribe(res => {
+            window.location.href = res.url;
         });
-        const paymentstripe = (stripeToken) => {
-            this._heroService.makePayment(stripeToken).subscribe((data) => {
-                if (data.data === "success") {
-                    console.log('success payment');
-                    this.success = true;
-                    let email = this._heroService.getEmail();
-                    this._heroService.addMoney(email, amount)
-                        .subscribe(res => {
-                        this.router.navigate(['/twitch-player']);
-                    });
-                }
-                else {
-                    this.failure = true;
-                }
-            });
-        };
-        paymentHandler.open({
-            name: 'ggEra',
-            description: 'Payment',
-            amount: amount * 100,
-        });
-    }
-    invokeStripe() {
-        if (!window.document.getElementById('stripe-script')) {
-            const script = window.document.createElement('script');
-            script.id = 'stripe-script';
-            script.type = 'text/javascript';
-            script.src = 'https://checkout.stripe.com/checkout.js';
-            script.onload = () => {
-                this.paymentHandler = window.StripeCheckout.configure({
-                    key: 'pk_test_51LT4FJSBGyD7UYjV7Uzl35ECOGv6TAtzwwYlAokpfqWpLNoXEZq1Ov3RoijNAxrN5fRhYqxzedauoF7tyFlbgr9q002zPPPLTa',
-                    locale: 'auto',
-                    token: function (stripeToken) {
-                        console.log(stripeToken);
-                    },
-                });
-            };
-            window.document.body.appendChild(script);
-        }
     }
 }
 HomePageNew1Component.ɵfac = function HomePageNew1Component_Factory(t) { return new (t || HomePageNew1Component)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](src_app_hero_service__WEBPACK_IMPORTED_MODULE_0__.HeroService), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__.Router)); };
@@ -1781,7 +1737,7 @@ HomePageNew1Component.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODU
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](51, " + ");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](52, "div", 6)(53, "div", 25);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("click", function HomePageNew1Component_Template_div_click_53_listener() { return ctx.makePayment(50); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("click", function HomePageNew1Component_Template_div_click_53_listener() { return ctx.newStripe(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](54, "div", 10);
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnamespaceSVG"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](55, "svg", 26);
@@ -6652,11 +6608,14 @@ class HeroService {
         return this.http.post(`${this.server_address}/auth/verifyOTP`, { data, email });
     }
     //! Stripe related 
-    makePayment(stripeToken) {
-        return this.http.post(`${this.server_address}/stripe`, { token: stripeToken });
-    }
+    // makePayment(stripeToken: any) {
+    //   return this.http.post<any>(`${this.server_address}/stripe`, { token: stripeToken });
+    // }
     addMoney(data, amount) {
         return this.http.put(`${this.server_address}/stripe`, { data, amount });
+    }
+    newStripe(data) {
+        return this.http.post(`${this.server_address}/stripe`, { data });
     }
     //!User related
     reqPro(email) {

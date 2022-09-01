@@ -6,45 +6,69 @@ const stripe = require('stripe')(process.env.STRIPE_CODE);
 
 
 
-
-
 router.post('/', async (req, res) => {
 
     try {
-        token = req.body.token
-        stripe.customers
-            .create({
-                email: token.email,
-                source: token.id
-            })
-            .then((customer) => {
-                return stripe.paymentIntents.create({
-                    amount: 1000,
-                    description: "Payment",
-                    currency: "USD",
-                    customer: customer.id,
-                });
-            })
-            .then((charge) => {
+        const session = await stripe.checkout.sessions.create({
+            line_items: [{
+                price_data: {
+                    currency: 'inr',
+                    product_data: {
+                        name: 'Subscription',
+                    },
+                    unit_amount: 200,
+                },
+                quantity: 1,
+            }],
+            mode: 'payment',
 
-                res.json({
-                    data: "success"
-                })
-            })
-            .catch((err) => {
-                res.json({
-                    data: "failure",
-                });
-            });
-        return true;
-    } catch (error) {
-        console.log(error)
-        return false;
+            success_url: `http://localhost:4200/twitch-player`,
+            cancel_url: `http://localhost:4200/twitch-player`,
+        })
+        res.json({ url: session.url })
+    } catch (e) {
+        res.status(500).json({ error: e.message })
     }
-
-
-
 })
+
+
+// router.post('/', async (req, res) => {
+
+//     try {
+//         token = req.body.token
+//         stripe.customers
+//             .create({
+//                 email: token.email,
+//                 source: token.id
+//             })
+//             .then((customer) => {
+//                 return stripe.paymentIntents.create({
+//                     amount: 1000,
+//                     description: "Payment",
+//                     currency: "USD",
+//                     customer: customer.id,
+//                 });
+//             })
+//             .then((charge) => {
+
+//                 res.json({
+//                     data: "success"
+//                 })
+//             })
+//             .catch((err) => {
+//                 res.json({
+//                     data: "failure",
+//                 });
+//             });
+//         return true;
+//     } catch (error) {
+//         console.log(error)
+//         return false;
+//     }
+
+
+
+// })
 
 router.put('/', async (req, res) => {
     try {

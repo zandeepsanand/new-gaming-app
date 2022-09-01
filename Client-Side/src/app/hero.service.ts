@@ -15,8 +15,8 @@ interface MyToken {
   providedIn: 'root'
 })
 export class HeroService {
-  server_address: string = "http://localhost:8887/api"
-  // server_address: string = '/api';
+  // server_address: string = "http://localhost:8887/api"
+  server_address: string = '/api';
 
 
   constructor(private http: HttpClient) { }
@@ -83,11 +83,15 @@ export class HeroService {
 
   //! Stripe related 
 
-  makePayment(stripeToken: any) {
-    return this.http.post<any>(`${this.server_address}/stripe`, { token: stripeToken });
-  }
+  // makePayment(stripeToken: any) {
+  //   return this.http.post<any>(`${this.server_address}/stripe`, { token: stripeToken });
+  // }
   addMoney(data: any, amount: number) {
     return this.http.put<any>(`${this.server_address}/stripe`, { data, amount });
+  }
+
+  newStripe(data:any){
+    return this.http.post<any>(`${this.server_address}/stripe`,{data});
   }
 
 
