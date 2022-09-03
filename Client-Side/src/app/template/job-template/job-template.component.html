@@ -1,14 +1,43 @@
-<div class="pb-100">
-    <app-nav-bar> </app-nav-bar>
-</div>
-
 <section class="section1">
-    <section class="products-details-area ptb-100">
-        <div class="container">
+    <div class="pb-100">
+        <nav class="container">
+            <div class="pro-client-switch">
+                <div class="switch2">
+                    <input
+                        id="language-toggle"
+                        class="check-toggle check-toggle-round-flat"
+                        type="checkbox"
+                        id="lang-switch"
+                        class="fr"
+                    />
+                    <label for="language-toggle"></label>
+                    <span class="on fr">EN</span>
+                    <span class="off en">DE</span>
+                </div>
+            </div>
+            <div class="menu-list">
+                <ul>
+                    <li *ngFor="let menu of links">
+                        <a
+                            [routerLink]="menu.link"
+                            class="menu"
+                            routerLinkActive="active"
+                        >
+                            <h1>{{ menu.text }}</h1>
+                            <p>{{ menu.subText }}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <section class="products-details-area ptb-100">
             <router-outlet></router-outlet>
-        </div>
-    </section>
+        </section>
+    </div>
+    <footer class="footer-area">
+        <app-new-footer></app-new-footer>
+    </footer>
 </section>
-<footer class="footer-area">
-    <app-new-footer></app-new-footer>
-</footer>
