@@ -61,7 +61,7 @@ const routes: Routes = [
     { path: 'my-orders2', component: MyOrderNormalComponent },
     { path: 'pre-party', component: HomePageNew1Component },
    
-
+    {path: 'job', loadChildren: () => import('./ggera/jobs/jobs-routing.module').then(e => e.JobsRoutingModule)}
   
 
 
