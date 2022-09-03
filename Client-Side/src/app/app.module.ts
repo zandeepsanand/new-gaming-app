@@ -54,6 +54,7 @@ import { MyOrderNormalComponent } from './ggera/my-order-normal/my-order-normal.
 import { HomePageNew1Component } from './ggera/home-page-new1/home-page-new1.component';
 
 import { RangeFilterPipe } from './range-filter.pipe';
+import { JobTemplateComponent } from './template/job-template/job-template.component';
 
 
 
@@ -97,7 +98,8 @@ import { RangeFilterPipe } from './range-filter.pipe';
     MyOrderNormalComponent,
     HomePageNew1Component,
 
-    RangeFilterPipe
+    RangeFilterPipe,
+      JobTemplateComponent
 
 
     

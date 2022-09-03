@@ -29,6 +29,7 @@ import { RanksComponent } from './ggera/ranks/ranks.component';
 import { PlayersNewPageComponent } from './ggera/players-new-page/players-new-page.component';
 import { MyOrderNormalComponent } from './ggera/my-order-normal/my-order-normal.component';
 import { HomePageNew1Component } from './ggera/home-page-new1/home-page-new1.component';
+import { JobTemplateComponent } from './template/job-template/job-template.component';
 
 
 
@@ -61,7 +62,7 @@ const routes: Routes = [
     { path: 'my-orders2', component: MyOrderNormalComponent },
     { path: 'pre-party', component: HomePageNew1Component },
    
-    {path: 'job', loadChildren: () => import('./ggera/jobs/jobs-routing.module').then(e => e.JobsRoutingModule)}
+    {path: 'job', component: JobTemplateComponent, loadChildren: () => import('./ggera/jobs/jobs-routing.module').then(e => e.JobsRoutingModule)},
   
 
 
