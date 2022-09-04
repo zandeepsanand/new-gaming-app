@@ -6877,10 +6877,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class HeroService {
-    // server_address: string = '/api';
     constructor(http) {
         this.http = http;
-        this.server_address = "http://localhost:8887/api";
+        // server_address: string = "http://localhost:8887/api"
+        this.server_address = '/api';
     }
     //! Token related
     //Admin Role Check
