@@ -64,7 +64,8 @@ export class NavBarComponent implements OnInit {
   }
 
   referals(){
-    this.router.navigate(['/referrals'])
+    this.comingSoon();
+    // this.router.navigate(['/referrals'])
 
   }
 
@@ -93,7 +94,7 @@ export class NavBarComponent implements OnInit {
     }
  
   }
-  commingSoon(){
+  comingSoon(){
     this.router.navigate(['/coming-soon'])
   }
 }
