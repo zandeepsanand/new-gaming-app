@@ -55,6 +55,8 @@ import { HomePageNew1Component } from './ggera/home-page-new1/home-page-new1.com
 
 import { RangeFilterPipe } from './range-filter.pipe';
 import { ComingSoonComponent } from './ggera/coming-soon/coming-soon.component';
+import { SupportComponent } from './ggera/support/support.component';
+import { SettingsComponent } from './ggera/settings/settings.component';
 
 
 
@@ -101,6 +103,8 @@ import { ComingSoonComponent } from './ggera/coming-soon/coming-soon.component';
     RangeFilterPipe,
     
     ComingSoonComponent,
+          SupportComponent,
+          SettingsComponent,
     
   ],
   imports: [

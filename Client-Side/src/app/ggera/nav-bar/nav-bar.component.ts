@@ -97,4 +97,10 @@ export class NavBarComponent implements OnInit {
   comingSoon(){
     this.router.navigate(['/coming-soon'])
   }
+  support(){
+    this.router.navigate(['/support'])
+  }
+  settings(){
+    this.router.navigate(['/settings'])
+  }
 }

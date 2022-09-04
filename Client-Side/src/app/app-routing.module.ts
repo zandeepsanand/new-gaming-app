@@ -30,6 +30,8 @@ import { PlayersNewPageComponent } from './ggera/players-new-page/players-new-pa
 import { MyOrderNormalComponent } from './ggera/my-order-normal/my-order-normal.component';
 import { HomePageNew1Component } from './ggera/home-page-new1/home-page-new1.component';
 import { ComingSoonComponent } from './ggera/coming-soon/coming-soon.component';
+import { SupportComponent } from './ggera/support/support.component';
+import { SettingsComponent } from './ggera/settings/settings.component';
 
 
 
@@ -63,6 +65,8 @@ const routes: Routes = [
     { path: 'pre-party', component: HomePageNew1Component },
 
     { path: 'coming-soon', canActivate: [AuthGuard ],  component: ComingSoonComponent },
+    { path: 'support', canActivate: [AuthGuard ],  component: SupportComponent },
+    { path: 'settings', canActivate: [AuthGuard ],  component: SettingsComponent },
    
 
   

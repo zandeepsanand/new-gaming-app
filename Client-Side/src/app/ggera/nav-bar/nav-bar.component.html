@@ -286,9 +286,9 @@
                         Parties<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Rank()"
                         *ngIf="_auth.isPro()">Rank<br></a>
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;"
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="settings()"
                         *ngIf="_auth.isNormal()">Settings<br></a>
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;"
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="support()"
                         *ngIf="_auth.isNormal()">Support<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" *ngIf="_auth.isNormal()" (click)="comingSoon()">Special
                         Events<br></a>
