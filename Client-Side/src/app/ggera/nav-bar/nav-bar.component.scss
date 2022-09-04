@@ -737,7 +737,7 @@
         .modal-dialog {
             position: fixed;
             margin: auto;
-            width: 420px;
+            width: 200px;
             height: 100%;
             transform: translate3d(0%, 0, 0);
         }
@@ -785,7 +785,6 @@
 .sidebarModal {
     &.modal {
         .modal-body {
-            text-align: center;
             padding: 80px 30px;
 
             .instagram-list {

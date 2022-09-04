@@ -118,7 +118,7 @@
                         <!-- <li class="nav-item"><a routerLink="/subscriptions" class="nav-link"
                                 *ngIf="_auth.isNormal()">Subscriptions </a> </li> -->
 
-                        <li class="nav-item" *ngIf="_auth.isPro()"><a class="nav-link">Pro+ <i
+                        <!-- <li class="nav-item" *ngIf="_auth.isPro()"><a class="nav-link">Pro+ <i
                                     class="flaticon-down-arrow"></i></a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a routerLink="/join-party" class="nav-link"
@@ -131,14 +131,17 @@
                                 <li class="nav-item"><a routerLink="/coming-soon" class="nav-link"
                                         routerLinkActive="active"
                                         [routerLinkActiveOptions]="{exact: true}">Tournaments</a></li>
-                                <!-- <li class="nav-item"><a routerLink="/tournaments" class="nav-link"
+                                <li class="nav-item"><a routerLink="/tournaments" class="nav-link"
                                         routerLinkActive="active"
-                                        [routerLinkActiveOptions]="{exact: true}">Tournaments</a></li> -->
+                                        [routerLinkActiveOptions]="{exact: true}">Tournaments</a></li> 
                             </ul>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item" *ngIf="!_auth.isNormal()"><a routerLink="/pro-home"
                                 class="nav-link">Requests </a></li>
+
+                        <li class="nav-item" *ngIf="!_auth.isNormal()"><a routerLink="/coming-soon"
+                                class="nav-link">Tournaments </a></li>
                       
 
                         <li class="nav-item"><a class="nav-link" *ngIf="_auth.isNormal()">Games <i
@@ -240,7 +243,7 @@
         <div class="modal-content">
             <button type="button" class="close" data-bs-dismiss="modal"><i class='bx bx-x'></i></button>
 
-            <div class="modal-body flex align-items-center">
+            <div class="modal-body flex ">
                 <div class="logo ptb-100">
                     <h2>
                         <h2 class="pb-2" *ngIf="!user">Anonymous</h2>
@@ -264,7 +267,7 @@
                     $0</button>
 
 
-                <div class="  pt-5 ">
+                <div class="pt-5 ">
 
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="myOrders()"
                         *ngIf="_auth.isPro()"> My
