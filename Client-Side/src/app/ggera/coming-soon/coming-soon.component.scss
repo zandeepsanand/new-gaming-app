@@ -1,0 +1,28 @@
+.user-actions {
+    background-color: #ed4100;
+    box-shadow: 0 10px 27px 0 rgba(14,8,18,.5);
+    // box-shadow: 0 10px 27px 0 rgba(14,8,18,.5);
+    padding: 15px 20px;
+    border-top: 3px solid var(--mainColor);
+    position: relative;
+    margin-bottom: 40px;
+    height: 500px;
+
+    i {
+        margin-right: 2px;
+        font-size: 20px;
+        position: relative;
+        top: 3px;
+    }
+    span {
+        letter-spacing: 1px;
+        display: inline-block;
+        font: {
+            weight: 600;
+            size: 18px;
+        };
+        a {
+            display: inline-block;
+        }
+    }
+}

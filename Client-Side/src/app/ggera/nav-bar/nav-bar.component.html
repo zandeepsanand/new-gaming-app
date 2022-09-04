@@ -287,7 +287,7 @@
                         *ngIf="_auth.isNormal()">Settings<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;"
                         *ngIf="_auth.isNormal()">Support<br></a>
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" *ngIf="_auth.isNormal()">Special
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" *ngIf="_auth.isNormal()" (click)="commingSoon()">Special
                         Events<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="referals()"
                         *ngIf="_auth.isPro()">Referrals<br></a>
