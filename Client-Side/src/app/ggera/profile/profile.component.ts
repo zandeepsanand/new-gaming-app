@@ -6,25 +6,29 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from "@angular/forms";
 import Swal from 'sweetalert2';
 import data from '../../../assets/JSON/countries.json';
+import { UploadService } from 'src/app/services/upload.service';
+import { response } from 'express';
 
 
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
+  providers: [UploadService]
 })
 export class ProfileComponent implements OnInit {
 
   countrys: any = data
+  selectedFile = null;
 
-  constructor(private router: Router, private hero: HeroService, private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private router: Router, private hero: HeroService, private fb: FormBuilder, private uploadService: UploadService) { }
 
 
   ProfileForm: any = new FormGroup({
     'username': new FormControl(''),
     'language': new FormControl(''),
-    'profile_pic': new FormControl(''),
+    // 'profile_pic': new FormControl(''),
     'country': new FormControl(''),
     'email': new FormControl(''),
     'gamer': new FormControl(''),
@@ -196,5 +200,36 @@ export class ProfileComponent implements OnInit {
           }
         })
 
+  }
+
+
+  onFileSelected(event) {
+    const file:File = event.target.files[0];
+    if (file) {
+      console.log(file);
+      this.selectedFile=file;
+    }
+  }
+  uploadImage(){
+    let uploadResponse = null;
+    if(this.selectedFile){
+      const data = new FormData();
+      data.append('file',this.selectedFile);
+      data.append('upload_preset','newGamingApp');
+      data.append('cloud_name','achums007');
+      this.uploadService.uploadImageToCloudinary(data).subscribe((response) =>{
+        if(response){
+          uploadResponse= response;
+          console.log(response);
+          this.editProfile(response);
+        }
+      });
+    } 
+  }
+  editProfile(response){
+    console.log(response.secure_url)
+    this.ProfileForm.value.profile_pic = response.secure_url ;
+    this.profile();
+    
   }
 }

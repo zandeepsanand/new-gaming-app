@@ -24,15 +24,30 @@
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="twitch" role="tabpanel">
-                        <form [formGroup]="ProfileForm" (ngSubmit)='profile()'>
-
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 card bg-transparent border">
-                                    <div class="billing-details">
-
-                                        <div class="row ptb-100">
-
-
+                        
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 card bg-transparent border">
+                                <div class="billing-details">
+                                    
+                                    <div class="row ptb-100">
+                                        
+                                        
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="form-group" style="text-align: center;">
+                                                <img src="../../../assets/img/default.png" alt="" style="max-width:150px;
+                                                max-height:200px;
+                                                height: auto;
+                                                width:auto;">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label> Change Profile Picture <span class="required"></span></label>
+                                                <input type="file" class="form-control" (change)="onFileSelected($event)">
+                                                <button type="submit" class="default-btn" (click)="uploadImage();">Upload</button>
+                                            </div>
+                                        </div>
+                                        <form [formGroup]="ProfileForm" (ngSubmit)='profile()'>
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
                                                     <label> Name <span class="required">*</span></label>
@@ -73,7 +88,7 @@
                                             </div>
 
 
-                                            <!-- <div class="col-lg-6 col-md-6">
+                                            <!-- <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
                                                     <label> Profile Pic <span class="required">*</span></label>
                                                     <input type="text" class="form-control"
@@ -242,12 +257,12 @@
                                                 <button type="submit" class="default-btn">Update</button>
 
                                             </div>
+                                        </form>
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
                     </div>
                     <div class="tab-pane fade" id="youtube" role="tabpanel">
                         <form [formGroup]="AccountForm" (ngSubmit)='Account()'>
