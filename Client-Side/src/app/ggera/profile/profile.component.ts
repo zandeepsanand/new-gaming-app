@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
 
   countrys: any = data
   selectedFile = null;
+  user:any
 
   constructor(private router: Router, private hero: HeroService, private fb: FormBuilder, private uploadService: UploadService) { }
 
@@ -62,7 +63,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
 
-
+    this.userData();
     this.getUserDATA();
   }
 
@@ -231,5 +232,15 @@ export class ProfileComponent implements OnInit {
     this.ProfileForm.value.profile_pic = response.secure_url ;
     this.profile();
     
+  }
+  userData() {
+    if(this.hero.getEmail()){
+      let email = this.hero.getEmail()
+      this.hero.getUserDetail(email).
+        subscribe(res => {
+          this.user = res
+         
+        })
+    }
   }
 }
