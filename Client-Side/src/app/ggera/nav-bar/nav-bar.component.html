@@ -103,20 +103,20 @@
                 <a class="navbar-brand" routerLink="/pre-party"  *ngIf="_auth.isNormal()">
                     <img style="width:100px ;" src="assets/img/circle gry black gredient.png" alt="logo">
                 </a>
-                <a class="navbar-brand" routerLink="/pre-party"  *ngIf="_auth.isNormal()">
+                
+                <a class="navbar-brand" routerLink="/pro-home" *ngIf="!_auth.isNormal()">
+                    <img style="width:100px ;" src="assets/img/circle gry black gredient.png" alt="logo">
+                </a>
+                <a class="navbar-brand" routerLink="/pre-party" >
                     <div class="custom-select" style="width:200px; background-color: black;">
                         <select style="background-color: black;">
                           <option value="0">Select game:</option>
                           <option value="warzone" selected>COD: Warzone</option>
+                          <option value="apexlegends">Apex Legends</option>
                           <option value="fortnight">Fortnight</option>
-                          <option value="valorant">Valorant</option>
                         </select>
                       </div>
                 </a>
-                <a class="navbar-brand" routerLink="/pro-home" *ngIf="!_auth.isNormal()">
-                    <img style="width:100px ;" src="assets/img/circle gry black gredient.png" alt="logo">
-                </a>
-
 
 
 
@@ -147,7 +147,7 @@
                             </ul>
                         </li> -->
 
-                        <li class="nav-item" *ngIf="!_auth.isNormal()"><a routerLink="/pro-home"
+                        <li class="nav-item" *ngIf="!_auth.isNormal()"><a routerLink="/pro-requests"
                                 class="nav-link">Requests </a></li>
 
                         <li class="nav-item" *ngIf="!_auth.isNormal()"><a routerLink="/coming-soon"
@@ -217,7 +217,11 @@
                         <li class="nav-item">
                             <ul class="radioStatus">
                                 <li>
-                                    <button class="button-23" role="button" (click)="account()" style="height: 42px;color:grey">$0</button>
+                                    <button class="button-23" role="button" (click)="account()" style="height: 42px;color:grey">
+                                        
+                                        <div *ngIf="user?.current_balance != undefined">${{user?.current_balance}}</div>
+                                        <div *ngIf="user?.current_balance == undefined">$0</div>
+                                    </button>
                                 </li>
                               </ul>
                         </li>
@@ -278,27 +282,27 @@
             <button type="button" class="close" data-bs-dismiss="modal"><i class='bx bx-x'></i></button>
 
             <div class="modal-body flex ">
-                <div class="logo ptb-100">
+                <div class="logo pt-100 pb-50">
                     <h2>
                         <h2 class="pb-2" *ngIf="!user">Anonymous</h2>
                         <h2 class="pb-2" *ngIf="user?.username != undefined">{{user?.username}}</h2>
 
                     </h2>
-                    <div class="lang-switcher">
+                    <!-- <div class="lang-switcher">
                         <select>
                             <option>Online</option>
                             <option>Booked</option>
                             <option>Busy</option>
                             <option>Offline</option>
                         </select>
-                    </div>
+                    </div> -->
 
                 </div>
 
 
 
-                <button data-bs-dismiss="modal" class="button-23" role="button" (click)="account()"> Balance -
-                    $0</button>
+                <!-- <button data-bs-dismiss="modal" class="button-23" role="button" (click)="account()"> Balance -
+                    $0</button> -->
 
 
                 <div class="pt-5 ">

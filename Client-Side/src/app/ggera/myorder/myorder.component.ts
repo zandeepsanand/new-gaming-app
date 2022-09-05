@@ -47,7 +47,10 @@ export class MyorderComponent implements OnInit {
   subscribers: any;
   pendingSubscribers: any
   approvedSubscribers: any
+  
 
+  public modalOpen: boolean = false;
+  proDetail: any
 
 
   constructor(private _heroService: HeroService, private _auth: HeroService, private _hero: HeroService,
@@ -56,6 +59,7 @@ export class MyorderComponent implements OnInit {
   ngOnInit(): void {
     this.userData()
     this.coachingList()
+    this.getProDetail()
   }
 
   coachingList() {
@@ -180,5 +184,17 @@ export class MyorderComponent implements OnInit {
             })
           }
         })
+  }
+
+  openForm() {
+    this.modalOpen = true;
+  }
+  getProDetail() {
+    let email = this._hero.getEmail()
+
+    this._hero.getUserDetail(email)
+      .subscribe(res => {
+        this.proDetail = res
+      })
   }
 }
