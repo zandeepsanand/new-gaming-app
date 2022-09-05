@@ -103,6 +103,16 @@
                 <a class="navbar-brand" routerLink="/pre-party"  *ngIf="_auth.isNormal()">
                     <img style="width:100px ;" src="assets/img/circle gry black gredient.png" alt="logo">
                 </a>
+                <a class="navbar-brand" routerLink="/pre-party"  *ngIf="_auth.isNormal()">
+                    <div class="custom-select" style="width:200px; background-color: black;">
+                        <select style="background-color: black;">
+                          <option value="0">Select game:</option>
+                          <option value="warzone" selected>COD: Warzone</option>
+                          <option value="fortnight">Fortnight</option>
+                          <option value="valorant">Valorant</option>
+                        </select>
+                      </div>
+                </a>
                 <a class="navbar-brand" routerLink="/pro-home" *ngIf="!_auth.isNormal()">
                     <img style="width:100px ;" src="assets/img/circle gry black gredient.png" alt="logo">
                 </a>
@@ -144,7 +154,7 @@
                                 class="nav-link">Tournaments </a></li>
                       
 
-                        <li class="nav-item"><a class="nav-link" *ngIf="_auth.isNormal()">Games <i
+                        <!-- <li class="nav-item"><a class="nav-link" *ngIf="_auth.isNormal()">Games <i
                                     class="flaticon-down-arrow"></i></a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a class="nav-link" routerLinkActive="active"
@@ -158,7 +168,7 @@
                                         [routerLinkActiveOptions]="{exact: true}">Valorant</a></li>
 
                             </ul>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item"><a *ngIf="_auth.isNormal()" style="cursor: pointer;" class="nav-link"
                                 (click)="Players()">Players </a>
@@ -183,9 +193,33 @@
 
                     </ul>
                     <ul class="navbar-nav">
-                        <li class="nav-item" *ngIf="!_auth.isPro()">
-                            <button class="button-23" role="button" (click)="account()">$0</button>
+                        <li class="nav-item" *ngIf="_auth.isPro()">
+                            <ul class="radioStatus">
+                                <li>
+                                  <input type="radio" name="selectStatus" />
+                                  <label for="a25">Online</label>
+                                </li>
+                                <li>
+                                  <input type="radio" name="selectStatus" />
+                                  <label for="a50">Booked</label>
+                                </li>
+                                <li>
+                                  <input type="radio" name="selectStatus"/>
+                                  <label for="a75">Busy</label>
+                                </li>
+                                <li>
+                                  <input type="radio"name="selectStatus" checked="checked" />
+                                  <label for="a100">Offline</label>
+                                </li>
+                              </ul>
+                        </li>
 
+                        <li class="nav-item">
+                            <ul class="radioStatus">
+                                <li>
+                                    <button class="button-23" role="button" (click)="account()" style="height: 42px;color:grey">$0</button>
+                                </li>
+                              </ul>
                         </li>
 
                     </ul>
