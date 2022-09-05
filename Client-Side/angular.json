@@ -51,7 +51,8 @@
                 "src/assets/js/isotope.pkgd.min.js",
                 "src/assets/js/parallax.min.js",
                 "src/assets/js/wow.min.js",
-                "src/assets/js/main.js"
+                "src/assets/js/main.js",
+                "src/assets/userjs.js"
                
             ],
             "vendorChunk": true,

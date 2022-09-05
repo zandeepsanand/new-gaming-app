@@ -60,3 +60,53 @@
     border-style: solid;
     border-color: coral;
   }
+
+
+
+
+  .line-1 {
+    border-left: 2px solid rgba(255, 255, 255, .75);
+    white-space: nowrap;
+    overflow: hidden;
+    direction: ltr;
+  }
+  
+  
+  /* Animation */
+  
+  .anim-typewriter {        
+    animation: typewriter 8s /* increase to 8s so you have 4s pause */ steps(44) 1s infinite normal both, blinkTextCursor 500ms steps(44) infinite normal;
+  }
+  
+  @keyframes typewriter {
+    0% {
+      width: 0;
+    }
+    50% {
+      width: 24em;
+    }
+    100% {  /* 50% of this animation is now a pause */
+      width: 24em;
+    }
+  }
+  
+  @keyframes blinkTextCursor {
+    from {
+      border-left-color: rgba(255, 255, 255, .75);
+    }
+    to {
+      border-left-color: transparent;
+    }
+  }
+
+
+
+  .ml2 {
+    font-weight: 900;
+    font-size: 3.5em;
+  }
+  
+  .ml2 .letter {
+    display: inline-block;
+    line-height: 1em;
+  }

@@ -481,4 +481,5 @@ addEventListener(window,'DOMContentLoaded',function(){plugin(document.querySelec
 
 }(jQuery));
 ;
+;
 //# sourceMappingURL=scripts.js.map
