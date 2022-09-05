@@ -57,6 +57,9 @@ import { RangeFilterPipe } from './range-filter.pipe';
 import { ComingSoonComponent } from './ggera/coming-soon/coming-soon.component';
 import { SupportComponent } from './ggera/support/support.component';
 import { SettingsComponent } from './ggera/settings/settings.component';
+import { DailyChartComponent } from './ggera/charts/daily-chart/daily-chart.component';
+import { WeeklyChartComponent } from './ggera/charts/weekly-chart/weekly-chart.component';
+import { MonthlyChartComponent } from './ggera/charts/monthly-chart/monthly-chart.component';
 
 
 
@@ -105,6 +108,9 @@ import { SettingsComponent } from './ggera/settings/settings.component';
     ComingSoonComponent,
           SupportComponent,
           SettingsComponent,
+          DailyChartComponent,
+          WeeklyChartComponent,
+          MonthlyChartComponent,
     
   ],
   imports: [
