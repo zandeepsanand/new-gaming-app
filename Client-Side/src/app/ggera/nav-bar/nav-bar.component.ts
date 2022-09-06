@@ -103,4 +103,7 @@ export class NavBarComponent implements OnInit {
   settings(){
     this.router.navigate(['/settings'])
   }
+  subscriptions(){
+    this.router.navigate(['/subscriptions'])
+  }
 }

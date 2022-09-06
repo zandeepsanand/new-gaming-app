@@ -7,22 +7,57 @@
 
         <div class="container">
 
+            
             <div class="row ">
                 <div class="col-lg-5 col-sm-5 col-md-5  ">
                     <h1 class=" p-2">Current Balance</h1>
-                    <h2 class="  p-2 fs-1">0$</h2>
+                    <h2 class="  p-2 fs-1">${{walletData.balance}}</h2>
                     <div class="  p-2">
                         <a style="cursor: pointer;" class="default-btn  pl-5 pr-5 " data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Withdraw</a>
+                        data-bs-target="#addMoneymodal">Add Money</a>
+                    </div>
+                    <!-- <h6 class=" p-2">Minimum amount to Withdraw is 30$</h6> -->
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-5 col-sm-5 col-md-5  ">
+                    
+                    <div class="  p-2">
+                        <a style="cursor: pointer;" class="default-btn  pl-5 pr-5 " data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Withdraw</a>
                     </div>
                     <h6 class=" p-2">Minimum amount to Withdraw is 30$</h6>
                 </div>
             </div>
-
         </div>
         <!-- Button trigger modal -->
 
 
+        <!-- Modal -->
+        <div class="modal fade" id="addMoneymodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="container">
+                    <div class="modal-content" style="padding: 0;">
+                        <div class="modal-body"style="padding: 0; margin:0">
+                            <div class="row ">
+                                <div class="col-lg-12 col-sm-10 col-md-10  card bg-black border">
+                                    <h1 class=" p-2 text-center pt-5">Add Amount</h1>
+                                    <h6 class="  p-2 text-center">Enter amount to be added</h6>
+                                    <form role="form text-start" [formGroup]="AddMoneyForm"  (ngSubmit)="moneyAdd()">
+                                        <input class="form-control"  formControlName="amount" type="number" placeholder="Enter Amount" required>
+
+                                        <div class="  p-2 d-flex justify-content-center pb-5 pt-5">
+                                            <button  data-dismiss="addMoneymodal"  type="submit" class="default-btn">Add</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -89,103 +124,33 @@
                 </ul>
             </div>
             <br>
-            <table class="table table-bordered tab-pane fade show active" id="all-types" role="tabpanel">
+            
+            <table class="table table-bordered tab-pane" >
                 <thead>
                     <tr class="border" style="color: white;">
                         <!-- <th scope="col">Product</th> -->
                         <th scope="col">Type</th>
-                        <th scope="col">Date </th>
-                        <th scope="col">Order Id</th>
                         <th scope="col">Amount</th>
+                        <th scope="col">Status </th>
+                        <th scope="col">Date </th>
                     </tr>
                 </thead>
-
-                <tbody>
-                    <tr class="border">
-                        <td class="product-name">
-                            <a routerLink="/single-products">Withdrawal</a>
-                        </td>
-
-                        <td class="product-price" >
-                            <span class="unit-amount">12/5/22</span>
-                        </td>
-
-                        <td class="product-quantity">
-                            <span class="unit-amount">ADE12323E</span>
-
-                        </td>
-
-                        <td class="product-subtotal">
-                            <span class="subtotal-amount">$99.00</span>
-                        </td>
-                    </tr>
-                    <tr class="border">
-                        <td class="product-name">
-                            <a routerLink="/single-products">Withdrawal</a>
-                        </td>
-
-                        <td class="product-price" >
-                            <span class="unit-amount">12/5/22</span>
-                        </td>
-
-                        <td class="product-quantity">
-                            <span class="unit-amount">ADE12323E</span>
-
-                        </td>
-
-                        <td class="product-subtotal">
-                            <span class="subtotal-amount">$99.00</span>
-                        </td>
-                    </tr>
-                    <tr class="border">
-                        <td class="product-name">
-                            <a routerLink="/single-products">Bonus</a>
-                        </td>
-
-                        <td class="product-price">
-                            <span class="unit-amount">12/5/22</span>
-                        </td>
-
-                        <td class="product-quantity">
-                            <span class="unit-amount">ADE12323E</span>
-
-                        </td>
-
-                        <td class="product-subtotal">
-                            <span class="subtotal-amount">$99.00</span>
-                        </td>
-                    </tr>
-                    <tr class="border">
-                        <td class="product-name">
-                            <a routerLink="/single-products">Withdrawal</a>
-                        </td>
-
-                        <td class="product-price">
-                            <span class="unit-amount">12/5/22</span>
-                        </td>
-
-                        <td class="product-quantity">
-                            <span class="unit-amount">ADE12323E</span>
-
-                        </td>
-
-                        <td class="product-subtotal">
-                            <span class="subtotal-amount">$99.00</span>
-                        </td>
-                    </tr>
-
-
-                </tbody>
-            </table>
+                <tr class="border"  *ngFor="let row of transactionsData">
+                  <td >{{row.type}}</td>
+                  <td>{{row.amount}}</td>
+                  <td>{{row.status}}</td>
+                  <td>{{row.date}}</td>
+                </tr>
+              </table> 
 
             <table class="table table-bordered tab-pane fade " id="Sessions"  role="tabpanel">
                 <thead>
                     <tr class="border" style="color: white;">
                         <!-- <th scope="col">Product</th> -->
                         <th scope="col">Type</th>
-                        <th scope="col">Date </th>
-                        <th scope="col">Order Id</th>
                         <th scope="col">Amount</th>
+                        <th scope="col">Status </th>
+                        <th scope="col">Date </th>
                     </tr>
                 </thead>
 

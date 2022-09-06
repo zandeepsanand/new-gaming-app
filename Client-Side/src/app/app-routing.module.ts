@@ -32,6 +32,7 @@ import { HomePageNew1Component } from './ggera/home-page-new1/home-page-new1.com
 import { ComingSoonComponent } from './ggera/coming-soon/coming-soon.component';
 import { SupportComponent } from './ggera/support/support.component';
 import { SettingsComponent } from './ggera/settings/settings.component';
+import { SubscriptionsComponent } from './ggera/subscriptions/subscriptions.component';
 
 
 
@@ -67,6 +68,7 @@ const routes: Routes = [
     { path: 'coming-soon', canActivate: [AuthGuard ],  component: ComingSoonComponent },
     { path: 'support', canActivate: [AuthGuard ],  component: SupportComponent },
     { path: 'settings', canActivate: [AuthGuard ],  component: SettingsComponent },
+    { path: 'subscriptions', canActivate: [AuthGuard ],  component: SubscriptionsComponent },
    
 
   
