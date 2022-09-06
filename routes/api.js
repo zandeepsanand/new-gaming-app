@@ -10,6 +10,7 @@ const coach = require('./coach')
 const party = require('./party')
 const user = require('./user')
 const stripe = require('./stripe')
+const wallet = require('./wallet')
 
 
 
@@ -24,6 +25,7 @@ router.use('/coach',coach)
 router.use('/party',party)
 router.use('/user',user)
 router.use('/stripe',stripe)
+router.use('/wallet',wallet)
 
 
 

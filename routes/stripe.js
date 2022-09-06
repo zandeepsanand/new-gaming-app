@@ -30,6 +30,31 @@ router.post('/', async (req, res) => {
         res.status(500).json({ error: e.message })
     }
 })
+router.post('/addtowallet', async (req, res) => {
+    console.log(req.body);
+    const amount = parseInt(req.body.data)*100;
+    try {
+        const session = await stripe.checkout.sessions.create({
+            line_items: [{
+                price_data: {
+                    currency: 'inr',
+                    product_data: {
+                        name: 'Subscription',
+                    },
+                    unit_amount: amount,
+                },
+                quantity: 1,
+            }],
+            mode: 'payment',
+
+            success_url: `https://newggera.herokuapp.com/account/`,
+            cancel_url: `https://newggera.herokuapp.com/account`,
+        })
+        res.json({ url: session.url })
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+})
 
 
 // router.post('/', async (req, res) => {
