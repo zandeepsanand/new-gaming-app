@@ -60,6 +60,7 @@ import { SettingsComponent } from './ggera/settings/settings.component';
 import { DailyChartComponent } from './ggera/charts/daily-chart/daily-chart.component';
 import { WeeklyChartComponent } from './ggera/charts/weekly-chart/weekly-chart.component';
 import { MonthlyChartComponent } from './ggera/charts/monthly-chart/monthly-chart.component';
+import { ErrorTextComponent } from './common/components/error-text/error-text.component';
 
 
 
@@ -111,6 +112,7 @@ import { MonthlyChartComponent } from './ggera/charts/monthly-chart/monthly-char
           DailyChartComponent,
           WeeklyChartComponent,
           MonthlyChartComponent,
+          ErrorTextComponent,
     
   ],
   imports: [

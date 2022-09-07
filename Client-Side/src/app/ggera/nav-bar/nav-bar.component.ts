@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HeroService } from 'src/app/hero.service';
+import { tap } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -15,6 +17,9 @@ export class NavBarComponent implements OnInit {
 
   user:any
 
+  games: any;
+  selectedGame: FormControl = new FormControl(localStorage.getItem('selected.game') || '');
+
   constructor(
     private router: Router,
     private _heroService:HeroService,
@@ -24,6 +29,20 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData();
+    this.getGameData()
+  }
+
+  getGameData() {
+    this._heroService.getAllGames().pipe(
+      tap(e => {
+        this.games = e;
+      })
+    ).subscribe()
+    this.selectedGame.valueChanges.pipe(
+      tap(e => {
+        localStorage.setItem('selected.game', e);
+      })
+    ).subscribe()
   }
 
   Wallet() {

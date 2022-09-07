@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import jwt_decode from "jwt-decode"
+import { environment } from 'src/environments/environment';
 
 
 interface MyToken {
@@ -16,7 +17,7 @@ interface MyToken {
 })
 export class HeroService {
   // server_address: string = "http://localhost:8887/api"
-  server_address: string = '/api';
+  server_address: string = environment.apiUrl;
 
 
   constructor(private http: HttpClient) { }
@@ -133,6 +134,15 @@ export class HeroService {
     return this.http.get<any>(`${this.server_address}/party`,);
   }
 
+  createParty(data: any) {
+    const token = this.getToken();
+    return this.http.post<any>(`${this.server_address}/party`,data, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+  }
+
   joinParty(id: any) {
     console.log("id", id)
     return this.http.post<any>(`${this.server_address}/proplayer/joinparty`, { id });
@@ -179,6 +189,13 @@ export class HeroService {
   getchatlist(email: any) {
     return this.http.post<any>(`${this.server_address}/chatLists`, email)
 
+  }
+
+
+  //! Game Api
+
+  getAllGames() {
+    return this.http.get(`${this.server_address}/game`)
   }
 
 

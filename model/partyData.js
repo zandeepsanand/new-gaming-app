@@ -6,11 +6,19 @@ const Schema = mongoose.Schema;
 
 const PartyDataSchema = new Schema({
 
-    game: String,
-    email: String,
-    hourcost: Number,
-    urlLink: { type: String }
+    // game: String,
+    // email: String,
+    // hourcost: Number,
+    // urlLink: { type: String }
 
+    title: String,
+    url: String,
+    price: String,
+    lobbyDescription: String,
+    // proUserNickname: String,
+    preferredServer: String,
+    gameFormat: String,
+    members: [mongoose.Types.ObjectId]
 
 });
 
