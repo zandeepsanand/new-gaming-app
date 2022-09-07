@@ -18,6 +18,8 @@ const PartyDataSchema = new Schema(
     gameFormat: String,
     members: [childSchema],
     createdBy: mongoose.Types.ObjectId,
+    status: { type: String },
+    isPrivate: Boolean,
   },
   {
     timestamps: true,

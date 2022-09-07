@@ -57,6 +57,9 @@
                                 class="form-control"
                                 formControlName="proUserNickname"
                                 placeholder="Pro User Nickname (if any)"
+                                [typeahead]="suggestions$"
+                                [typeaheadAsync]="true"
+                                typeaheadOptionField="username"
                             />
                             <error-text
                                 [control]="partyControl.proUserNickname"
@@ -115,7 +118,11 @@
                                 [control]="partyControl.lobbyDescription"
                             ></error-text>
                         </div>
-                        <button [disabled]="partyForm.invalid" class="btn" type="submit">
+                        <button
+                            [disabled]="partyForm.invalid"
+                            class="btn"
+                            type="submit"
+                        >
                             Create
                         </button>
                     </form>

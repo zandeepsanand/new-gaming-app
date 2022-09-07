@@ -179,6 +179,12 @@ export class HeroService {
 
   }
 
+  searchUsers(query) {
+    return this.http.get<any>(`${this.server_address}/proplayer/user`, {
+      params: { q: query }
+    })
+  }
+
   //* Profile 
   updateProfile(profile: any, email: any) {
     return this.http.put<any>(`${this.server_address}/user`, { profile: profile, email: email });
