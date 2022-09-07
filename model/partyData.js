@@ -18,8 +18,10 @@ const PartyDataSchema = new Schema({
     // proUserNickname: String,
     preferredServer: String,
     gameFormat: String,
-    members: [mongoose.Types.ObjectId]
-
+    members: [mongoose.Types.ObjectId],
+    createdBy: mongoose.Types.ObjectId
+}, {
+    timestamps: true
 });
 
 var PartyData = mongoose.model('partyData', PartyDataSchema);
