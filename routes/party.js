@@ -1,37 +1,59 @@
 const express = require('express');
-const router = express.Router()
+const { default: mongoose } = require('mongoose');
+const { verifyAccessToken } = require('../helpers/jwt_helper');
+const router = express.Router();
 
-const PartyData = require('../model/partyData')
+const PartyData = require('../model/partyData');
+const UserData = require('../model/userData');
 
-
-
-
-router.post('/', async (req, res) => {
-    try {
-
-        let item = {
-            game: req.body.data.game,
-            email: req.body.email
+router.post('/', verifyAccessToken, async (req, res) => {
+  try {
+    const tokenUser = req.payload;
+    const createdBy = new mongoose.Types.ObjectId(tokenUser.id);
+    const item = {
+      game: req.body.game,
+      gameFormat: req.body.gameFormat,
+      lobbyDescription: req.body.lobbyDescription,
+      preferredServer: req.body.preferredServer,
+      price: req.body.price,
+      title: req.body.title,
+      url: req.body.url,
+      members: [
+        {
+          id: createdBy,
+          type: 'creator'
         }
-        console.log(req.body)
-        const USER = new PartyData(item)
-        const savedIdData = await USER.save()
-        res.send(savedIdData)
-
-    } catch (error) {
-        console.log(error)
+      ],
+      createdBy,
+      status: 'idle',
+      isPrivate: req.body?.isPrivate || false
+    };
+    if (req.body.proUserNickname) {
+      const proUser = await UserData.findOne({
+        username: req.body.proUserNickname,
+      });
+      if (!proUser) throw new Error('Pro Username not found');
+      item.members.push({
+        id: proUser._id,
+        type: 'pro-user',
+      });
     }
-})
+    const USER = new PartyData(item);
+    const savedIdData = await USER.save();
+    res.send({ data: savedIdData, error: null });
+  } catch (error) {
+    console.log(error);
+    res.send({ error: error.message });
+  }
+});
 
 router.get('/', async (req, res) => {
-    try {
-
-        const userLists = await PartyData.find()
-        res.send(userLists)
-    } catch (error) {
-        console.log(error)
-    }
-})
+  try {
+    const userLists = await PartyData.find();
+    res.send(userLists);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = router;
-

@@ -1,18 +1,30 @@
 const { urlencoded } = require('express');
 const mongoose = require('mongoose');
 
-
 const Schema = mongoose.Schema;
 
-const PartyDataSchema = new Schema({
-
-    game: String,
-    email: String,
-    hourcost: Number,
-    urlLink: { type: String }
-
-
+const childSchema = new Schema({
+  id: mongoose.Types.ObjectId,
+  type: String,
 });
+
+const PartyDataSchema = new Schema(
+  {
+    title: String,
+    url: String,
+    price: String,
+    lobbyDescription: String,
+    preferredServer: String,
+    gameFormat: String,
+    members: [childSchema],
+    createdBy: mongoose.Types.ObjectId,
+    status: { type: String },
+    isPrivate: Boolean,
+  },
+  {
+    timestamps: true,
+  }
+);
 
 var PartyData = mongoose.model('partyData', PartyDataSchema);
 

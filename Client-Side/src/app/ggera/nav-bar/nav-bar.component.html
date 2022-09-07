@@ -109,11 +109,12 @@
                 </a>
                 <a class="navbar-brand" routerLink="/pre-party" >
                     <div class="custom-select" style="width:120px; background-color: black;">
-                        <select style="background-color: black;">
+                        <select title="Select Game" style="background-color: black;" [formControl]="selectedGame">
                           <option value="0">Select game:</option>
-                          <option value="warzone" selected>COD: Warzone</option>
+                          <option *ngFor="let game of games" value={{game._id}}>{{game.name}}</option>
+                          <!-- <option value="warzone" selected>COD: Warzone</option>
                           <option value="apexlegends">Apex Legends</option>
-                          <option value="fortnight">Fortnight</option>
+                          <option value="fortnight">Fortnight</option> -->
                         </select>
                       </div>
                 </a>

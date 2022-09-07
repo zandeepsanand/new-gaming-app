@@ -35,7 +35,7 @@ router.get('/', isAuthorized, async (req, res) => {
 
 
 
-    const accessToken = await signAccessToken(email, role, superAdmin)
+    const accessToken = await signAccessToken({id: user._id.toString(),email, role, superAdmin})
     console.log("access token", accessToken)
     res.cookie("access token", accessToken , { httpOnly: true });
 

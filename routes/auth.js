@@ -112,7 +112,7 @@ router.post('/verifyOTP', async (req, res, next) => {
 
                 let role = user.proPlayer ? 'professional' : 'normal';
                 let superAdmin = user.superAdmin ? 'super' : 'normal'
-                const accessToken = await signAccessToken(email, role, superAdmin)
+                const accessToken = await signAccessToken({id: user._id.toString(), email, role, superAdmin})
                 res.send({ accessToken, completeCheck })
 
             }
@@ -171,7 +171,7 @@ router.post('/googleSave', async (req, res, next) => {
 
             let role = doesExist.proPlayer ? 'professional' : 'normal';
             let superAdmin = doesExist.superAdmin ? 'super' : 'normal'
-            const accessToken = await signAccessToken(item.email, role, superAdmin)
+            const accessToken = await signAccessToken({id: doesExist._id.toString(), email: item.email, role, superAdmin})
             res.send({ accessToken })
         }
 
@@ -183,7 +183,7 @@ router.post('/googleSave', async (req, res, next) => {
 
             let role = 'normal';
             let superAdmin = 'normal'
-            const accessToken = await signAccessToken(item.email, role, superAdmin)
+            const accessToken = await signAccessToken({id: savedIdData._id.toString(), email: item.email, role, superAdmin})
             res.send({ accessToken })
 
         }

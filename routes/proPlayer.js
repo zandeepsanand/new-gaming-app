@@ -169,4 +169,22 @@ router.post('/joinparty', async (req, res) => {
     }
 })
 
+router.get('/user', async (req, res) => {
+  try {
+    const username = req.query.q;
+    const regex = new RegExp(`^${username}`, 'i');
+    const data = await USERDATA.find({
+    username: {
+        $regex: regex,
+      },
+    }, {
+        username: 1, email: 1
+    }).limit(10).lean();
+
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;
