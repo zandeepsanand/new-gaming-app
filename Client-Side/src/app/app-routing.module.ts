@@ -73,21 +73,7 @@ const routes: Routes = [
    
     {path: 'job', component: JobTemplateComponent, loadChildren: () => import('./ggera/jobs/jobs-routing.module').then(e => e.JobsRoutingModule)},
   
-
-
-
-
-
     { path: '**', canActivate: [AuthGuard], component: UnderconstructionComponent },
-
-
-
-
-
-
-
-
-
 
 ];
 
