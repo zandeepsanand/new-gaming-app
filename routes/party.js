@@ -87,4 +87,34 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/my', async (req, res) => {
+  try {
+    const tokenUser = req.payload;
+    const cUser = new mongoose.Types.ObjectId(tokenUser.id);
+    const userLists = await PartyData.aggregate([
+      {
+        $match: {
+          createdBy: cUser
+        }
+      },
+      {
+        $lookup: {
+          "from": 'userdatas',
+          localField: 'members.id',
+          foreignField: '_id',
+          "as": 'users',
+          "pipeline": [{
+            $project: {
+              username: 1, profile_pic: 1, channel_name: 1, discord_id: 1, about: 1, elo: 1, kd: 1
+            }
+          }]
+        }
+      }
+    ]);
+    res.send(userLists);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;

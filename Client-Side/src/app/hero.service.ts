@@ -137,6 +137,10 @@ export class HeroService {
     return this.http.get<PartyModel[]>(`${this.server_address}/party`,);
   }
 
+  getMyParties() {
+    return this.http.get<PartyModel[]>(`${this.server_address}/party/my`,);
+  }
+
   createParty(data: any) {
     const token = this.getToken();
     return this.http.post<any>(`${this.server_address}/party`,data, {

@@ -50,6 +50,10 @@ export class HomePageNew1Component implements OnInit {
       return `${4 - members.length} slots left`
     }
 
+    getSlotsLeftArray(party: PartyModel) {
+      return Array(5 - party.members.length).fill(0).map((x,i)=>i)
+    }
+
     //   // const paymentstripe = (stripeToken: any) => {
     //   //   this._heroService.makePayment(stripeToken).subscribe((data: any) => {
     //   //     if (data.data === "success") {
