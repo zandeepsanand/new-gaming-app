@@ -33,6 +33,7 @@ import { ComingSoonComponent } from './ggera/coming-soon/coming-soon.component';
 import { SupportComponent } from './ggera/support/support.component';
 import { SettingsComponent } from './ggera/settings/settings.component';
 import { SubscriptionsComponent } from './ggera/subscriptions/subscriptions.component';
+import { JobTemplateComponent } from './template/job-template/job-template.component';
 
 
 
@@ -70,7 +71,7 @@ const routes: Routes = [
     { path: 'settings', canActivate: [AuthGuard ],  component: SettingsComponent },
     { path: 'subscriptions', canActivate: [AuthGuard ],  component: SubscriptionsComponent },
    
-
+    {path: 'job', component: JobTemplateComponent, loadChildren: () => import('./ggera/jobs/jobs-routing.module').then(e => e.JobsRoutingModule)},
   
 
 

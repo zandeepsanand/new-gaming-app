@@ -61,6 +61,7 @@ import { DailyChartComponent } from './ggera/charts/daily-chart/daily-chart.comp
 import { WeeklyChartComponent } from './ggera/charts/weekly-chart/weekly-chart.component';
 import { MonthlyChartComponent } from './ggera/charts/monthly-chart/monthly-chart.component';
 import { ErrorTextComponent } from './common/components/error-text/error-text.component';
+import { JobTemplateComponent } from './template/job-template/job-template.component';
 
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
@@ -121,6 +122,9 @@ import { VideoPlayerComponent } from './common/components/video-player/video-pla
           MonthlyChartComponent,
           ErrorTextComponent,
           VideoPlayerComponent,
+      JobTemplateComponent
+
+
     
   ],
   imports: [
