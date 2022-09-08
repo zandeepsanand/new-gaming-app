@@ -13,7 +13,7 @@ export class ErrorTextComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {
-      console.log(this.control)
+      // console.log(this.control)
     }
 
     public getErrors(
