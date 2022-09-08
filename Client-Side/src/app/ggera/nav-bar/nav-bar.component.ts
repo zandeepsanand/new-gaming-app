@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HeroService } from 'src/app/hero.service';
-import { tap } from 'rxjs';
+import { tap, filter } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { StoreService } from 'src/app/services/store.service';
 
 
 @Component({
@@ -23,8 +24,8 @@ export class NavBarComponent implements OnInit {
   constructor(
     private router: Router,
     private _heroService:HeroService,
-    public _auth:HeroService
-    
+    public _auth:HeroService,
+    private store: StoreService
   ) {  }
 
   ngOnInit(): void {
@@ -40,7 +41,7 @@ export class NavBarComponent implements OnInit {
     ).subscribe()
     this.selectedGame.valueChanges.pipe(
       tap(e => {
-        localStorage.setItem('selected.game', e);
+        this.store.selectedGame = e;
       })
     ).subscribe()
   }
@@ -103,13 +104,18 @@ export class NavBarComponent implements OnInit {
 
 
   userData() {
-    if(this._heroService.getEmail()){
-      let email = this._heroService.getEmail()
-      this._heroService.getUserDetail(email).
-        subscribe(res => {
-          this.user = res
-         
-        })
+    if (this._heroService.getEmail()) {
+        let email = this._heroService.getEmail();
+        this._heroService
+            .getUserDetail(email)
+            .pipe(
+                filter((e) => e),
+                tap((res) => {
+                    this.user = res;
+                    this.store.currentUser = res;
+                })
+            )
+            .subscribe();
     }
  
   }

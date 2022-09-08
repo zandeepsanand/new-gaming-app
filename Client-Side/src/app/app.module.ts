@@ -61,9 +61,16 @@ import { DailyChartComponent } from './ggera/charts/daily-chart/daily-chart.comp
 import { WeeklyChartComponent } from './ggera/charts/weekly-chart/weekly-chart.component';
 import { MonthlyChartComponent } from './ggera/charts/monthly-chart/monthly-chart.component';
 import { ErrorTextComponent } from './common/components/error-text/error-text.component';
+import { JobTemplateComponent } from './template/job-template/job-template.component';
 
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
+
+import {VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import { VideoPlayerComponent } from './common/components/video-player/video-player.component';
 
 
 @NgModule({
@@ -114,6 +121,10 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
           WeeklyChartComponent,
           MonthlyChartComponent,
           ErrorTextComponent,
+          VideoPlayerComponent,
+      JobTemplateComponent
+
+
     
   ],
   imports: [
@@ -126,6 +137,10 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
     NgChartsModule,
     HttpClientModule,
     TypeaheadModule.forRoot(),
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
     NgxStripeModule.forRoot('pk_test_51LT4FJSBGyD7UYjV7Uzl35ECOGv6TAtzwwYlAokpfqWpLNoXEZq1Ov3RoijNAxrN5fRhYqxzedauoF7tyFlbgr9q002zPPPLTa')
   ],
   providers: [HeroService,AuthGuard,
