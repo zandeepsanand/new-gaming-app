@@ -49,7 +49,21 @@ router.post('/', verifyAccessToken, async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const userLists = await PartyData.find();
+    const userLists = await PartyData.aggregate([
+      {
+        $lookup: {
+          "from": 'userdatas',
+          localField: 'members.id',
+          foreignField: '_id',
+          "as": 'users',
+          "pipeline": [{
+            $project: {
+              username: 1, profile_pic: 1, channel_name: 1, discord_id: 1, about: 1
+            }
+          }]
+        }
+      }
+    ]);
     res.send(userLists);
   } catch (error) {
     console.log(error);
