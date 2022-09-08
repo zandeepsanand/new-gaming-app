@@ -36,6 +36,7 @@
                 "src/assets/css/flaticon.css",
                 "src/assets/css/magnific-popup.min.css",
                 "src/assets/css/meanmenu.min.css",
+                "node_modules/@videogular/ngx-videogular/fonts/videogular.css",
                 "src/styles.scss",
                 "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
 

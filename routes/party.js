@@ -58,7 +58,7 @@ router.get('/', async (req, res) => {
           "as": 'users',
           "pipeline": [{
             $project: {
-              username: 1, profile_pic: 1, channel_name: 1, discord_id: 1, about: 1
+              username: 1, profile_pic: 1, channel_name: 1, discord_id: 1, about: 1, elo: 1, kd: 1
             }
           }]
         }

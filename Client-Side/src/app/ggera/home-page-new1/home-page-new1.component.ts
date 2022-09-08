@@ -1,87 +1,96 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HeroService } from 'src/app/hero.service';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { PartyModel } from "src/app/common/interface/party.interface";
+import { HeroService } from "src/app/hero.service";
+import { tap, Subscription, Observable } from "rxjs";
+import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-home-page-new1',
-  templateUrl: './home-page-new1.component.html',
-  styleUrls: ['./home-page-new1.component.scss']
+    selector: "app-home-page-new1",
+    templateUrl: "./home-page-new1.component.html",
+    styleUrls: ["./home-page-new1.component.scss"],
 })
 export class HomePageNew1Component implements OnInit {
+    constructor(private _heroService: HeroService, private router: Router, private domSanitizer: DomSanitizer) {}
 
-  constructor(private _heroService: HeroService, private router: Router) { }
+    paymentHandler: any = null;
 
-  paymentHandler: any = null;
+    success: boolean = false;
 
-  success: boolean = false
+    failure: boolean = false;
 
-  failure: boolean = false
+    parties$: Observable<PartyModel[]>;
 
+    ngOnInit(): void {
+      this.parties$ = this._heroService.getParty();
+    }
 
-  ngOnInit(): void {
+    newStripe() {
+        this._heroService.newStripe(50).subscribe((res) => {
+            window.location.href = res.url;
+        });
+    }
 
-  }
+    // makePayment(amount: number) {
+    //   const paymentHandler = (<any>window).StripeCheckout.configure({
+    //     key: 'pk_test_51LT4FJSBGyD7UYjV7Uzl35ECOGv6TAtzwwYlAokpfqWpLNoXEZq1Ov3RoijNAxrN5fRhYqxzedauoF7tyFlbgr9q002zPPPLTa',
+    //     locale: 'auto',
+    //     token: function (stripeToken: any) {
+    //       console.log(stripeToken);
+    //       paymentstripe(stripeToken);
+    //     },
+    //   });
 
+    sanitizeUrl(url) {
+      return this.domSanitizer.bypassSecurityTrustResourceUrl(url)
+    }
 
-  newStripe() {
-    this._heroService.newStripe(50)
-      .subscribe(res => {
-        window.location.href = res.url;    
-        })
-  }
+    getSlotsLeft(party: PartyModel) {
+      const members = party.members.filter(e => e.id !== party.createdBy);
+      return `${4 - members.length} slots left`
+    }
 
-  // makePayment(amount: number) {
-  //   const paymentHandler = (<any>window).StripeCheckout.configure({
-  //     key: 'pk_test_51LT4FJSBGyD7UYjV7Uzl35ECOGv6TAtzwwYlAokpfqWpLNoXEZq1Ov3RoijNAxrN5fRhYqxzedauoF7tyFlbgr9q002zPPPLTa',
-  //     locale: 'auto',
-  //     token: function (stripeToken: any) {
-  //       console.log(stripeToken);
-  //       paymentstripe(stripeToken);
-  //     },
-  //   });
+    //   // const paymentstripe = (stripeToken: any) => {
+    //   //   this._heroService.makePayment(stripeToken).subscribe((data: any) => {
+    //   //     if (data.data === "success") {
+    //   //       console.log('success payment')
+    //   //       this.success = true
+    //   //       let email = this._heroService.getEmail()
+    //   //       this._heroService.addMoney(email, amount)
+    //   //         .subscribe(res => {
+    //   //           this.router.navigate(['/twitch-player'])
+    //   //         })
+    //   //     }
+    //   //     else {
+    //   //       this.failure = true
+    //   //     }
+    //   //   });
+    //   // };
 
-  //   // const paymentstripe = (stripeToken: any) => {
-  //   //   this._heroService.makePayment(stripeToken).subscribe((data: any) => {
-  //   //     if (data.data === "success") {
-  //   //       console.log('success payment')
-  //   //       this.success = true
-  //   //       let email = this._heroService.getEmail()
-  //   //       this._heroService.addMoney(email, amount)
-  //   //         .subscribe(res => {
-  //   //           this.router.navigate(['/twitch-player'])
-  //   //         })
-  //   //     }
-  //   //     else {
-  //   //       this.failure = true
-  //   //     }
-  //   //   });
-  //   // };
+    //   // paymentHandler.open({
+    //   //   name: 'ggEra',
+    //   //   description: 'Payment',
+    //   //   amount: amount * 100,
+    //   // });
+    // }
 
-  //   // paymentHandler.open({
-  //   //   name: 'ggEra',
-  //   //   description: 'Payment',
-  //   //   amount: amount * 100,
-  //   // });
-  // }
+    // invokeStripe() {
+    //   if (!window.document.getElementById('stripe-script')) {
+    //     const script = window.document.createElement('script');
+    //     script.id = 'stripe-script';
+    //     script.type = 'text/javascript';
+    //     script.src = 'https://checkout.stripe.com/checkout.js';
+    //     script.onload = () => {
+    //       this.paymentHandler = (<any>window).StripeCheckout.configure({
+    //         key: 'pk_test_51LT4FJSBGyD7UYjV7Uzl35ECOGv6TAtzwwYlAokpfqWpLNoXEZq1Ov3RoijNAxrN5fRhYqxzedauoF7tyFlbgr9q002zPPPLTa',
+    //         locale: 'auto',
+    //         token: function (stripeToken: any) {
+    //           console.log(stripeToken);
+    //         },
+    //       });
+    //     };
 
-  // invokeStripe() {
-  //   if (!window.document.getElementById('stripe-script')) {
-  //     const script = window.document.createElement('script');
-  //     script.id = 'stripe-script';
-  //     script.type = 'text/javascript';
-  //     script.src = 'https://checkout.stripe.com/checkout.js';
-  //     script.onload = () => {
-  //       this.paymentHandler = (<any>window).StripeCheckout.configure({
-  //         key: 'pk_test_51LT4FJSBGyD7UYjV7Uzl35ECOGv6TAtzwwYlAokpfqWpLNoXEZq1Ov3RoijNAxrN5fRhYqxzedauoF7tyFlbgr9q002zPPPLTa',
-  //         locale: 'auto',
-  //         token: function (stripeToken: any) {
-  //           console.log(stripeToken);
-  //         },
-  //       });
-  //     };
-
-  //     window.document.body.appendChild(script);
-  //   }
-  // }
-
+    //     window.document.body.appendChild(script);
+    //   }
+    // }
 }

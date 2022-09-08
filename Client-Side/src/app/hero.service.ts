@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import jwt_decode from "jwt-decode"
 import { environment } from 'src/environments/environment';
+import { PartyModel } from './common/interface/party.interface';
 
 
 interface MyToken {
@@ -131,7 +132,7 @@ export class HeroService {
   }
 
   getParty() {
-    return this.http.get<any>(`${this.server_address}/party`,);
+    return this.http.get<PartyModel[]>(`${this.server_address}/party`,);
   }
 
   createParty(data: any) {
