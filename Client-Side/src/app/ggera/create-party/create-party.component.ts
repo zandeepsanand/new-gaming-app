@@ -95,7 +95,7 @@ export class CreatePartyComponent implements OnInit {
                         if (e.error) alert(e.error);
                         else {
                             this.partyForm.reset();
-                            this.router.navigate([""]);
+                            this.router.navigate(["join-party"]);
                         }
                     })
                 )
