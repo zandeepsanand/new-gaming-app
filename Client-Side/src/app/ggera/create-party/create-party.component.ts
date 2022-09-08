@@ -35,16 +35,16 @@ export class CreatePartyComponent implements OnInit {
         private activated: ActivatedRoute,
         private fb: FormBuilder
     ) {
-        const numberRegex = "/-?d*.?d{1,2}/";
+        const numberRegex = "^[0-9]*$";
         const urlRegex =
             "((http|https)://)(www.)?[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)";
         this.partyForm = this.fb.group({
             title: ["", [Validators.required, Validators.minLength(3)]],
             url: ["", [Validators.required, Validators.pattern(urlRegex)]],
-            price: ["", [Validators.min(1), Validators.pattern(numberRegex)]],
+            price: [null, [Validators.pattern(numberRegex)]],
             lobbyDescription: [""],
             proUserNickname: [""],
-            preferredServer: [""],
+            preferredServer: ["", [Validators.required]],
             gameFormat: [""],
             game: [
                 localStorage.getItem("selected.game"),
@@ -86,10 +86,19 @@ export class CreatePartyComponent implements OnInit {
     }
 
     createParty() {
+        // console.log(this.partyForm.errors)
         if (this.partyForm.valid) {
             this._heroService
                 .createParty(this.partyForm.value)
-                .pipe(tap((e) => console.log(e)))
+                .pipe(
+                    tap((e) => {
+                        if (e.error) alert(e.error);
+                        else {
+                            this.partyForm.reset();
+                            this.router.navigate([""]);
+                        }
+                    })
+                )
                 .subscribe();
         }
     }
