@@ -71,6 +71,7 @@ import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import { VideoPlayerComponent } from './common/components/video-player/video-player.component';
+import { JwtInterceptor } from './common/interceptor/jwt.interceptor';
 
 
 @NgModule({
@@ -160,6 +161,7 @@ import { VideoPlayerComponent } from './common/components/video-player/video-pla
       } as SocialAuthServiceConfig
       
     },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
