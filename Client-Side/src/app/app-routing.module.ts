@@ -34,6 +34,8 @@ import { SupportComponent } from './ggera/support/support.component';
 import { SettingsComponent } from './ggera/settings/settings.component';
 import { SubscriptionsComponent } from './ggera/subscriptions/subscriptions.component';
 import { JobTemplateComponent } from './template/job-template/job-template.component';
+import { PartyPaymentSucessComponent } from './ggera/party-payment-sucess/party-payment-sucess.component';
+import { PartyPaymentFailedComponent } from './ggera/party-payment-failed/party-payment-failed.component';
 
 
 
@@ -58,7 +60,9 @@ const routes: Routes = [
     { path: 'players',canActivate: [AuthGuard ],  component: PlayersNewPageComponent },
     { path: 'loading', component: LazyLoadingComponent },
     { path: 'pro-home',canActivate: [AuthGuard ], component: MyorderComponent },
-    { path: 'twitch-player',canActivate: [AuthGuard ], component: TwitchComponent },
+    { path: 'twitch-player/:partyId',canActivate: [AuthGuard ], component: TwitchComponent },
+    { path: 'party/:partyId/payment/success',canActivate: [AuthGuard ], component: PartyPaymentSucessComponent },
+    { path: 'party/:partyId/payment/failure',canActivate: [AuthGuard ], component: PartyPaymentFailedComponent },
     { path: 'stats',canActivate: [AuthGuard ], component: StatsComponent },
     { path: 'makeme-pro',canActivate: [AuthGuard ],component: MakeMeProComponent },
     { path: 'ranks', component: RanksComponent },

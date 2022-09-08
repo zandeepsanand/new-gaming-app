@@ -12,6 +12,7 @@ const game = require('./game')
 const user = require('./user')
 const stripe = require('./stripe')
 const wallet = require('./wallet')
+const { verifyAccessToken } = require('../helpers/jwt_helper');
 
 
 
@@ -23,10 +24,10 @@ router.use('/auth', auth)
 router.use('/proplayer', proRoute)
 router.use('/chat', chat)
 router.use('/coach',coach)
-router.use('/party',party)
+router.use('/party', verifyAccessToken, party);
 router.use('/game',game)
 router.use('/user',user)
-router.use('/stripe',stripe)
+router.use('/stripe', verifyAccessToken, stripe);
 router.use('/wallet',wallet)
 
 
