@@ -18,8 +18,8 @@ interface MyToken {
 })
 export class HeroService {
   // server_address: string = "http://localhost:8887/api"
-  // server_address: string = environment.apiUrl;
-  server_address: string = '/api';
+  server_address: string = environment.apiUrl;
+  // server_address: string = '/api';
 
 
   constructor(private http: HttpClient) { }

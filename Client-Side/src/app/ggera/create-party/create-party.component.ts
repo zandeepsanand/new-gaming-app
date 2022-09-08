@@ -35,12 +35,13 @@ export class CreatePartyComponent implements OnInit {
         private activated: ActivatedRoute,
         private fb: FormBuilder
     ) {
+        const numberRegex = "/-?d*.?d{1,2}/";
         const urlRegex =
             "((http|https)://)(www.)?[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)";
         this.partyForm = this.fb.group({
             title: ["", [Validators.required, Validators.minLength(3)]],
             url: ["", [Validators.required, Validators.pattern(urlRegex)]],
-            price: ["", [Validators.min(1)]],
+            price: ["", [Validators.min(1), Validators.pattern(numberRegex)]],
             lobbyDescription: [""],
             proUserNickname: [""],
             preferredServer: [""],
