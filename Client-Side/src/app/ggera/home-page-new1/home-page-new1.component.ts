@@ -25,8 +25,8 @@ export class HomePageNew1Component implements OnInit {
       this.parties$ = this._heroService.getParty();
     }
 
-    newStripe() {
-        this._heroService.newStripe(50).subscribe((res) => {
+    newStripe(data) {
+        this._heroService.newStripe(data).subscribe((res) => {
             window.location.href = res.url;
         });
     }
@@ -48,6 +48,10 @@ export class HomePageNew1Component implements OnInit {
     getSlotsLeft(party: PartyModel) {
       const members = party.members.filter(e => e.id !== party.createdBy);
       return `${4 - members.length} slots left`
+    }
+
+    getSlotsLeftArray(party: PartyModel) {
+      return Array(5 - party.members.length).fill(0).map((x,i)=>i)
     }
 
     //   // const paymentstripe = (stripeToken: any) => {

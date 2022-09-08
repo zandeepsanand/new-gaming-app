@@ -8,12 +8,12 @@
     <div class="container">
 
         <div class="d-flex justify-content-center p-3">
-            <button type="submit" class="default-btn" *ngIf="_auth.isPro()" (click)="newParty()">Create a new Party</button>
+            <button type="submit" class="default-btn" *ngIf="heroService.isPro()" (click)="newParty()">Create a new Party</button>
         </div>
 
 
         <!-- ?for normal user  -->
-        <section class="social-area pt-100 "*ngIf="_auth.isNormal()">
+        <section class="social-area pt-100 "*ngIf="heroService.isNormal()">
             <div class="row d-flex justify-content-center">
 
 
@@ -66,7 +66,7 @@
         </section>
 
 <!-- ?for pro user  -->
-<section class="social-area pt-100 "*ngIf="_auth.isPro()">
+<section class="social-area pt-100 "*ngIf="heroService.isPro()">
     <div class="row d-flex justify-content-center">
         <div class="col-lg-2 col-sm-4 col-md-4 col-6">
             <div class="single-social-box">
@@ -82,58 +82,47 @@
     </div>
 </section>
 
-
-        <div class="banner-video-box p-3">
-            <img src="assets/img/main-banner-video-img2.jpg" alt="image">
-
-            <div class="content">
-                <a (click)="twitch('ashinamanulla')" style="cursor: pointer;"  class="video-btn popup-youtube"><i
-                        class="flaticon-play"></i></a>
-                    
-                <span class="title">Play</span>
+    <ng-container *ngIf="myParties$ | async as myParties">
+        <ng-container *ngFor="let party of myParties">
+            <!-- <span>{{party | json    }}</span> -->
+            <div class="banner-video-box p-3">
+                <app-video-player [src]="party.src"></app-video-player>
             </div>
-
-        </div>
-        <div class="single-popular-leagues-box ">
-
-            <div class="popular-leagues-box d-flex justify-content-center">
-
-
-                <div class="popular-leagues-content">
-                    <div class="content">
-                        <h3>Good vibes and ez dubs on Any mah3 for sure! NA/EU/Moon/Mars(dm me if u r from another
-                            planet)</h3>
-                        <ul class="info">
-                            <li><i class="flaticon-coin"></i>Live</li>
-                            <li><i class="flaticon-game"></i>4 free slots</li>
-                            <li><i class="flaticon-game-1"></i>Stream</li>
-                            <li><i class="flaticon-teamwork"></i>Private</li>
-                        </ul>
+            <div class="single-popular-leagues-box" >
+                <div class="popular-leagues-box d-flex justify-content-center">
+                    <div class="popular-leagues-content">
+                        <div class="content">
+                            <h3>{{party.title}}</h3>
+                            <p>{{party.lobbyDescription}}</p>
+                            <ul class="info">
+                                <li><i class="flaticon-coin"></i>Live</li>
+                                <li><i class="flaticon-game"></i>4 free slots</li>
+                                <li><i class="flaticon-game-1"></i>Stream</li>
+                                <li><i class="flaticon-teamwork"></i>Private</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-
-
+                <div class="tab faq-accordion-tab pt-3">
+                    <ul class="tabs d-flex flex-wrap justify-content-center">
+                    <ng-container *ngFor="let user of party.users">
+                        <li *ngIf="user._id !== party.createdBy">
+                            <a href="#"><i class='bx bx-plus'></i> 
+                                <span>{{user.username}}</span> 
+                            </a>
+                        </li>
+                    </ng-container>
+                    <ng-container *ngFor="let n of getSlotsLeftArray(party); let index">
+                        <li><a href="#"><i class='bx bx-plus'></i> <span>Slot {{index+ 1}}</span> </a></li>
+                    </ng-container>
+                    </ul>
+                </div>
+                <div class="d-flex justify-content-center p-3">
+                    <button class="default-btn" *ngIf="heroService.isNormal()" (click)="twitch('ashinamanulla')">Join Party ${{party.price}}/hr</button>
+                </div>
             </div>
-
-
-            <div class="tab faq-accordion-tab pt-3">
-                <ul class="tabs d-flex flex-wrap justify-content-center">
-                    <li><a href="#"><i class='bx bx-plus'></i> <span>Slot 1</span> </a></li>
-
-                    <li><a href="#"><i class='bx bx-plus'></i> <span>Slot 2</span> </a></li>
-
-                    <li><a href="#"><i class='bx bx-plus'></i> <span>Slot 3</span> </a></li>
-
-                    <li><a href="#"><i class='bx bx-plus'></i> <span>Slot 4</span> </a></li>
-
-                </ul>
-
-            </div>
-            <div class="d-flex justify-content-center p-3">
-                <button type="submit" class="default-btn" *ngIf="_auth.isNormal()" (click)="twitch('ashinamanulla')">Join Party $15/hr</button>
-
-            </div>
-        </div>
+        </ng-container>
+    </ng-container>
     </div>
 </div>
 </section>

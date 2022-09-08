@@ -7,29 +7,36 @@ const stripe = require('stripe')(process.env.STRIPE_CODE);
 
 
 router.post('/', async (req, res) => {
+  try {
+    const tokenUser = req.payload;
+    // const createdBy = new mongoose.Types.ObjectId(tokenUser.id);
+    console.log('Console ~ req.body', req.body);
+    const {data: { partyId, price, name }} = req.body;
+    console.log('Console ~ price', +price * 100);
+    const session = await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          price_data: {
+            currency: 'inr',
+            product_data: {
+              name: 'Subscription',
+            },
+            unit_amount: +price * 100,
+          },
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: `https://newggera.herokuapp.com/party/${partyId}/payment/success`,
+      cancel_url: `https://newggera.herokuapp.com/party/${partyId}/payment/failure`,
+    });
+    res.json({ url: session.url });
+  } catch (e) {
+    console.log('Console ~ e', e);
+    res.status(500).json({ error: e.message });
+  }
+});
 
-    try {
-        const session = await stripe.checkout.sessions.create({
-            line_items: [{
-                price_data: {
-                    currency: 'inr',
-                    product_data: {
-                        name: 'Subscription',
-                    },
-                    unit_amount: 200,
-                },
-                quantity: 1,
-            }],
-            mode: 'payment',
-
-            success_url: `https://newggera.herokuapp.com/twitch-player`,
-            cancel_url: `https://newggera.herokuapp.com/twitch-player`,
-        })
-        res.json({ url: session.url })
-    } catch (e) {
-        res.status(500).json({ error: e.message })
-    }
-})
 router.post('/addtowallet', async (req, res) => {
     console.log(req.body);
     const amount = parseInt(req.body.data)*100;

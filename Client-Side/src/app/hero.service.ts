@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import jwt_decode from "jwt-decode"
 import { environment } from 'src/environments/environment';
 import { PartyModel } from './common/interface/party.interface';
+import { ApiResponse } from './common/interface/api.interface';
 
 
 interface MyToken {
@@ -136,6 +137,10 @@ export class HeroService {
     return this.http.get<PartyModel[]>(`${this.server_address}/party`,);
   }
 
+  getMyParties() {
+    return this.http.get<PartyModel[]>(`${this.server_address}/party/my`,);
+  }
+
   createParty(data: any) {
     const token = this.getToken();
     return this.http.post<any>(`${this.server_address}/party`,data, {
@@ -148,6 +153,10 @@ export class HeroService {
   joinParty(id: any) {
     console.log("id", id)
     return this.http.post<any>(`${this.server_address}/proplayer/joinparty`, { id });
+  }
+
+  addUserToParty(partyId: string) {
+    return this.http.patch<ApiResponse<PartyModel>>(`${this.server_address}/party/${partyId}/add-user`, {});
   }
 
 

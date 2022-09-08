@@ -1,12 +1,11 @@
 const express = require('express');
 const { default: mongoose } = require('mongoose');
-const { verifyAccessToken } = require('../helpers/jwt_helper');
 const router = express.Router();
 
 const PartyData = require('../model/partyData');
 const UserData = require('../model/userData');
 
-router.post('/', verifyAccessToken, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const tokenUser = req.payload;
     const createdBy = new mongoose.Types.ObjectId(tokenUser.id);
@@ -47,9 +46,57 @@ router.post('/', verifyAccessToken, async (req, res) => {
   }
 });
 
+router.patch('/:id/add-user', async(req, res) => {
+  try {
+    const tokenUser = req.payload;
+    const id = new mongoose.Types.ObjectId(req.params.id);
+    const cUser = new mongoose.Types.ObjectId(tokenUser.id);
+    const party = await PartyData.findById(id);
+    if(party.members.find(e => e.id === cUser)) throw new Error('Already added')
+    party.members.push({
+      id: cUser,
+      type: 'sub-user',
+    })
+    await party.save();
+    res.send({ data: party, error: null });
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+})
+
 router.get('/', async (req, res) => {
   try {
     const userLists = await PartyData.aggregate([
+      {
+        $lookup: {
+          "from": 'userdatas',
+          localField: 'members.id',
+          foreignField: '_id',
+          "as": 'users',
+          "pipeline": [{
+            $project: {
+              username: 1, profile_pic: 1, channel_name: 1, discord_id: 1, about: 1, elo: 1, kd: 1
+            }
+          }]
+        }
+      }
+    ]);
+    res.send(userLists);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get('/my', async (req, res) => {
+  try {
+    const tokenUser = req.payload;
+    const cUser = new mongoose.Types.ObjectId(tokenUser.id);
+    const userLists = await PartyData.aggregate([
+      {
+        $match: {
+          createdBy: cUser
+        }
+      },
       {
         $lookup: {
           "from": 'userdatas',

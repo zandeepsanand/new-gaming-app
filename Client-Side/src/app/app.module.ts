@@ -71,6 +71,9 @@ import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import { VideoPlayerComponent } from './common/components/video-player/video-player.component';
+import { JwtInterceptor } from './common/interceptor/jwt.interceptor';
+import { PartyPaymentSucessComponent } from './ggera/party-payment-sucess/party-payment-sucess.component';
+import { PartyPaymentFailedComponent } from './ggera/party-payment-failed/party-payment-failed.component';
 
 
 @NgModule({
@@ -122,7 +125,9 @@ import { VideoPlayerComponent } from './common/components/video-player/video-pla
           MonthlyChartComponent,
           ErrorTextComponent,
           VideoPlayerComponent,
-      JobTemplateComponent
+      JobTemplateComponent,
+      PartyPaymentSucessComponent,
+      PartyPaymentFailedComponent
 
 
     
@@ -160,6 +165,7 @@ import { VideoPlayerComponent } from './common/components/video-player/video-pla
       } as SocialAuthServiceConfig
       
     },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
