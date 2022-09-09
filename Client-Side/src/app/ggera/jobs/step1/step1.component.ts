@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs';
+import { HeroService } from 'src/app/hero.service';
 
 @Component({
   selector: 'app-step1',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Step1Component implements OnInit {
 
-  constructor() { }
+  constructor(private _heroService: HeroService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+  proRequestHandler(){
+    this._heroService.proRequestHandler().pipe(tap(()=>{this.router.navigate(['/job/step-2'])}))
+    .subscribe()
+     
   }
 
 }

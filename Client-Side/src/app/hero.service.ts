@@ -241,7 +241,13 @@ export class HeroService {
   getAllGames() {
     return this.http.get(`${this.server_address}/game`)
   }
-
+  
+  getSubscriptionData(){
+   return this.http.get(`${this.server_address}/subscription/get`)
+  }
+  proRequestHandler(){
+    return this.http.post(`${this.server_address}/reqPro`,{})
+  }
 
 
 }
