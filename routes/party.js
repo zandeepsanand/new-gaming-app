@@ -52,6 +52,7 @@ router.patch('/:id/add-user', async(req, res) => {
     const id = new mongoose.Types.ObjectId(req.params.id);
     const cUser = new mongoose.Types.ObjectId(tokenUser.id);
     const party = await PartyData.findById(id);
+    if(party.members.length >= 5) throw new Error('Slots limit reached');
     if(party.members.find(e => e.id === cUser)) throw new Error('Already added')
     party.members.push({
       id: cUser,
@@ -60,19 +61,68 @@ router.patch('/:id/add-user', async(req, res) => {
     await party.save();
     res.send({ data: party, error: null });
   } catch (error) {
+    res.status(500);
     res.send({ error: error.message });
   }
 })
 
-router.get('/:id', async(req, res) => {
+router.patch('/:id/member-time', async(req, res) => {
   try {
+    const id = new mongoose.Types.ObjectId(req.params.id);
     // const tokenUser = req.payload;
-    // const id = new mongoose.Types.ObjectId(req.params.id);
     // const cUser = new mongoose.Types.ObjectId(tokenUser.id);
+    const party = await PartyData.findById(id);
+    const data = req.body;
+    Object.keys(data).map(e => {
+      party.members.map(m => {
+        console.log('Console ~ m', m.id);
+        if(e === m.id.toString()) {
+          m.timeSpent = data[e];
+        }
+      })
+    })
+    await party.save();
+    res.send({ data: party, error: null });
+  } catch (error) {
+    res.status(500);
+    res.send({ error: error.message });
+  }
+})
+
+router.patch('/:id/start', async(req, res) => {
+  try {
+    const id = new mongoose.Types.ObjectId(req.params.id);
+    await PartyData.updateOne({_id: id}, {
+      status: 'inProgress',
+      startedAt: new Date()
+    })
+    res.send({ data: 'OK', error: null });
+  } catch (error) {
+    res.status(500);
+    res.send({ error: error.message });
+  }
+})
+
+router.patch('/:id/stop', async(req, res) => {
+  try {
+    const id = new mongoose.Types.ObjectId(req.params.id);
+    await PartyData.updateOne({_id: id}, {
+      status: 'stopped',
+      stoppedAt: new Date()
+    })
+    res.send({ data: 'OK', error: null });
+  } catch (error) {
+    res.status(500);
+    res.send({ error: error.message });
+  }
+})
+
+router.get('/:id/details', async(req, res) => {
+  try {
     const party = await PartyData.aggregate([
       {
         $match: {
-          _id: new mongoose.Types.ObjectId(id)
+          _id: new mongoose.Types.ObjectId(req.params.id)
         }
       },
       {
@@ -89,8 +139,9 @@ router.get('/:id', async(req, res) => {
         }
       }
     ]);
-    res.send({ data: party, error: null });
+    res.send({ data: party[0], error: null });
   } catch (error) {
+    console.log('Console ~ error', error);
     res.send({ error: error.message });
   }
 })
@@ -112,6 +163,11 @@ router.get('/:id/channel', async(req, res) => {
 router.get('/', async (req, res) => {
   try {
     const userLists = await PartyData.aggregate([
+      {
+        $match: {
+          status: 'idle'
+        }
+      },
       {
         $lookup: {
           "from": 'userdatas',
@@ -135,6 +191,7 @@ router.get('/', async (req, res) => {
 router.get('/my', async (req, res) => {
   try {
     const tokenUser = req.payload;
+    console.log('Console ~ tokenUser', tokenUser);
     const cUser = new mongoose.Types.ObjectId(tokenUser.id);
     const userLists = await PartyData.aggregate([
       {
@@ -159,6 +216,8 @@ router.get('/my', async (req, res) => {
     res.send(userLists);
   } catch (error) {
     console.log(error);
+    res.status(500);
+    res.send({error: error.message});
   }
 });
 

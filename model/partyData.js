@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 const childSchema = new Schema({
   id: mongoose.Types.ObjectId,
   type: String,
+  timeSpent: String
 });
 
 const PartyDataSchema = new Schema(
@@ -20,6 +21,8 @@ const PartyDataSchema = new Schema(
     createdBy: mongoose.Types.ObjectId,
     status: { type: String },
     isPrivate: Boolean,
+    startedAt: Date,
+    stoppedAt: Date,
   },
   {
     timestamps: true,

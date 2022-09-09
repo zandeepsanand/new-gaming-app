@@ -92,7 +92,7 @@
                 <div class="popular-leagues-box d-flex justify-content-center">
                     <div class="popular-leagues-content">
                         <div class="content">
-                            <h3>{{party.title}}</h3>
+                            <h3>{{party.title}} <span class="badge rounded-pill text-bg-primary">{{party.status | titlecase}}</span></h3>
                             <p>{{party.lobbyDescription}}</p>
                             <ul class="info">
                                 <li><i class="flaticon-coin"></i>Live</li>
@@ -100,6 +100,9 @@
                                 <li><i class="flaticon-game-1"></i>Stream</li>
                                 <li><i class="flaticon-teamwork"></i>Private</li>
                             </ul>
+                        </div>
+                        <div>
+                            <a class="btnLink" [routerLink]="['/party', party._id]">View Party</a>
                         </div>
                     </div>
                 </div>

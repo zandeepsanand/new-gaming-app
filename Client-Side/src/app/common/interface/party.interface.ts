@@ -11,6 +11,9 @@ export interface PartyModel {
     createdBy: string;
     createdAt: string;
     updatedAt: string;
+    stoppedAt: string;
+    startedAt: string;
+    status: string;
     isPrivate: boolean;
     __v: number;
 }
@@ -18,6 +21,7 @@ export interface PartyModel {
 export interface Member {
     id: string;
     type: string;
+    timeSpent: string;
     _id: string;
 }
 

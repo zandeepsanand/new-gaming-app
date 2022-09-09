@@ -74,6 +74,7 @@ import { VideoPlayerComponent } from './common/components/video-player/video-pla
 import { JwtInterceptor } from './common/interceptor/jwt.interceptor';
 import { PartyPaymentSucessComponent } from './ggera/party-payment-sucess/party-payment-sucess.component';
 import { PartyPaymentFailedComponent } from './ggera/party-payment-failed/party-payment-failed.component';
+import { ViewPartyComponent } from './ggera/view-party/view-party.component';
 
 
 @NgModule({
@@ -127,7 +128,8 @@ import { PartyPaymentFailedComponent } from './ggera/party-payment-failed/party-
           VideoPlayerComponent,
       JobTemplateComponent,
       PartyPaymentSucessComponent,
-      PartyPaymentFailedComponent
+      PartyPaymentFailedComponent,
+      ViewPartyComponent
 
 
     

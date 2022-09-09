@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { PartyModel } from './common/interface/party.interface';
 import { ApiResponse } from './common/interface/api.interface';
 import { UserDetailedModel } from './common/interface/user.interface';
+import {map} from 'rxjs'; 
 
 
 interface MyToken {
@@ -139,7 +140,19 @@ export class HeroService {
   }
 
   getPartyDetails(id: string) {
-    return this.http.get<ApiResponse<PartyModel>>(`${this.server_address}/party/${id}`);
+    return this.http.get<ApiResponse<PartyModel>>(`${this.server_address}/party/${id}/details`).pipe(map(e=>e.data));
+  }
+
+  startParty(id: string) {
+    return this.http.patch<ApiResponse<any>>(`${this.server_address}/party/${id}/start`, {});
+  }
+
+  stopParty(id: string) {
+    return this.http.patch<ApiResponse<any>>(`${this.server_address}/party/${id}/stop`, {});
+  }
+
+  savePartyMemberTime(id: string, data: Record<string, string>) {
+    return this.http.patch<ApiResponse<any>>(`${this.server_address}/party/${id}/member-time`, data)
   }
 
   getChannelFromParty(id: string) {
