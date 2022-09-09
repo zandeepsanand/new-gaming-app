@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode"
 import { environment } from 'src/environments/environment';
 import { PartyModel } from './common/interface/party.interface';
 import { ApiResponse } from './common/interface/api.interface';
+import { UserDetailedModel } from './common/interface/user.interface';
 
 
 interface MyToken {
@@ -135,6 +136,14 @@ export class HeroService {
 
   getParty() {
     return this.http.get<PartyModel[]>(`${this.server_address}/party`,);
+  }
+
+  getPartyDetails(id: string) {
+    return this.http.get<ApiResponse<PartyModel>>(`${this.server_address}/party/${id}`);
+  }
+
+  getChannelFromParty(id: string) {
+    return this.http.get<ApiResponse<UserDetailedModel>>(`${this.server_address}/party/${id}/channel`);
   }
 
   getMyParties() {

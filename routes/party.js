@@ -64,6 +64,51 @@ router.patch('/:id/add-user', async(req, res) => {
   }
 })
 
+router.get('/:id', async(req, res) => {
+  try {
+    // const tokenUser = req.payload;
+    // const id = new mongoose.Types.ObjectId(req.params.id);
+    // const cUser = new mongoose.Types.ObjectId(tokenUser.id);
+    const party = await PartyData.aggregate([
+      {
+        $match: {
+          _id: new mongoose.Types.ObjectId(id)
+        }
+      },
+      {
+        $lookup: {
+          "from": 'userdatas',
+          localField: 'members.id',
+          foreignField: '_id',
+          "as": 'users',
+          "pipeline": [{
+            $project: {
+              username: 1, profile_pic: 1, channel_name: 1, discord_id: 1, about: 1, elo: 1, kd: 1
+            }
+          }]
+        }
+      }
+    ]);
+    res.send({ data: party, error: null });
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+})
+
+router.get('/:id/channel', async(req, res) => {
+  try {
+    // const tokenUser = req.payload;
+    // const id = new mongoose.Types.ObjectId(req.params.id);
+    // const cUser = new mongoose.Types.ObjectId(tokenUser.id);
+    const party = await PartyData.findById(req.params.id, {createdBy: 1});
+    if(!party) throw new Error('Party Not Found')
+    const user = await UserData.findById(party.createdBy)
+    res.send({ data: user, error: null });
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+})
+
 router.get('/', async (req, res) => {
   try {
     const userLists = await PartyData.aggregate([
