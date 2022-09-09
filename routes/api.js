@@ -12,6 +12,8 @@ const game = require('./game')
 const user = require('./user')
 const stripe = require('./stripe')
 const wallet = require('./wallet')
+const subscription=require('./subscription')
+// const subscription=require('../model/subscriptionData')
 const { verifyAccessToken } = require('../helpers/jwt_helper');
 
 
@@ -29,6 +31,7 @@ router.use('/game',game)
 router.use('/user',user)
 router.use('/stripe', verifyAccessToken, stripe);
 router.use('/wallet',wallet)
+router.use('/subscription',subscription)
 
 
 
@@ -115,6 +118,7 @@ router.post("/listFriends", async function (req, res) {
 
     // res.json(clonedArray);
 });
+
 
 
 
