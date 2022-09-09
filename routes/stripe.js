@@ -9,10 +9,13 @@ const stripe = require('stripe')(process.env.STRIPE_CODE);
 router.post('/', async (req, res) => {
   try {
     const tokenUser = req.payload;
-    // const createdBy = new mongoose.Types.ObjectId(tokenUser.id);
-    console.log('Console ~ req.body', req.body);
+    // const user = await USERDATA.findById(tokenUser.id, {proPlayer: 1});
+    // const isSubscribedUser = !user.proPlayer; 
     const {data: { partyId, price, name }} = req.body;
-    console.log('Console ~ price', +price * 100);
+    let amount = +price;
+    // if(isSubscribedUser) {
+    //   amount = amount - (amount * .01);
+    // }
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
@@ -21,7 +24,7 @@ router.post('/', async (req, res) => {
             product_data: {
               name: 'Subscription',
             },
-            unit_amount: +price * 100,
+            unit_amount: amount * 100,
           },
           quantity: 1,
         },

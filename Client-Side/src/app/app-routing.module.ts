@@ -36,6 +36,9 @@ import { SubscriptionsComponent } from './ggera/subscriptions/subscriptions.comp
 import { JobTemplateComponent } from './template/job-template/job-template.component';
 import { PartyPaymentSucessComponent } from './ggera/party-payment-sucess/party-payment-sucess.component';
 import { PartyPaymentFailedComponent } from './ggera/party-payment-failed/party-payment-failed.component';
+import { CanCreatePartyGuard } from './common/guards/can-create-party.guard';
+import { ViewPartyComponent } from './ggera/view-party/view-party.component';
+import { ProUserGuard } from './common/guards/pro-user.guard';
 
 
 
@@ -52,7 +55,7 @@ const routes: Routes = [
     { path: 'coachings', canActivate: [AuthGuard ], component: ProRequestsComponent },
     { path: 'player-page',canActivate: [AuthGuard ],  component: PlayerPageComponent },
     { path: 'my-orders', canActivate: [AuthGuard ], component: OrderListsComponent },
-    { path: 'create-party',canActivate: [AuthGuard ],  component: CreatePartyComponent },
+    { path: 'create-party',canActivate: [AuthGuard, CanCreatePartyGuard ],  component: CreatePartyComponent },
     { path: 'users', canActivate: [AuthGuard ], component: AdminUsersComponent },
     { path: 'pro-requests', canActivate: [AuthGuard ], component: ProRequestsComponent },
     { path: 'earnings',canActivate: [AuthGuard ], component: EarningsComponent },
@@ -63,6 +66,7 @@ const routes: Routes = [
     { path: 'twitch-player/:partyId',canActivate: [AuthGuard ], component: TwitchComponent },
     { path: 'party/:partyId/payment/success',canActivate: [AuthGuard ], component: PartyPaymentSucessComponent },
     { path: 'party/:partyId/payment/failure',canActivate: [AuthGuard ], component: PartyPaymentFailedComponent },
+    { path: 'party/:partyId',canActivate: [AuthGuard, ProUserGuard ], component: ViewPartyComponent },
     { path: 'stats',canActivate: [AuthGuard ], component: StatsComponent },
     { path: 'makeme-pro',canActivate: [AuthGuard ],component: MakeMeProComponent },
     { path: 'ranks', component: RanksComponent },
