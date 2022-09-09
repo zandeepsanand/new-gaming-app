@@ -51,6 +51,12 @@ module.exports = {
 
     },
 
+    verifyIsAdmin: (req, res, next) => {
+        const {superAdmin} = req.payload;
+        if(superAdmin === 'super') return next();
+        else return next(createError.Unauthorized())
+    },
+
     signRefreshToken: (userId,role) => {
         return new Promise((resolve, reject) => {
 

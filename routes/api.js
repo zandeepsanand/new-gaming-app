@@ -12,7 +12,8 @@ const game = require('./game')
 const user = require('./user')
 const stripe = require('./stripe')
 const wallet = require('./wallet')
-const { verifyAccessToken } = require('../helpers/jwt_helper');
+const admin = require('./admin')
+const { verifyAccessToken, verifyIsAdmin } = require('../helpers/jwt_helper');
 
 
 
@@ -29,6 +30,7 @@ router.use('/game',game)
 router.use('/user',user)
 router.use('/stripe', verifyAccessToken, stripe);
 router.use('/wallet',wallet)
+router.use('/admin', [verifyAccessToken, verifyIsAdmin] ,admin)
 
 
 
