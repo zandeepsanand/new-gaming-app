@@ -37,19 +37,23 @@ router.use('/subscription',subscription)
 
 
 
-router.post('/reqPro', async (req, res) => {
-
+router.post('/reqPro',verifyAccessToken, async (req, res) => {
+      
     try {
+         console.log(req.payload);
+         const id=req.payload.id;
+         const result= await USERDATA.findByIdAndUpdate(
+          id,{adminReq: true}
+         )
+        // let email = req.body.email
 
-        let email = req.body.email
-
-        console.log(req.body, 'body')
-        const user = await USERDATA.findOneAndUpdate(
-            { "email": email },
-            { "adminReq": true }
-        )
-        console.log("enter", user)
-        res.send(user)
+        // console.log(req.body, 'body')
+        // const user = await USERDATA.findOneAndUpdate(
+        //     { "email": email },
+        //     { "adminReq": true }
+        // )
+        // console.log("enter", user)
+        res.send(result);
     } catch (error) {
         console.log(error)
     }

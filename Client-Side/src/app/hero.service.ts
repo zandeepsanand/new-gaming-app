@@ -218,6 +218,9 @@ export class HeroService {
   getSubscriptionData(){
    return this.http.get(`${this.server_address}/subscription/get`)
   }
+  proRequestHandler(){
+    return this.http.post(`${this.server_address}/reqPro`,{})
+  }
 
 
 }
