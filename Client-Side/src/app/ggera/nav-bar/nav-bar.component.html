@@ -178,6 +178,10 @@
                         <li class="nav-item" *ngIf="_auth.isSuperAdmin()"><a class="nav-link">Admin <i
                                     class="flaticon-down-arrow"></i></a>
                             <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a routerLink="/admin/dashboard" class="nav-link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">Dashboard</a>
+                                </li>
                                 <li class="nav-item"><a routerLink="/users" class="nav-link" routerLinkActive="active"
                                         [routerLinkActiveOptions]="{exact: true}">Users</a>
                                 </li>

@@ -6,6 +6,7 @@ import { PartyModel } from './common/interface/party.interface';
 import { ApiResponse } from './common/interface/api.interface';
 import { UserDetailedModel } from './common/interface/user.interface';
 import {map} from 'rxjs'; 
+import { OptResponse } from './common/interface/otp.interface';
 
 
 interface MyToken {
@@ -83,8 +84,8 @@ export class HeroService {
     return this.http.post<any>(`${this.server_address}/auth/googleSave`, data);
   }
 
-  OTPGo(data: any, email: any) {
-    return this.http.post<any>(`${this.server_address}/auth/verifyOTP`, { data, email });
+  OTPGo(data: any, email: string) {
+    return this.http.post<OptResponse>(`${this.server_address}/auth/verifyOTP`, { data, email });
   }
 
   //! Stripe related 
@@ -240,7 +241,13 @@ export class HeroService {
   getAllGames() {
     return this.http.get(`${this.server_address}/game`)
   }
-
+  
+  getSubscriptionData(){
+   return this.http.get(`${this.server_address}/subscription/get`)
+  }
+  proRequestHandler(){
+    return this.http.post(`${this.server_address}/reqPro`,{})
+  }
 
 
 }

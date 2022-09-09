@@ -268,7 +268,12 @@ export class SigninComponent implements OnInit {
                 timer: 1500
               }).then(() => {
                 localStorage.removeItem('email')
-                this.router.navigate(['/profile'])
+                if(res.isAdmin) {
+                  this.router.navigate(['/admin/dashboard'])
+                }
+                else {
+                  this.router.navigate(['/profile'])
+                }
 
               })
 

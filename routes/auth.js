@@ -95,6 +95,7 @@ router.post('/verifyOTP', async (req, res, next) => {
             const user = await USERDATA.findOne({
                 email: email
             });
+            console.log('Console ~ user', user);
 
             if (!user?.username != null || user?.email != null || user?.profile_pic != null) {
                 completeCheck = true
@@ -113,7 +114,7 @@ router.post('/verifyOTP', async (req, res, next) => {
                 let role = user.proPlayer ? 'professional' : 'normal';
                 let superAdmin = user.superAdmin ? 'super' : 'normal'
                 const accessToken = await signAccessToken({id: user._id.toString(), email, role, superAdmin})
-                res.send({ accessToken, completeCheck })
+                res.send({ accessToken, completeCheck, isAdmin: user.superAdmin })
 
             }
         }

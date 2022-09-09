@@ -16,9 +16,15 @@ export class SubscriptionsComponent implements OnInit {
   success: boolean = false
 
   failure: boolean = false
+  subscriptionData:any;
 
 
   ngOnInit(): void {
+    this._heroService.getSubscriptionData().
+    subscribe((data)=>{
+      this.subscriptionData=data;
+      // console.log(data);
+    })
 
   }
 

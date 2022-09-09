@@ -39,6 +39,8 @@ import { PartyPaymentFailedComponent } from './ggera/party-payment-failed/party-
 import { CanCreatePartyGuard } from './common/guards/can-create-party.guard';
 import { ViewPartyComponent } from './ggera/view-party/view-party.component';
 import { ProUserGuard } from './common/guards/pro-user.guard';
+import { AdminTemplateComponent } from './template/admin-template/admin-template.component';
+import { AdminGuard } from './common/guards/admin.guard';
 
 
 
@@ -79,7 +81,8 @@ const routes: Routes = [
     { path: 'settings', canActivate: [AuthGuard ],  component: SettingsComponent },
     { path: 'subscriptions', canActivate: [AuthGuard ],  component: SubscriptionsComponent },
    
-    {path: 'job', component: JobTemplateComponent, loadChildren: () => import('./ggera/jobs/jobs-routing.module').then(e => e.JobsRoutingModule)},
+    {path: 'job', component: JobTemplateComponent, loadChildren: () => import('./ggera/jobs/jobs.module').then(e => e.JobsModule)},
+    {path: 'admin', component: AdminTemplateComponent, canActivateChild: [AdminGuard], loadChildren: () => import('./ggera/admin/admin.module').then(e => e.AdminModule)},
   
     { path: '**', canActivate: [AuthGuard], component: UnderconstructionComponent },
 

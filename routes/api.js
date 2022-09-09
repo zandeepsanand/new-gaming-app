@@ -12,7 +12,8 @@ const game = require('./game')
 const user = require('./user')
 const stripe = require('./stripe')
 const wallet = require('./wallet')
-const { verifyAccessToken } = require('../helpers/jwt_helper');
+const admin = require('./admin')
+const { verifyAccessToken, verifyIsAdmin } = require('../helpers/jwt_helper');
 
 
 
@@ -29,24 +30,30 @@ router.use('/game',game)
 router.use('/user',user)
 router.use('/stripe', verifyAccessToken, stripe);
 router.use('/wallet',wallet)
+router.use('/admin', [verifyAccessToken, verifyIsAdmin] ,admin)
+router.use('/subscription',subscription)
 
 
 
 
 
-router.post('/reqPro', async (req, res) => {
-
+router.post('/reqPro',verifyAccessToken, async (req, res) => {
+      
     try {
+         console.log(req.payload);
+         const id=req.payload.id;
+         const result= await USERDATA.findByIdAndUpdate(
+          id,{adminReq: true}
+         )
+        // let email = req.body.email
 
-        let email = req.body.email
-
-        console.log(req.body, 'body')
-        const user = await USERDATA.findOneAndUpdate(
-            { "email": email },
-            { "adminReq": true }
-        )
-        console.log("enter", user)
-        res.send(user)
+        // console.log(req.body, 'body')
+        // const user = await USERDATA.findOneAndUpdate(
+        //     { "email": email },
+        //     { "adminReq": true }
+        // )
+        // console.log("enter", user)
+        res.send(result);
     } catch (error) {
         console.log(error)
     }
@@ -115,6 +122,7 @@ router.post("/listFriends", async function (req, res) {
 
     // res.json(clonedArray);
 });
+
 
 
 

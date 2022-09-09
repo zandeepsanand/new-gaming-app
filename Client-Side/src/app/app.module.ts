@@ -75,6 +75,8 @@ import { JwtInterceptor } from './common/interceptor/jwt.interceptor';
 import { PartyPaymentSucessComponent } from './ggera/party-payment-sucess/party-payment-sucess.component';
 import { PartyPaymentFailedComponent } from './ggera/party-payment-failed/party-payment-failed.component';
 import { ViewPartyComponent } from './ggera/view-party/view-party.component';
+import { AdminTemplateComponent } from './template/admin-template/admin-template.component';
+import { AdminNavbarComponent } from './common/components/admin-navbar/admin-navbar.component';
 
 
 @NgModule({
@@ -129,7 +131,9 @@ import { ViewPartyComponent } from './ggera/view-party/view-party.component';
       JobTemplateComponent,
       PartyPaymentSucessComponent,
       PartyPaymentFailedComponent,
-      ViewPartyComponent
+      ViewPartyComponent,
+      AdminTemplateComponent,
+      AdminNavbarComponent
 
 
     
