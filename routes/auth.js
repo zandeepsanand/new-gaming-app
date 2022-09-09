@@ -96,7 +96,7 @@ router.post('/verifyOTP', async (req, res, next) => {
                 email: email
             });
 
-            if (!user.username != null || user.email != null || user.profile_pic != null) {
+            if (!user?.username != null || user?.email != null || user?.profile_pic != null) {
                 completeCheck = true
             }
 
@@ -118,7 +118,7 @@ router.post('/verifyOTP', async (req, res, next) => {
             }
         }
     } catch (error) {
-        console.log(error.status)
+        console.log(error)
         if (error.isJoi === true) {
             res.status(422)
             res.send('Enter OTP')
@@ -128,7 +128,7 @@ router.post('/verifyOTP', async (req, res, next) => {
         }
         else {
             res.status(500)
-
+            res.send(error.message)
         }
     }
 

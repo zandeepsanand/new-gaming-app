@@ -117,4 +117,25 @@ router.get('/my', async (req, res) => {
   }
 });
 
+router.get('/can-create', async (req, res) => {
+  try {
+    const tokenUser = req.payload;
+    const user = await UserData.findOne(
+      {
+        _id: new mongoose.Types.ObjectId(tokenUser.id),
+        $and: [
+          { discord_id: { $exists: true } },
+          { channel_name: { $exists: true } },
+        ],
+      },
+      { discord_id: 1, channel_name: 1 }
+    );
+    res.send(!!user);
+  } catch (error) {
+    console.log(error);
+    res.status(500);
+    res.send({ error: error.message });
+  }
+});
+
 module.exports = router;

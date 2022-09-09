@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 declare const Twitch: any;
 
 
@@ -9,9 +10,11 @@ declare const Twitch: any;
 })
 export class TwitchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+
+    const partyId = this.activatedRoute.snapshot.paramMap.get("partyId");
 
     let TwitchID = localStorage.getItem('twitch')
     console.log('Twitch' ,TwitchID)
