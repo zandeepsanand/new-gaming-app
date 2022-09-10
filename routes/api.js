@@ -13,6 +13,7 @@ const user = require('./user')
 const stripe = require('./stripe')
 const wallet = require('./wallet')
 const admin = require('./admin')
+const subscription = require('./subscription');
 const { verifyAccessToken, verifyIsAdmin } = require('../helpers/jwt_helper');
 
 
