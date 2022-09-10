@@ -2,3 +2,5 @@ node_modules
 zinble-ng/node_modules
 
 .env
+
+ngrok.yml
