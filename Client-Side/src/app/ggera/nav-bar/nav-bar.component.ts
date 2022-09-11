@@ -114,7 +114,7 @@ export class NavBarComponent implements OnInit {
         map((e) => e.data),
         tap((e: UserDetailedModel) => {
             this.store.currentUser = e;
-            this.selectedGame.setValue(e.preference.selectedGame);
+            if(e?.preference?.selectedGame) this.selectedGame.setValue(e?.preference?.selectedGame);
             this.checkForValueChange();
         })
     );

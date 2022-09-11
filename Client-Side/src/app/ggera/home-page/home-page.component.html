@@ -64,7 +64,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let privateUser of privateUsers.slice(0,4)" (click)="singlePro(privateUser._id)" style="cursor:pointer ;">
                 <div class="single-team-member">
-                    <img class="img1" src={{privateUser.profile_pic}} alt="image" >
+                    <img class="img1" src={{privateUser?.profile_pic}} alt="image" >
 
                     <div class="content">
                         <h3>{{privateUser.username}}</h3>
