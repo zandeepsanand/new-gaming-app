@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subject } from "rxjs";
-import { UserModel } from "../common/interface/user.interface";
+import { UserDetailedModel, UserModel } from "../common/interface/user.interface";
 
 @Injectable({
     providedIn: "root",
 })
 export class StoreService {
     private readonly _selectedGame$: BehaviorSubject<string> = new BehaviorSubject(null);
-    private readonly _currentUser$: BehaviorSubject<UserModel> = new BehaviorSubject(null);
+    private readonly _currentUser$: BehaviorSubject<UserDetailedModel> = new BehaviorSubject(null);
 
     constructor() {}
 
@@ -27,7 +27,11 @@ export class StoreService {
         return this._currentUser$.asObservable();
     }
 
-    set currentUser(user: UserModel) {
+    get currentUserId() {
+        return this._currentUser$.getValue()?._id;
+    }
+
+    set currentUser(user: UserDetailedModel) {
         this._currentUser$.next(user);
     }
 }

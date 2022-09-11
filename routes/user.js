@@ -5,6 +5,7 @@ const USERDATA = require('../model/userData');
 /* multer start */
 const multer = require('multer');
 const { verifyAccessToken } = require('../helpers/jwt_helper');
+const ProUserWithdrawRequest = require('../model/proUserWithdrawRequest');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -131,7 +132,27 @@ router.get('/my/details', verifyAccessToken, async (req, res) => {
         console.log(error)
         res.send({data: null, error: error.message})
     }
-})
+});
+
+router.post('/withdraw', verifyAccessToken, async (req, res) => {
+    try {
+        const userId = req.payload.id;
+        const cUser = await ProUserWithdrawRequest.findOne({
+            isApproved: false, userId
+        });
+        if(cUser) throw new Error('Already request in process')
+        const { amount } = req.body
+        await ProUserWithdrawRequest.create({
+            userId, amount
+        })
+        res.status(201);
+        res.send({data: 'OK', error: null})
+    } catch (error) {
+        console.log(error)
+        res.status(400);
+        res.send({data: null, error: error.message})
+    }
+});
 
 
 module.exports = router;

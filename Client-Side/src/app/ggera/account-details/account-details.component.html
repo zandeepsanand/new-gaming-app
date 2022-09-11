@@ -2,7 +2,8 @@
     <app-nav-bar> </app-nav-bar>
 </div>
 
-<section class="section1" *ngIf="walletData$ | async as walletData">
+<section class="section1" *ngIf="data$ | async as data">
+    <ng-container *ngIf=""></ng-container>
     <section class=" ptb-100">
 
         <div class="container">
@@ -11,8 +12,8 @@
             <div class="row ">
                 <div class="col-lg-5 col-sm-5 col-md-5  ">
                     <h1 class=" p-2">Current Balance</h1>
-                    <h2 class="  p-2 fs-1">${{walletData.balance}}</h2>
-                    <div class="  p-2">
+                    <h2 class="  p-2 fs-1">${{data.wallet.balance}}</h2>
+                    <div class="  p-2" *ngIf="hero.isNormal()">
                         <a style="cursor: pointer;" class="default-btn  pl-5 pr-5 " data-bs-toggle="modal"
                         data-bs-target="#addMoneymodal">Add Money</a>
                     </div>
@@ -22,7 +23,7 @@
             <div class="row ">
                 <div class="col-lg-5 col-sm-5 col-md-5  ">
                     
-                    <div class="  p-2">
+                    <div class="p-2" *ngIf="hero.isPro()">
                         <a style="cursor: pointer;" class="default-btn  pl-5 pr-5 " data-bs-toggle="modal"
                         data-bs-target="#exampleModal">Withdraw</a>
                     </div>
@@ -135,7 +136,7 @@
                         <th scope="col">Date </th>
                     </tr>
                 </thead>
-                <tr class="border"  *ngFor="let row of transactionsData">
+                <tr class="border"  *ngFor="let row of data.transactions">
                   <td >{{row.type}}</td>
                   <td>{{row.amount}}</td>
                   <td>{{row.status}}</td>

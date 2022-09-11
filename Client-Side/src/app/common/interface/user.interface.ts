@@ -51,3 +51,8 @@ export interface UserDetailedModel {
 export interface PreferenceModel {
     selectedGame: string;
 }
+
+export interface WalletModel {
+    balance: number;
+    userId: string;
+}
