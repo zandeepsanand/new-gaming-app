@@ -4,7 +4,7 @@ import { map, tap } from "rxjs";
 import { environment } from "src/environments/environment";
 import { AdminDashboardUserStatsModel } from "../interface/admin.interface";
 import { ApiResponse } from "../interface/api.interface";
-import { UserDetailedModel } from "../interface/user.interface";
+import { UserDetailedModel, WithdrawModel } from "../interface/user.interface";
 
 @Injectable({
     providedIn: "root",
@@ -33,6 +33,23 @@ export class AdminService {
         return this.http
             .patch<ApiResponse<string>>(
                 `${this.host}/admin/pro-request/user/${id}/activate`,
+                {}
+            )
+            .pipe(map((e) => e.data));
+    }
+
+    getWithdrawRequests() {
+        return this.http
+            .get<ApiResponse<WithdrawModel[]>>(
+                `${this.host}/admin/pro-request/withdraw/requests`
+            )
+            .pipe(map((e) => e.data));
+    }
+
+    acceptWithdrawRequests(id: string) {
+        return this.http
+            .patch<ApiResponse<string>>(
+                `${this.host}/admin/pro-request/withdraw/requests/${id}`,
                 {}
             )
             .pipe(map((e) => e.data));
