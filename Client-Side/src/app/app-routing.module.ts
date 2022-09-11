@@ -81,7 +81,7 @@ const routes: Routes = [
     { path: 'settings', canActivate: [AuthGuard ],  component: SettingsComponent },
     { path: 'subscriptions', canActivate: [AuthGuard ],  component: SubscriptionsComponent },
    
-    {path: 'job', component: JobTemplateComponent, loadChildren: () => import('./ggera/jobs/jobs.module').then(e => e.JobsModule)},
+    {path: 'make-me-pro', component: JobTemplateComponent, loadChildren: () => import('./ggera/jobs/jobs.module').then(e => e.JobsModule)},
     {path: 'admin', component: AdminTemplateComponent, canActivateChild: [AdminGuard], loadChildren: () => import('./ggera/admin/admin.module').then(e => e.AdminModule)},
   
     { path: '**', canActivate: [AuthGuard], component: UnderconstructionComponent },

@@ -327,6 +327,8 @@
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="myOrders2()"
                         *ngIf="_auth.isNormal()"> My
                         Orders<br></a>
+                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" routerLink="/make-me-pro"
+                        *ngIf="_auth.isNormal()"> Make Me Pro<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Profile()">Edit
                         Profile<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="PreParty()"
