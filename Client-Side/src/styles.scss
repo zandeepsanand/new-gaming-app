@@ -2368,4 +2368,38 @@ textarea.form-control {
     }
 }  
 
+.btn-ggera-primary, .btn-ggera-outline {
+    margin-top: 22px;
+    text-align: center;
+    overflow: hidden;
+    transition: var(--transition);
+    width: 100%;
+    text-transform: uppercase;
+    border-radius: 5px;
+    padding: 16px 30px 12px;
+    letter-spacing: 1px;
+    font: {
+        weight: 600;
+        size: 20px;
+    };
+}
 
+.btn-ggera-primary {
+    border: none;
+    display: block;
+    color: var(--whiteColor);
+    background-color: var(--mainColor);
+    &:hover {
+        background-color: var(--whiteColor);
+        color: var(--blackColor)
+    }
+}
+.btn-ggera-outline {
+    color: var(--mainColor);
+    background-color: transparent;
+    border: 2px solid var(--mainColor);
+    &:hover {
+        background-color: var(--mainColor);
+        color: var(--blackColor)
+    }
+}

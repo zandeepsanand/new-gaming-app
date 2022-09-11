@@ -15,9 +15,8 @@ export class Step1Component implements OnInit {
   ngOnInit(): void {
   }
   proRequestHandler(){
-    this._heroService.proRequestHandler().pipe(tap(()=>{this.router.navigate(['/job/step-2'])}))
+    this._heroService.proRequestHandler().pipe(tap(()=>{this.router.navigate(['/make-me-pro/step-2'])}))
     .subscribe()
-     
   }
 
 }
