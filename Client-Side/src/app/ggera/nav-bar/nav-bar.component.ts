@@ -31,6 +31,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.userData();
     this.getGameData()
+    console.log('_auth', this._auth)
   }
 
   getGameData() {

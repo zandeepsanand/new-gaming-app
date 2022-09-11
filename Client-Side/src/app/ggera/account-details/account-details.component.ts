@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, tap } from 'rxjs';
 import { HeroService } from 'src/app/hero.service';
 import { WalletService } from 'src/app/services/wallet.service';
 
@@ -16,7 +17,7 @@ export class AccountDetailsComponent implements OnInit {
     'userId': new FormControl(''),
   })
   user:any;
-  walletData:any;
+  walletData$:Observable<any>;
   transactionsData:any;
 
   constructor(private router: Router, private hero: HeroService, private fb: FormBuilder, private walletService: WalletService) { }
@@ -41,12 +42,7 @@ export class AccountDetailsComponent implements OnInit {
   }
   getUserWalletData() {
       let email = this.hero.getEmail()
-      this.walletService.getUserWalletData(this.user._id).
-        subscribe(res => {
-          this.walletData = res
-          console.log(this.walletData)
-          this.getUserWalletTransactionsData()
-        })
+      this.walletData$ = this.walletService.getUserWalletData(this.user._id).pipe(tap(() => this.getUserWalletTransactionsData()))
   }
   getUserWalletTransactionsData() {
       let email = this.hero.getEmail()

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class WalletService {
 
   // server_address: string = "http://localhost:8887/api"
-  server_address: string = '/api';
+  server_address: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
