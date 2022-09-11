@@ -3,6 +3,8 @@ const router = express.Router();
 const UserData = require('../model/userData');
 const createError = require('http-errors');
 const CoachData = require('../model/coachData');
+const ProUserWithdrawRequest = require('../model/proUserWithdrawRequest');
+const { default: mongoose } = require('mongoose');
 
 router.get('/user-stats', async (req, res) => {
   try {
@@ -60,5 +62,26 @@ router.patch('/pro-request/user/:id/activate', async (req, res) => {
     res.send({ data: null, error: error.message });
   }
 });
+
+router.get(
+  '/pro-request/withdraw/requests',
+  async (req, res) => {
+    const data = await ProUserWithdrawRequest.find();
+    res.send({ data: data, error: null });
+  }
+);
+
+router.patch(
+  '/pro-request/withdraw/requests/:id',
+  async (req, res) => {
+    await ProUserWithdrawRequest.updateOne(
+      { _id: new mongoose.Types.ObjectId(req.params.id) },
+      {
+        isApproved: true,
+      }
+    );
+    res.send({ data: 'OK', error: null });
+  }
+);
 
 module.exports = router;

@@ -56,3 +56,12 @@ export interface WalletModel {
     balance: number;
     userId: string;
 }
+export interface WithdrawModel {
+    _id: string;
+    orderNo: string;
+    amount: string;
+    userId: string;
+    isApproved: boolean;
+    createdAt: string;
+    updatedAt: string;
+}
