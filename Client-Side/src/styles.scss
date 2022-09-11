@@ -1480,7 +1480,7 @@ textarea.form-control {
 .go-top {
     position: fixed;
     cursor: pointer;
-    bottom: 20px;
+    bottom: 60px;
     right: 20px;
     background-color: var(--mainColor);
     color: var(--whiteColor);
@@ -2402,4 +2402,7 @@ textarea.form-control {
         background-color: var(--mainColor);
         color: var(--blackColor)
     }
+}
+.cursor-pointer {
+    cursor: pointer;
 }
