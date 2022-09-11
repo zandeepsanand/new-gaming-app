@@ -69,11 +69,12 @@
                                 <div class="col-lg-12 col-sm-10 col-md-10  card bg-black border">
                                     <h1 class=" p-2 text-center pt-5">Withdraw Amount</h1>
                                     <h6 class="  p-2 text-center">Your request will be gone to the admin</h6>
-                                    <form role="form text-start" (ngSubmit)="moneyWithdraw()">
-                                        <input class="form-control" type="text" placeholder="Enter Amount">
-
+                                    <form role="form text-start" [formGroup]="withdrawForm" (ngSubmit)="withdrawMoney()">
+                                        <input class="form-control" step="10" formControlName="amount" type="number" placeholder="Enter Amount">
                                         <div class="  p-2 d-flex justify-content-center pb-5 pt-5">
-                                            <a style="cursor:pointer ;" class="default-btn  pl-5 pr-5 ">Submit</a>
+                                            <a style="cursor: pointer;width: 160px;"  class="btn-ggera-outline mr-2 " data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Cancel</a>&nbsp;
+                                            <button type="submit" [disabled]="!withdrawForm.valid" style="width: 160px;" class="btn-ggera-primary ml-2">Submit</button>
                                         </div>
                                     </form>
 

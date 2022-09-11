@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router()
 const USERDATA = require('../model/userData');
+const mongoose = require('mongoose');
 
 /* multer start */
 const multer = require('multer');
@@ -136,15 +137,17 @@ router.get('/my/details', verifyAccessToken, async (req, res) => {
 
 router.post('/withdraw', verifyAccessToken, async (req, res) => {
     try {
-        const userId = req.payload.id;
+        const userId = new mongoose.Types.ObjectId(req.payload.id);
         const cUser = await ProUserWithdrawRequest.findOne({
             isApproved: false, userId
         });
         if(cUser) throw new Error('Already request in process')
         const { amount } = req.body
-        await ProUserWithdrawRequest.create({
-            userId, amount
-        })
+        const data = {
+            userId, amount, orderNo: Date.now()
+        }
+        console.log('Console ~ data', data);
+        await ProUserWithdrawRequest.create(data)
         res.status(201);
         res.send({data: 'OK', error: null})
     } catch (error) {

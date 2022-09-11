@@ -1,7 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators,
+} from "@angular/forms";
 import { Router } from "@angular/router";
 import {
+    catchError,
     filter,
     firstValueFrom,
     forkJoin,
@@ -17,6 +23,7 @@ import {
 import { HeroService } from "src/app/hero.service";
 import { StoreService } from "src/app/services/store.service";
 import { WalletService } from "src/app/services/wallet.service";
+import Swal from "sweetalert2";
 
 @Component({
     selector: "app-account-details",
@@ -34,6 +41,7 @@ export class AccountDetailsComponent implements OnInit {
         wallet: WalletModel;
         transactions: any;
     }>;
+    withdrawForm: FormGroup;
 
     constructor(
         private router: Router,
@@ -41,7 +49,11 @@ export class AccountDetailsComponent implements OnInit {
         private fb: FormBuilder,
         private walletService: WalletService,
         private store: StoreService
-    ) {}
+    ) {
+        this.withdrawForm = this.fb.group({
+            amount: [0, [Validators.required, Validators.min(50)]],
+        });
+    }
 
     async ngOnInit(): Promise<void> {
         const user = await firstValueFrom(
@@ -60,7 +72,37 @@ export class AccountDetailsComponent implements OnInit {
         );
     }
 
-    moneyWithdraw() {}
+    withdrawMoney() {
+        if (this.withdrawForm.valid) {
+            this.hero
+                .withdrawAmount(this.withdrawForm.value.amount)
+                .pipe(
+                    tap(() => {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Withdraw request created",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        }).then(() => {
+                            this.router.navigate(["/account"]);
+                        });
+                    }),
+                    catchError((err) => {
+                        console.log("Console ~ err", err);
+                        Swal.fire({
+                            icon: "error",
+                            title: err.error.error,
+                            showConfirmButton: false,
+                            timer: 1500,
+                        }).then(() => {
+                            this.router.navigate(["/account"]);
+                        });
+                        return of(err);
+                    })
+                )
+                .subscribe();
+        }
+    }
 
     async moneyAdd() {
         let data = this.AddMoneyForm.value;

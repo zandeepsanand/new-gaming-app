@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const ProUserWithdrawRequestSchema = new Schema(
   {
     orderNo: String,
-    amount: Number,
+    amount: String,
     userId: { type: mongoose.Types.ObjectId, required: true },
     isApproved: { type: Boolean, default: false },
   },
