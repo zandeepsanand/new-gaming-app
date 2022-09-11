@@ -8,6 +8,7 @@ import {
 } from "@angular/forms";
 import { HeroService } from "../../hero.service";
 import { map, noop, Observable, Observer, of, switchMap, tap } from "rxjs";
+import { StoreService } from "src/app/services/store.service";
 
 @Component({
     selector: "app-create-party",
@@ -33,7 +34,8 @@ export class CreatePartyComponent implements OnInit {
         private router: Router,
         private _heroService: HeroService,
         private activated: ActivatedRoute,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private store: StoreService
     ) {
         const numberRegex = "^[0-9]*$";
         const urlRegex =
@@ -47,7 +49,7 @@ export class CreatePartyComponent implements OnInit {
             preferredServer: ["", [Validators.required]],
             gameFormat: [""],
             game: [
-                localStorage.getItem("selected.game"),
+                this.store.selectedGame,
                 [Validators.required],
             ],
         });

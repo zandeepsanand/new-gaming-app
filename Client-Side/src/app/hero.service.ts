@@ -4,8 +4,8 @@ import jwt_decode from "jwt-decode"
 import { environment } from 'src/environments/environment';
 import { PartyModel } from './common/interface/party.interface';
 import { ApiResponse } from './common/interface/api.interface';
-import { UserDetailedModel } from './common/interface/user.interface';
-import {map} from 'rxjs'; 
+import { PreferenceModel, UserDetailedModel, UserModel } from './common/interface/user.interface';
+import {map, Observable} from 'rxjs'; 
 import { OptResponse } from './common/interface/otp.interface';
 
 
@@ -106,6 +106,10 @@ export class HeroService {
 
   reqPro(email: any) {
     return this.http.post<any>(`${this.server_address}/reqPro`, { email: email });
+  }
+  
+  updatePreference(preference: PreferenceModel) {
+    return this.http.patch<ApiResponse<string>>(`${this.server_address}/user/preference`, preference);
   }
 
 
@@ -215,6 +219,9 @@ export class HeroService {
   getUserDetail(data: any) {
     return this.http.post<any>(`${this.server_address}/user`, { data });
 
+  }
+  getMyDetail(): Observable<ApiResponse<UserDetailedModel>> {
+    return this.http.get<ApiResponse<UserDetailedModel>>(`${this.server_address}/user/my/details`);
   }
 
   searchUsers(query) {

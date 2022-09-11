@@ -5,15 +5,15 @@ import { AdminRoutingModule } from "./admin-routing.module";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ProRequestComponent } from "./pro-request/pro-request.component";
 import { AdminService } from "src/app/common/service/admin.service";
-// import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { JwtInterceptor } from "src/app/common/interceptor/jwt.interceptor";
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
     declarations: [DashboardComponent, ProRequestComponent],
     imports: [
         CommonModule,
-        // BrowserModule,
+        NgChartsModule,
         HttpClientModule,
         AdminRoutingModule,
     ],

@@ -52,11 +52,12 @@ router.post('/add/money', async (req, res) => {
     }
 })
 router.post('/details', async (req, res) => {
-    let userdata = {
-        userId: req.body.userId
+    let userData = {
+        userId: req.body.userId,
+        balance: 0
     }
-    const data = await Wallet.findOne({userId: userdata.userId})
-    res.send(data);
+    const data = await Wallet.findOne({userId: userData.userId})
+    res.send(Object.assign(userData, data));
 
 })
 router.post('/transactions/details', async (req, res) => {
