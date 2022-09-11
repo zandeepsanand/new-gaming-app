@@ -45,4 +45,9 @@ export interface UserDetailedModel {
     pro_cost: string;
     vip_cost: string;
     channel_name: string;
+    preference: PreferenceModel;
+}
+
+export interface PreferenceModel {
+    selectedGame: string;
 }

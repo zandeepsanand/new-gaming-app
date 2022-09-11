@@ -16,8 +16,11 @@ export class StoreService {
     }
 
     set selectedGame(v: string) {
-        localStorage.setItem("selected.game", v);
         this._selectedGame$.next(v);
+    }
+
+    get selectedGame() {
+        return this._selectedGame$.getValue()
     }
 
     get currentUser$() {

@@ -4,6 +4,7 @@ const USERDATA = require('../model/userData');
 
 /* multer start */
 const multer = require('multer');
+const { verifyAccessToken } = require('../helpers/jwt_helper');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -36,9 +37,6 @@ router.post('/', async (req, res) => {
         console.log(error)
 
     }
-
-
-
 })
 
 router.put('/', async (req, res) => {
@@ -108,6 +106,30 @@ router.get('/all', async (req, res) => {
         res.send(userLists)
     } catch (error) {
         console.log(error)
+    }
+})
+
+router.patch('/preference', verifyAccessToken, async (req, res) => {
+    try {
+        const user = req.payload.id;
+        const cUser = await USERDATA.findById(user, {preference: 1});
+        const preference = Object.assign({selectedGame: ''}, cUser.preference, req.body)
+        await USERDATA.findByIdAndUpdate(user, {preference})
+        res.send({data: 'OK', error: null})
+    } catch (error) {
+        console.log(error)
+        res.send({data: null, error: error.message})
+    }
+})
+
+router.get('/my/details', verifyAccessToken, async (req, res) => {
+    try {
+        const user = req.payload.id;
+        const cUser = await USERDATA.findById(user);
+        res.send({data: cUser, error: null})
+    } catch (error) {
+        console.log(error)
+        res.send({data: null, error: error.message})
     }
 })
 

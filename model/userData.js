@@ -36,7 +36,10 @@ const userDataSchema = new Schema({
     pro_cost:String,
     vip_cost:String,
     about:String,
-    status: { type: String, default: 'offline' }
+    status: { type: String, default: 'offline' },
+    preference: {
+        selectedGame: String, default: ''
+    }
 
 });
 
