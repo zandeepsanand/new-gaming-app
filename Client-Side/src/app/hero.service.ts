@@ -230,6 +230,12 @@ export class HeroService {
     })
   }
 
+  withdrawAmount(amount: number) {
+    return this.http.post<ApiResponse<string>>(`${this.server_address}/user/withdraw`, {
+      amount
+    })
+  }
+
   //* Profile 
   updateProfile(profile: any, email: any) {
     return this.http.put<any>(`${this.server_address}/user`, { profile: profile, email: email });

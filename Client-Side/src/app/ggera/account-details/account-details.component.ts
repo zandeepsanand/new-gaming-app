@@ -1,72 +1,117 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
-import { HeroService } from 'src/app/hero.service';
-import { WalletService } from 'src/app/services/wallet.service';
+import { Component, OnInit } from "@angular/core";
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators,
+} from "@angular/forms";
+import { Router } from "@angular/router";
+import {
+    catchError,
+    filter,
+    firstValueFrom,
+    forkJoin,
+    map,
+    Observable,
+    of,
+    tap,
+} from "rxjs";
+import {
+    UserDetailedModel,
+    WalletModel,
+} from "src/app/common/interface/user.interface";
+import { HeroService } from "src/app/hero.service";
+import { StoreService } from "src/app/services/store.service";
+import { WalletService } from "src/app/services/wallet.service";
+import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-account-details',
-  templateUrl: './account-details.component.html',
-  styleUrls: ['./account-details.component.scss']
+    selector: "app-account-details",
+    templateUrl: "./account-details.component.html",
+    styleUrls: ["./account-details.component.scss"],
 })
 export class AccountDetailsComponent implements OnInit {
+    AddMoneyForm: any = new FormGroup({
+        amount: new FormControl(""),
+        userId: new FormControl(""),
+    });
+    user$: Observable<UserDetailedModel>;
+    data$: Observable<{
+        user: UserDetailedModel;
+        wallet: WalletModel;
+        transactions: any;
+    }>;
+    withdrawForm: FormGroup;
 
-  AddMoneyForm: any = new FormGroup({
-    'amount': new FormControl(''),
-    'userId': new FormControl(''),
-  })
-  user:any;
-  walletData$:Observable<any>;
-  transactionsData:any;
-
-  constructor(private router: Router, private hero: HeroService, private fb: FormBuilder, private walletService: WalletService) { }
-
-  ngOnInit(): void {
-    this.userData();
-  }
-
-  moneyWithdraw(){
-    
-  }
-
-  userData() {
-    if(this.hero.getEmail()){
-      let email = this.hero.getEmail()
-      this.hero.getUserDetail(email).
-        subscribe(res => {
-          this.user = res
-          this.getUserWalletData();
-        })
+    constructor(
+        private router: Router,
+        public hero: HeroService,
+        private fb: FormBuilder,
+        private walletService: WalletService,
+        private store: StoreService
+    ) {
+        this.withdrawForm = this.fb.group({
+            amount: [0, [Validators.required, Validators.min(50)]],
+        });
     }
-  }
-  getUserWalletData() {
-      let email = this.hero.getEmail()
-      this.walletData$ = this.walletService.getUserWalletData(this.user._id).pipe(tap(() => this.getUserWalletTransactionsData()))
-  }
-  getUserWalletTransactionsData() {
-      let email = this.hero.getEmail()
-      this.walletService.getUserWalletTransactionsData(this.user._id).
-        subscribe(res => {
-          this.transactionsData = res
-          console.log(this.transactionsData)
-        })
-  }
 
-  async moneyAdd(){
-    let data = this.AddMoneyForm.value;
-    data.userId = this.user._id;
+    async ngOnInit(): Promise<void> {
+        const user = await firstValueFrom(
+            this.store.currentUser$.pipe(filter((e) => !!e))
+        );
+        const userId = user._id;
+        this.data$ = forkJoin({
+            user: of(user),
+            wallet: this.walletService.getUserWalletData(userId),
+            transactions:
+                this.walletService.getUserWalletTransactionsData(userId),
+        }).pipe(
+            tap((e) => {
+                console.log("data$", e);
+            })
+        );
+    }
 
-    await this.walletService.addMoney(data.amount, data.userId)
-      .subscribe();
-      // window.location.reload();
-    console.log(data.amount);
-    this.walletService.addMoneyWithStripe(data.amount)
-      .subscribe(res => {
-        window.location.href = res.url;    
-        })
+    withdrawMoney() {
+        if (this.withdrawForm.valid) {
+            this.hero
+                .withdrawAmount(this.withdrawForm.value.amount)
+                .pipe(
+                    tap(() => {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Withdraw request created",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        }).then(() => {
+                            this.router.navigate(["/account"]);
+                        });
+                    }),
+                    catchError((err) => {
+                        console.log("Console ~ err", err);
+                        Swal.fire({
+                            icon: "error",
+                            title: err.error.error,
+                            showConfirmButton: false,
+                            timer: 1500,
+                        }).then(() => {
+                            this.router.navigate(["/account"]);
+                        });
+                        return of(err);
+                    })
+                )
+                .subscribe();
+        }
+    }
 
-      
-  }
-
+    async moneyAdd() {
+        let data = this.AddMoneyForm.value;
+        data.userId = this.store.currentUserId;
+        await this.walletService.addMoney(data.amount, data.userId).subscribe();
+        // window.location.reload();
+        console.log(data.amount);
+        this.walletService.addMoneyWithStripe(data.amount).subscribe((res) => {
+            window.location.href = res.url;
+        });
+    }
 }

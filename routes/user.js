@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router()
 const USERDATA = require('../model/userData');
+const mongoose = require('mongoose');
 
 /* multer start */
 const multer = require('multer');
 const { verifyAccessToken } = require('../helpers/jwt_helper');
+const ProUserWithdrawRequest = require('../model/proUserWithdrawRequest');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -131,7 +133,29 @@ router.get('/my/details', verifyAccessToken, async (req, res) => {
         console.log(error)
         res.send({data: null, error: error.message})
     }
-})
+});
+
+router.post('/withdraw', verifyAccessToken, async (req, res) => {
+    try {
+        const userId = new mongoose.Types.ObjectId(req.payload.id);
+        const cUser = await ProUserWithdrawRequest.findOne({
+            isApproved: false, userId
+        });
+        if(cUser) throw new Error('Already request in process')
+        const { amount } = req.body
+        const data = {
+            userId, amount, orderNo: Date.now()
+        }
+        console.log('Console ~ data', data);
+        await ProUserWithdrawRequest.create(data)
+        res.status(201);
+        res.send({data: 'OK', error: null})
+    } catch (error) {
+        console.log(error)
+        res.status(400);
+        res.send({data: null, error: error.message})
+    }
+});
 
 
 module.exports = router;
