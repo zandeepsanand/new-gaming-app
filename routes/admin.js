@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const UserData = require('../model/userData');
+const Transaction = require('../model/transaction');
 const createError = require('http-errors');
 const CoachData = require('../model/coachData');
 const ProUserWithdrawRequest = require('../model/proUserWithdrawRequest');
@@ -74,12 +75,19 @@ router.get(
 router.patch(
   '/pro-request/withdraw/requests/:id',
   async (req, res) => {
-    await ProUserWithdrawRequest.updateOne(
+    const requestData = await ProUserWithdrawRequest.findOneAndUpdate(
       { _id: new mongoose.Types.ObjectId(req.params.id) },
       {
         isApproved: true,
       }
     );
+    await Transaction.create({
+      userId: requestData.userId.toString(),
+      type: 'withdrawal',
+      amount: requestData.amount,
+      status: 'success',
+      date: new Date(), 
+    })
     res.send({ data: 'OK', error: null });
   }
 );
