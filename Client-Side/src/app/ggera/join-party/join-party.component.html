@@ -86,7 +86,7 @@
         <ng-container *ngFor="let party of myParties">
             <!-- <span>{{party | json    }}</span> -->
             <div class="banner-video-box p-3">
-                <app-video-player [src]="party.src"></app-video-player>
+                <app-video-player [src]="party.url"></app-video-player>
             </div>
             <div class="single-popular-leagues-box" >
                 <div class="popular-leagues-box d-flex justify-content-center">
@@ -98,7 +98,7 @@
                                 <li><i class="flaticon-coin"></i>Live</li>
                                 <li><i class="flaticon-game"></i>4 free slots</li>
                                 <li><i class="flaticon-game-1"></i>Stream</li>
-                                <li><i class="flaticon-teamwork"></i>Private</li>
+                                <li><i class="flaticon-teamwork"></i>{{party.isPrivate ? 'Private': 'Public'}}</li>
                             </ul>
                         </div>
                         <div>
