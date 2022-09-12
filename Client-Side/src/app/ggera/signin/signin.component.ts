@@ -29,13 +29,14 @@ export class SigninComponent implements OnInit {
   otp: boolean = false
   discordFlag: boolean = false
   URLid: any;
+  userNavTo: string;
+  user:any;
 
   ngOnInit(): void {
 
 
     // this.URLid = this.activated.snapshot.paramMap.get('id');
     // console.log("id", this.URLid)
-
     this.authService.authState.subscribe((user) => {
       this.socialUser = user;
       this.isLoggedin = (user != null);
@@ -261,21 +262,22 @@ export class SigninComponent implements OnInit {
             if (res) {
               localStorage.setItem('accessToken', res.accessToken)
               console.log('res'  , res)
-              Swal.fire({
-                icon: 'success',
-                title: 'Sign Up successfully',
-                showConfirmButton: false,
-                timer: 1500
-              }).then(() => {
-                localStorage.removeItem('email')
-                if(res.isAdmin) {
-                  this.router.navigate(['/admin/dashboard'])
-                }
-                else {
-                  this.router.navigate(['/profile'])
-                }
+              this.userData(res);
+              // Swal.fire({
+              //   icon: 'success',
+              //   title: 'Sign Up successfully',
+              //   showConfirmButton: false,
+              //   timer: 1500
+              // }).then(() => {
+              //   localStorage.removeItem('email')
+              //   if(res.isAdmin) {
+              //     this.router.navigate(['/admin/dashboard'])
+              //   }
+              //   else {
+              //     this.router.navigate(['/profile'])
+              //   }
 
-              })
+              // })
 
             }
           },
@@ -318,5 +320,42 @@ export class SigninComponent implements OnInit {
         })
   }
 
+
+  userData(res:any) {
+    if(this._heroService.getEmail()){
+      console.log("hiii");
+      let email = this._heroService.getEmail()
+      this._heroService.getUserDetail(email).
+        subscribe(res => {
+          this.user = res
+         
+        })
+        Swal.fire({
+          icon: 'success',
+          title: 'Sign Up successfully',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+          localStorage.removeItem('email')
+          console.log(this.user);
+          if(this.user.discord_id && this.user.phone_number && this.user.email && this.user.country && this.user.gamerID){
+            if(res.isAdmin) {
+              this.router.navigate(['/admin/dashboard'])
+            } else{
+              this.router.navigate(['/pro-home'])
+            }
+          }else{
+            this.router.navigate(['/profile'])
+          }
+          // if(res.isAdmin) {
+          //   this.router.navigate(['/admin/dashboard'])
+          // }
+          // else {
+          //   this.router.navigate(['/profile'])
+          // }
+
+        })
+    }
+  }
 
 }
