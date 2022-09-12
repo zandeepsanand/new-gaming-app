@@ -1,9 +1,11 @@
 const express = require('express');
 const { default: mongoose } = require('mongoose');
+const { timeToHours } = require('../helpers/time_helper');
 const router = express.Router();
 
 const PartyData = require('../model/partyData');
 const UserData = require('../model/userData');
+const Wallet = require('../model/wallet');
 
 router.post('/', async (req, res) => {
   try {
@@ -75,13 +77,25 @@ router.patch('/:id/member-time', async(req, res) => {
     const data = req.body;
     Object.keys(data).map(e => {
       party.members.map(m => {
-        console.log('Console ~ m', m.id);
         if(e === m.id.toString()) {
           m.timeSpent = data[e];
         }
       })
     })
     await party.save();
+    let amount = 0;
+    party.members.filter(e => e.type === 'sub-user').map(e => {
+      amount += timeToHours(e.timeSpent) * party.amount
+    });
+    await Wallet.updateOne({
+      userId: party.createdBy.toString()
+    }, {
+      $inc: {
+        balance: amount 
+      }
+    }, {
+      upsert: true
+    });
     res.send({ data: party, error: null });
   } catch (error) {
     res.status(500);
@@ -109,7 +123,7 @@ router.patch('/:id/stop', async(req, res) => {
     await PartyData.updateOne({_id: id}, {
       status: 'stopped',
       stoppedAt: new Date()
-    })
+    });
     res.send({ data: 'OK', error: null });
   } catch (error) {
     res.status(500);
