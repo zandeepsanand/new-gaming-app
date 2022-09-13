@@ -84,8 +84,15 @@ router.patch('/:id/member-time', async(req, res) => {
     })
     await party.save();
     let amount = 0;
-    party.members.filter(e => e.type === 'sub-user').map(e => {
-      amount += timeToHours(e.timeSpent) * party.amount
+    console.log("welll");
+    console.log(party);
+    await party.members.filter(e => e.type === 'sub-user').map(async e => {
+      const timeToHrs =await timeToHours(e.timeSpent);
+      amount += timeToHrs * party.price;
+      const userWallet = await Wallet.findOne({userId: e.id});
+      if(!userWallet) throw new Error('Wallet not found');
+      userWallet.balance = userWallet.balance-(timeToHrs*party.price)
+      await userWallet.save();
     });
     await Wallet.updateOne({
       userId: party.createdBy.toString()
@@ -96,6 +103,7 @@ router.patch('/:id/member-time', async(req, res) => {
     }, {
       upsert: true
     });
+    console.log("hi");
     res.send({ data: party, error: null });
   } catch (error) {
     res.status(500);
