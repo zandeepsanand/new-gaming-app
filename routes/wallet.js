@@ -56,8 +56,9 @@ router.post('/details', async (req, res) => {
         userId: req.body.userId,
         balance: 0
     }
-    const data = await Wallet.findOne({userId: userData.userId})
-    res.send(Object.assign(userData, data));
+    const data = await Wallet.findOne({userId: userData.userId}).lean()
+    const tmp = Object.assign({}, userData, data);
+    res.send(tmp);
 
 })
 router.post('/transactions/details', async (req, res) => {
