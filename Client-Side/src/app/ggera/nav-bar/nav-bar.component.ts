@@ -5,7 +5,8 @@ import { HeroService } from 'src/app/hero.service';
 import { tap, filter, Observable, map } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { StoreService } from 'src/app/services/store.service';
-import { UserDetailedModel, UserModel } from 'src/app/common/interface/user.interface';
+import { UserDetailedModel, UserModel, WalletModel } from 'src/app/common/interface/user.interface';
+import { WalletService } from 'src/app/services/wallet.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class NavBarComponent implements OnInit {
 
 
   user$:Observable<UserModel>;
+  wallet$:Observable<WalletModel>;
 
   games: any;
   selectedGame: FormControl = new FormControl('');
@@ -26,7 +28,8 @@ export class NavBarComponent implements OnInit {
     private router: Router,
     private _heroService:HeroService,
     public _auth:HeroService,
-    private store: StoreService
+    private store: StoreService,
+    private walletService: WalletService
   ) {  }
 
   ngOnInit(): void {
@@ -49,6 +52,12 @@ export class NavBarComponent implements OnInit {
         this._heroService.updatePreference({selectedGame: e}).subscribe()
       })
     ).subscribe()
+  }
+
+  private getWalletData(userId) {
+    this.wallet$ = this.walletService.getUserWalletData(userId).pipe(tap(e => {
+      this.store.wallet = e;
+    }))
   }
 
   Wallet() {
@@ -115,6 +124,7 @@ export class NavBarComponent implements OnInit {
             this.store.currentUser = e;
             if(e?.preference?.selectedGame) this.selectedGame.setValue(e?.preference?.selectedGame);
             this.checkForValueChange();
+            this.getWalletData(e._id);
         })
     );
     // if (this._heroService.getEmail()) {

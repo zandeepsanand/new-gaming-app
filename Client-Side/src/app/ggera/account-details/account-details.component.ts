@@ -59,10 +59,13 @@ export class AccountDetailsComponent implements OnInit {
         const user = await firstValueFrom(
             this.store.currentUser$.pipe(filter((e) => !!e))
         );
+        const wallet = await firstValueFrom(
+            this.store.wallet$.pipe(filter((e) => !!e))
+        );
         const userId = user._id;
         this.data$ = forkJoin({
             user: of(user),
-            wallet: this.walletService.getUserWalletData(userId),
+            wallet: of(wallet),
             transactions:
                 this.walletService.getUserWalletTransactionsData(userId),
         }).pipe(
