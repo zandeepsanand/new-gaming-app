@@ -65,7 +65,12 @@ export class AccountDetailsComponent implements OnInit {
             wallet: this.walletService.getUserWalletData(userId),
             transactions:
                 this.walletService.getUserWalletTransactionsData(userId),
-        });
+        }).pipe(
+            tap((e) => {
+                console.log(e);
+                
+            })
+        );
     }
 
     withdrawMoney() {
