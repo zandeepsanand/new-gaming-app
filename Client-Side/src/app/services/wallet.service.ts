@@ -29,4 +29,7 @@ export class WalletService {
     console.log(userId);
     return this.http.post<any>(`${this.server_address}/wallet/transactions/details`, { userId: userId });
   }
+  reduceMoney( userId:any, amount:any){
+    return this.http.post<any>(`${this.server_address}/wallet/reduce/money`, { userId: userId, amount: amount }); 
+  }
 }
