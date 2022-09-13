@@ -69,8 +69,8 @@ export class HomePageNew1Component implements OnInit {
           timer: 1500
         }).then(() => {
           console.log("Fund available");
-          this.reduceFundFromUser(res,partyData)
-          // this.router.navigate(['/dashboard'])
+          // this.reduceFundFromUser(res,partyData)
+          this.router.navigate([`/party/${partyData.partyId}/payment/success`])
         })
       } else {
         Swal.fire({
