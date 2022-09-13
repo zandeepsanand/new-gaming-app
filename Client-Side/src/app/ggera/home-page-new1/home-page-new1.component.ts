@@ -4,6 +4,9 @@ import { PartyModel } from "src/app/common/interface/party.interface";
 import { HeroService } from "src/app/hero.service";
 import { tap, Subscription, Observable } from "rxjs";
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
+import { UserModel } from "src/app/common/interface/user.interface";
+import { WalletService } from "src/app/services/wallet.service";
+import Swal from 'sweetalert2';
 
 @Component({
     selector: "app-home-page-new1",
@@ -11,7 +14,12 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser
     styleUrls: ["./home-page-new1.component.scss"],
 })
 export class HomePageNew1Component implements OnInit {
-    constructor(private _heroService: HeroService, private router: Router, private domSanitizer: DomSanitizer) {}
+    constructor(
+      private _heroService: HeroService, 
+      private router: Router, 
+      private domSanitizer: DomSanitizer,
+      private _walletService: WalletService
+      ) {}
 
     paymentHandler: any = null;
 
@@ -21,8 +29,11 @@ export class HomePageNew1Component implements OnInit {
 
     parties$: Observable<PartyModel[]>;
 
+    user: any;
+
     ngOnInit(): void {
       this.parties$ = this._heroService.getParty();
+      this.userData();
     }
 
     newStripe(data) {
@@ -30,7 +41,57 @@ export class HomePageNew1Component implements OnInit {
             window.location.href = res.url;
         });
     }
+    userData() {
+      if (this._heroService.getEmail()) {
+        let email = this._heroService.getEmail()
+        this._heroService.getUserDetail(email).
+          subscribe(res => {
+            this.user = res
+          })  
+      }
+    }
+    userPayForParty(data) {
+      console.log(data);
+      console.log(this.user);
+      this._walletService.getUserWalletData(this.user._id).
+      subscribe(res => {
+        this.checkWalletData(res, data)
+      })
+    }
+  
+    checkWalletData(res, partyData){
+      console.log(res);
+      if(res.balance >= partyData.price){
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+          console.log("Fund available");
+          this.reduceFundFromUser(res,partyData)
+          // this.router.navigate(['/dashboard'])
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Insufficient funds, please add money to wallet',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+          console.log("Insufficient funds, please add money to wallet");
+          this.router.navigate(['/account'])
 
+        })
+      }
+    }
+    reduceFundFromUser(walletData, partyData){
+      console.log(walletData, partyData)
+      this._walletService.reduceMoney(walletData.userId, partyData.price).
+      subscribe(res => {
+        this.router.navigate([`/party/${partyData.partyId}/payment/success`])
+      })
+    }
     // makePayment(amount: number) {
     //   const paymentHandler = (<any>window).StripeCheckout.configure({
     //     key: 'pk_test_51LT4FJSBGyD7UYjV7Uzl35ECOGv6TAtzwwYlAokpfqWpLNoXEZq1Ov3RoijNAxrN5fRhYqxzedauoF7tyFlbgr9q002zPPPLTa',
