@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { WalletModel } from '../common/interface/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +23,9 @@ export class WalletService {
     return this.http.post<any>(`${this.server_address}/stripe/addtowallet`,{data});
   }
   
-  getUserWalletData(userId: any) {
+  getUserWalletData(userId: string) {
     console.log(userId);
-    return this.http.post<any>(`${this.server_address}/wallet/details`, { userId: userId });
+    return this.http.post<WalletModel>(`${this.server_address}/wallet/details`, { userId: userId });
   }
   getUserWalletTransactionsData(userId: any) {
     console.log(userId);

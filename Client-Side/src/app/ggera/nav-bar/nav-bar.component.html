@@ -222,10 +222,8 @@
                         <li class="nav-item">
                             <ul class="radioStatus">
                                 <li>
-                                    <button class="button-23" role="button" (click)="account()" style="height: 42px;color:grey">
-                                        
-                                        <div *ngIf="user?.current_balance != undefined">${{user?.current_balance}}</div>
-                                        <div *ngIf="user?.current_balance == undefined">$0</div>
+                                    <button *ngIf="wallet$ | async as wallet" class="button-23" role="button" (click)="account()" style="height: 42px;color:grey">
+                                        ${{wallet?.balance || 0}}
                                     </button>
                                 </li>
                               </ul>
