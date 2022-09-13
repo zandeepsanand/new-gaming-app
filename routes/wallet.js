@@ -57,7 +57,7 @@ router.post('/details', async (req, res) => {
         balance: 0
     }
     const data = await Wallet.findOne({userId: userData.userId})
-    res.send(Object.assign(userData, data));
+    res.send(Object.assign(data));
 
 })
 router.post('/transactions/details', async (req, res) => {
