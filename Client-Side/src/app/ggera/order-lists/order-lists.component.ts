@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroService } from 'src/app/hero.service';
+import { RapidApiService } from 'src/app/services/rapid-api.service';
 import { StreamChat } from 'stream-chat';
 
 
@@ -14,10 +15,16 @@ export class OrderListsComponent implements OnInit {
   pendingSubscribers: any
   approvedSubscribers: any
   proDetail: any
+  user: any;
+  lobbies: any
 
   public modalOpen: boolean = false;
 
-  constructor(private _auth: HeroService, private _hero: HeroService) { }
+  constructor(
+    private _auth: HeroService, 
+    private _hero: HeroService,
+    private _rapidApi: RapidApiService
+    ) { }
 
 
   openForm() {
@@ -30,6 +37,7 @@ export class OrderListsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.userData()
     this.coachingList()
     this.getProDetail()
   }
@@ -57,6 +65,32 @@ export class OrderListsComponent implements OnInit {
         this.pendingSubscribers = filterDATA;
         this.approvedSubscribers = newfilterData
         console.log(this.pendingSubscribers)
+      })
+  }
+
+  userData() {
+    if (this._hero.getEmail()) {
+      let email = this._hero.getEmail()
+      this._hero.getUserDetail(email).
+        subscribe(res => {
+          this.user = res
+          this.getLobby(this.user.platform)
+        })
+    }
+  }
+  getLobby(platform){
+    let p;
+    if(platform == 'PS'){
+      p= 'psn';
+    } else if( platform == "Xbox"){
+      p= 'xbl';
+    }else if( platform == "Win"){
+      p= 'acti'
+    }
+    this._rapidApi.getLobbies(p,this.user)
+      .subscribe(res => {
+        this.lobbies = res
+        console.log(this.lobbies)
       })
   }
 
