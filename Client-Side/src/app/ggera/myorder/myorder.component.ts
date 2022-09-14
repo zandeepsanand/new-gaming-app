@@ -4,6 +4,8 @@ import { ChartConfiguration } from 'chart.js';
 import { HeroService } from 'src/app/hero.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { RapidApiService } from 'src/app/services/rapid-api.service';
+import e from 'express';
 
 
 @Component({
@@ -47,14 +49,19 @@ export class MyorderComponent implements OnInit {
   subscribers: any;
   pendingSubscribers: any
   approvedSubscribers: any
+  lobbies: any
   
 
   public modalOpen: boolean = false;
   proDetail: any
 
 
-  constructor(private _heroService: HeroService, private _auth: HeroService, private _hero: HeroService,
-    private router: Router) { }
+  constructor(
+    private _heroService: HeroService, 
+    private _auth: HeroService, 
+    private _hero: HeroService,
+    private router: Router,
+    private _rapidApi: RapidApiService) { }
 
   ngOnInit(): void {
     this.userData()
@@ -87,6 +94,7 @@ export class MyorderComponent implements OnInit {
       this._heroService.getUserDetail(email).
         subscribe(res => {
           this.user = res
+          this.getLobby(this.user.platform)
         })
 
       this._heroService.getCoach(email).
@@ -195,6 +203,22 @@ export class MyorderComponent implements OnInit {
     this._hero.getUserDetail(email)
       .subscribe(res => {
         this.proDetail = res
+      })
+  }
+
+  getLobby(platform){
+    let p;
+    if(platform == 'PS'){
+      p= 'psn';
+    } else if( platform == "Xbox"){
+      p= 'xbl';
+    }else if( platform == "Win"){
+      p= 'acti'
+    }
+    this._rapidApi.getLobbies(p,this.user)
+      .subscribe(res => {
+        this.lobbies = res
+        console.log(this.lobbies)
       })
   }
 }
