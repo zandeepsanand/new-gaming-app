@@ -24,7 +24,7 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="vimeo-tab" data-bs-toggle="tab" data-bs-target="#vimeo" type="button"
-                        role="tab" aria-controls="vimeo" aria-selected="false">Lobies</button>
+                        role="tab" aria-controls="vimeo" aria-selected="false">Lobbies</button>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -210,101 +210,43 @@
                 </div>
                 <div class="tab-pane fade" id="vimeo" role="tabpanel">
                     <div class="row d-flex justify-content-center">
-                        <div class=" col-lg-9 col-md-12  pt-100 pb-100 d-flex justify-content-center" style="font-family: 'Poppins';">
+                        <div  *ngFor="let lobby of lobbies.matches" class=" col-lg-9 col-md-12  pt-3 pb-5 d-flex justify-content-center" style="font-family: 'Poppins';">
                             <div class="card products-details-desc bg-black border2  p-5  pb-5">
                                 <!-- <span class="sku pb-5" style="font-size: small;">#11203</span> -->
                                 <div class="row pb-5 pt-4">
                                     <div class="d-flex justify-content-between " >
                                         <div>
-                                            <h1 style="font-family: 'Poppins';">CIKIWALA#2204</h1>
+                                            <h1 style="font-family: 'Poppins';">{{lobby.map}}</h1>
                                         </div>
-                                       
                                         <div class="price">
                                             <!-- <img src="../../../assets/img/vip.png" alt="" style="height: 50px;width:50px"> -->
                                             <span class="new-price" style="font-size: x-large;">$10/hour</span>
                                             <!-- <span class="old-price">$210</span> -->
                                         </div>
                                     </div>
-                                    <a href="#" class="rating-count">BoooM shakalaaalaaa
+                                    <a  class="rating-count">{{lobby.player.team}}
                                         </a>
                                 </div>
-                                
-                               
-                                
-                            
-                              
-                               <div class=" card bg-black border ">
-                                <div class="row">
-                                    <div class="col-lg-6 col-sm-12 d-flex justify-content-center p-5">
-                                        <img src="../../../assets/img/avatar.png" alt="" style="height: 120px; width: 100px;">
-                                        <div class="row">
-                                        <div class="new-price p-2">CIKIWALA</div>
-                                        <div>
-                                            <img src="../../../assets/img/vip.png" alt="" class="" style="height: 50px;width:50px">
-                                      
+                                                                  
+                                <div class=" card bg-black border ">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-sm-12 d-flex justify-content-center p-5">
+                                            <img src="../../../assets/img/avatar.png" alt="" style="height: 120px; width: 100px;">
+                                            <div class="row">
+                                                <div class="new-price p-2">{{lobby.player.username}}</div>
+                                                <div>
+                                                    <img src="../../../assets/img/vip.png" alt="" class="" style="height: 50px;width:50px">
+                                                    #{{lobby.player.rank}}
+                                                </div>
+                                                <div class="new-price p-2">Player Count: {{lobby.playerCount}}</div>
+                                            </div>
                                         </div>
-                                          </div>
-                                        
-
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 d-flex justify-content-center p-5">
-                                        <a href="">
-                                        <img src="../../../assets/img/lobby.png" alt="" style="height: 120px; width: 100px;"></a>
-                                     
-                                        
+                                        <div class="col-lg-6 col-sm-12 d-flex justify-content-center p-5">
+                                            <a >
+                                            <img src="../../../assets/img/lobby.png" alt="" style="height: 120px; width: 100px;"></a>
+                                        </div>
                                     </div>
                                 </div>
-                              
-                               </div>
-                              
-                            </div>
-                        </div>
-                        <div class=" col-lg-9 col-md-12  pt-100 pb-100 d-flex justify-content-center" style="font-family: 'Poppins';">
-                            <div class="card products-details-desc bg-black border2  p-5  pb-5">
-                                <!-- <span class="sku pb-5" style="font-size: small;">#11203</span> -->
-                                <div class="row pb-5 pt-4">
-                                    <div class="d-flex justify-content-between " >
-                                        <div>
-                                            <h1 style="font-family: 'Poppins';">CIKIWALA#2204</h1>
-                                        </div>
-                                       
-                                        <div class="price">
-                                            <!-- <img src="../../../assets/img/vip.png" alt="" style="height: 50px;width:50px"> -->
-                                            <span class="new-price" style="font-size: x-large;">$10/hour</span>
-                                            <!-- <span class="old-price">$210</span> -->
-                                        </div>
-                                    </div>
-                                    <a href="#" class="rating-count">BoooM shakalaaalaaa
-                                        </a>
-                                </div>
-                                
-                               
-                                
-                            
-                              
-                               <div class=" card bg-black border ">
-                                <div class="row">
-                                    <div class="col-lg-6 col-sm-12 d-flex justify-content-center p-5">
-                                        <img src="../../../assets/img/avatar.png" alt="" style="height: 120px; width: 100px;">
-                                        <div class="row">
-                                        <div class="new-price p-2">CIKIWALA</div>
-                                        <div>
-                                            <img src="../../../assets/img/vip.png" alt="" class="" style="height: 50px;width:50px">
-                                      
-                                        </div>
-                                          </div>
-                                        
-
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 d-flex justify-content-center p-5">
-                                        <a href="">
-                                        <img src="../../../assets/img/lobby.png" alt="" style="height: 120px; width: 100px;"></a>
-                                     
-                                        
-                                    </div>
-                                </div>
-                              
-                               </div>
                               
                             </div>
                         </div>
