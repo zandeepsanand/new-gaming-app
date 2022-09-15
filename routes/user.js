@@ -70,7 +70,11 @@ router.put('/', async (req, res) => {
             'flawless': req.body.profile.flawless,
             'pro_cost': req.body.profile.pro_cost,
             'vip_cost': req.body.profile.vip_cost,
-            'about': req.body.profile.about
+            'about': req.body.profile.about,
+            
+            'iban_code': req.body.profile.iban_code,
+            'swift_code': req.body.profile.swift_code,
+
         }
 
 

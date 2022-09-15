@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   selectedFile = null;
   user:any
 
-  constructor(private router: Router, private hero: HeroService, private fb: FormBuilder, private uploadService: UploadService) { }
+  constructor(private router: Router, private hero: HeroService, private fb: FormBuilder, private uploadService: UploadService,  public _auth:HeroService) { }
 
 
   ProfileForm: any = new FormGroup({
@@ -58,6 +58,8 @@ export class ProfileComponent implements OnInit {
     'account_name': new FormControl(''),
     'account_number': new FormControl(''),
     'bank_name': new FormControl(''),
+    'iban_code': new FormControl(''),
+    'swift_code': new FormControl(''),
 
   })
 
@@ -92,7 +94,7 @@ export class ProfileComponent implements OnInit {
           'wins': res.wins,
           'platform': res.platform,        
           'flawless': res.flawless,
-          'pro_cost': res.pro_cost,
+          'pro_cost': 12,
           'vip_cost': res.vip_cost,
           'about': res.about
         })
@@ -102,6 +104,8 @@ export class ProfileComponent implements OnInit {
           'account_name': res.account_name,
           'account_number': res.account_number,
           'bank_name': res.bank_name,
+          'iban_code': res.iban_code,
+          'swift_code': res.swift_code,
         })
       })
 
