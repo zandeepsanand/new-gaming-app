@@ -111,13 +111,14 @@
                     <div class="custom-select" style="width:120px; background-color: black;">
                         <select title="Select Game" style="background-color: black;" [formControl]="selectedGame">
                           <option value="0">Select game:</option>
-                          <option *ngFor="let game of games" value={{game._id}}>{{game.name}}</option>
+                          <option *ngFor="let game of games" value={{game._id}} >{{game.name}}</option>
                           <!-- <option value="warzone" selected>COD: Warzone</option>
                           <option value="apexlegends">Apex Legends</option>
                           <option value="fortnight">Fortnight</option> -->
                         </select>
                       </div>
                 </a>
+                
 
 
 
@@ -335,10 +336,10 @@
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="PreParty2()"
                         *ngIf="_auth.isNormal()">Premade
                         Parties<br></a>
-                    <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" *ngIf="_auth.isNormal()"
+                    <!-- <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" *ngIf="_auth.isNormal()"
                         class="close" data-bs-dismiss="modal" style="cursor: pointer" data-bs-toggle="modal"
                         data-bs-target="#exampleModal1">Coaching Programe
-                        Parties<br></a>
+                        Parties<br></a> -->
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="Rank()"
                         *ngIf="_auth.isPro()">Rank<br></a>
                     <a class="close" data-bs-dismiss="modal" style="cursor: pointer;" (click)="settings()"

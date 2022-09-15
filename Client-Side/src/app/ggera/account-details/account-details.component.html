@@ -90,7 +90,7 @@
 
         <br>
 
-        <div class="container ptb-100">
+        <div class="container ptb-100" *ngIf="hero.isNormal()">
             <div>
                 <h1>Latest Transactions</h1>
             </div><br>
@@ -101,7 +101,7 @@
                             data-bs-target="#all-types" type="button" role="tab" aria-controls="all-types"
                             aria-selected="true">All</button>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <!-- <li class="nav-item" role="presentation">
                         <button class="nav-link" id="upcoming-matches-tab" data-bs-toggle="tab"
                             data-bs-target="#all-types" type="button" role="tab" aria-controls="Sessions"
                             aria-selected="true">Sessions Salary</button>
@@ -121,7 +121,7 @@
                             data-bs-target="#all-types" type="button" role="tab" aria-controls="withdrawal"
                             aria-selected="true">Withdrawal &
                             Fine</button>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <br>
