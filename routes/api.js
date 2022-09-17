@@ -31,7 +31,7 @@ router.use('/game',game)
 router.use('/user',user)
 router.use('/stripe', verifyAccessToken, stripe);
 router.use('/wallet',wallet)
-router.use('/admin', [verifyAccessToken, verifyIsAdmin] ,admin)
+router.use('/admin', admin)
 router.use('/subscription',subscription)
 
 

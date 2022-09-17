@@ -9,9 +9,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { JwtInterceptor } from "src/app/common/interceptor/jwt.interceptor";
 import { NgChartsModule } from 'ng2-charts';
 import { ProUserWithdrawRequestComponent } from './pro-user-withdraw-request/pro-user-withdraw-request.component';
+import { SubscriberListComponent } from './subscriber-list/subscriber-list.component';
 
 @NgModule({
-    declarations: [DashboardComponent, ProRequestComponent, ProUserWithdrawRequestComponent],
+    declarations: [DashboardComponent, ProRequestComponent, ProUserWithdrawRequestComponent, SubscriberListComponent],
     imports: [
         CommonModule,
         NgChartsModule,

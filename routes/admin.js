@@ -4,6 +4,7 @@ const UserData = require('../model/userData');
 const createError = require('http-errors');
 const CoachData = require('../model/coachData');
 const ProUserWithdrawRequest = require('../model/proUserWithdrawRequest');
+
 const { default: mongoose } = require('mongoose');
 
 router.get('/user-stats', async (req, res) => {
@@ -67,6 +68,16 @@ router.get(
   '/pro-request/withdraw/requests',
   async (req, res) => {
     const data = await ProUserWithdrawRequest.find();
+    res.send({ data: data, error: null });
+  }
+);
+router.get(
+  '/subscriber-list',
+  async (req, res) => {
+    const data = await UserData.find(
+      {proPlayer:false}
+    );
+    console.log(data)
     res.send({ data: data, error: null });
   }
 );

@@ -54,4 +54,12 @@ export class AdminService {
             )
             .pipe(map((e) => e.data));
     }
+    getSubscriberUsers(){
+        return this.http
+        .get<ApiResponse<{ users: UserDetailedModel }>>(
+            `${this.host}/admin/subscriber-list`
+        )
+        .pipe(map((e) => e.data));
+    }
+
 }
