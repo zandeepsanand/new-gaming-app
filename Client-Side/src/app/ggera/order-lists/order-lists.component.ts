@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HeroService } from 'src/app/hero.service';
+import { LobbyService } from 'src/app/services/lobby.service';
 import { RapidApiService } from 'src/app/services/rapid-api.service';
 import { StreamChat } from 'stream-chat';
 
@@ -23,7 +25,8 @@ export class OrderListsComponent implements OnInit {
   constructor(
     private _auth: HeroService, 
     private _hero: HeroService,
-    private _rapidApi: RapidApiService
+    private _lobby: LobbyService,
+    private router: Router,
     ) { }
 
 
@@ -74,24 +77,21 @@ export class OrderListsComponent implements OnInit {
       this._hero.getUserDetail(email).
         subscribe(res => {
           this.user = res
-          this.getLobby(this.user.platform)
+          this.getLobby(this.user)
         })
     }
   }
-  getLobby(platform){
-    let p;
-    if(platform == 'PS'){
-      p= 'psn';
-    } else if( platform == "Xbox"){
-      p= 'xbl';
-    }else if( platform == "Win"){
-      p= 'acti'
-    }
-    this._rapidApi.getLobbies(p,this.user)
+  getLobby(user){
+    console.log(user);
+    this._lobby.getProLobbiesWithGamerId(this.user.gamerID)
       .subscribe(res => {
-        this.lobbies = res
+        this.lobbies = res.data
         console.log(this.lobbies)
       })
+  }
+  enterLobby(lobby: any){
+    console.log(lobby)
+    this.router.navigate([`/pro/enterlobby/${lobby.matchId}`])
   }
 
 }

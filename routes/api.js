@@ -12,6 +12,7 @@ const game = require('./game')
 const user = require('./user')
 const stripe = require('./stripe')
 const wallet = require('./wallet')
+const lobby = require('./lobby')
 const admin = require('./admin')
 const subscription = require('./subscription');
 const { verifyAccessToken, verifyIsAdmin } = require('../helpers/jwt_helper');
@@ -33,6 +34,7 @@ router.use('/stripe', verifyAccessToken, stripe);
 router.use('/wallet',wallet)
 router.use('/admin', [verifyAccessToken, verifyIsAdmin] ,admin)
 router.use('/subscription',subscription)
+router.use('/lobby',lobby)
 
 
 
