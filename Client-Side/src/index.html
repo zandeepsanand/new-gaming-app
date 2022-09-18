@@ -16,7 +16,22 @@
     <script src="https://js.stripe.com/v3/"></script>
     
 
-
+<style>
+    .overlap {
+    position: fixed;
+    width: 100%;
+    /* margin-left: -300px; */
+    right: 0;
+    z-index: -2;
+    color: #111;
+    background-size: cover;
+    opacity: 0.8;    
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+</style>
 
 
 
@@ -30,6 +45,9 @@
     <div class="go-top"><i class='bx bx-up-arrow-alt'></i></div>
     <div class="zinble-cursor"></div>
     <div class="zinble-cursor2"></div>
+    
+    <canvas class="overlap" id="c"></canvas>
+    <script src="assets/js/bg-animation.js"></script>
 </body>
 
 </html>
