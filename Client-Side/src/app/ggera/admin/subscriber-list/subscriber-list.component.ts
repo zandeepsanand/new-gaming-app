@@ -14,7 +14,7 @@ export class SubscriberListComponent implements OnInit {
   ngOnInit(): void {
     this.subUsers$=this.adminservice.getSubscriberUsers()
     .pipe(tap(e=>{
-      console.log(e);
+      console.log(e)
     }))
   
   

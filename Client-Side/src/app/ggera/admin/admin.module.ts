@@ -10,9 +10,12 @@ import { JwtInterceptor } from "src/app/common/interceptor/jwt.interceptor";
 import { NgChartsModule } from 'ng2-charts';
 import { ProUserWithdrawRequestComponent } from './pro-user-withdraw-request/pro-user-withdraw-request.component';
 import { SubscriberListComponent } from './subscriber-list/subscriber-list.component';
+import { ProListComponent } from './pro-list/pro-list.component';
+import { EarningsComponent } from './earnings/earnings.component';
+import { ViewprofileComponent } from './viewprofile/viewprofile.component';
 
 @NgModule({
-    declarations: [DashboardComponent, ProRequestComponent, ProUserWithdrawRequestComponent, SubscriberListComponent],
+    declarations: [DashboardComponent, ProRequestComponent, ProUserWithdrawRequestComponent, SubscriberListComponent, ProListComponent, EarningsComponent, ViewprofileComponent],
     imports: [
         CommonModule,
         NgChartsModule,

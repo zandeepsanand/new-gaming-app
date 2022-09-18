@@ -3,9 +3,11 @@ const router = express.Router();
 const UserData = require('../model/userData');
 const createError = require('http-errors');
 const CoachData = require('../model/coachData');
+const WalletData = require('../model/wallet');
 const ProUserWithdrawRequest = require('../model/proUserWithdrawRequest');
 
 const { default: mongoose } = require('mongoose');
+const { json } = require('express');
 
 router.get('/user-stats', async (req, res) => {
   try {
@@ -81,7 +83,56 @@ router.get(
     res.send({ data: data, error: null });
   }
 );
+router.get(
+  '/pro-list',
+  async (req, res) => {
+    const data = await UserData.find(
+      {proPlayer:true}
+    );
+    res.send({ data: data, error: null });
+  }
+);
+router.get(
+  '/pro-list/:id',
+  async (req,res)=>{
+    console.log('entered')
+    var id=req.params.id;
+    console.log(id)
+  }
+)
+// router.get(
+//   '/pro-list',
+//   async (req, res) => {
+//     const data = await UserData.find(
+//       {proPlayer:true}
+//     );
+//     console.log(data)
+//     res.send({ data: data, error: null });
+//   }
+// );
+router.get(
+  '/earnings',
+   async(req,res)=>{
+     const user_data= await UserData.find({proPlayer:true})
+     var total_balance=0;
+     for(var i=0;i<user_data.length;i++){
+      id=user_data[i]._id;
+      const wallet= await WalletData.aggregate([
+        {
+          $group:{
+          _id:id,  
+          balance: { $sum: "$balance" }
+          }
+        }
+        
+      ])  
+      total_balance=total_balance+wallet[0].balance;
+     }
 
+     console.log('total balance',total_balance);
+    res.send({data:total_balance,error:null})
+   }
+  );
 router.patch(
   '/pro-request/withdraw/requests/:id',
   async (req, res) => {

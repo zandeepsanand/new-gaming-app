@@ -61,5 +61,28 @@ export class AdminService {
         )
         .pipe(map((e) => e.data));
     }
+    getProUsers(){
+        return this.http
+        .get<ApiResponse<{ users: UserDetailedModel }>>(
+            `${this.host}/admin/pro-list`
+        )
+        .pipe(map((e) => e.data));
+    }
+    getProEarnings(){
+        return this.http
+        .get<ApiResponse<{ users: UserDetailedModel }>>(
+            `${this.host}/admin/earnings`
+        )
+    }
+    getProfile(id:string){
+        console.log('id in service',id)
+        return this.http
+        .get<ApiResponse<string>>(
+            `${this.host}/admin/pro-list/${id}`    
+        )
+        .pipe(map((e) => e.data));
+    }
+    
+    
 
 }
