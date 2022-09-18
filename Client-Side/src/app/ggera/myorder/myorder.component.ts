@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { RapidApiService } from 'src/app/services/rapid-api.service';
 import e from 'express';
+import { StoreService } from 'src/app/services/store.service';
+import { filter, Observable, tap } from 'rxjs';
+import { UserDetailedModel, UserModel } from 'src/app/common/interface/user.interface';
 
 
 @Component({
@@ -45,7 +48,7 @@ export class MyorderComponent implements OnInit {
     responsive: true,
   };
 
-  user: any;
+  user$: Observable<UserDetailedModel>;
   subscribers: any;
   pendingSubscribers: any
   approvedSubscribers: any
@@ -61,7 +64,8 @@ export class MyorderComponent implements OnInit {
     private _auth: HeroService, 
     private _hero: HeroService,
     private router: Router,
-    private _rapidApi: RapidApiService) { }
+    private _rapidApi: RapidApiService, 
+    private store: StoreService) { }
 
   ngOnInit(): void {
     this.userData()
@@ -90,18 +94,15 @@ export class MyorderComponent implements OnInit {
 
   userData() {
     if (this._heroService.getEmail()) {
-      let email = this._heroService.getEmail()
-      this._heroService.getUserDetail(email).
-        subscribe(res => {
-          this.user = res
-          this.getLobby(this.user.platform)
-        })
-
-      this._heroService.getCoach(email).
-        subscribe(res => {
+      this.user$ = this.store.currentUser$.pipe(
+        filter(e => !!e),
+        tap(e => {
+        console.log('Console ~ e', e);
+        this.getLobby(e?.platform || '', e)
+        this._heroService.getCoach(e.email).subscribe(res => {
           this.subscribers = res
         })
-
+      }));
     }
   }
 
@@ -205,8 +206,8 @@ export class MyorderComponent implements OnInit {
       })
   }
 
-  getLobby(platform){
-    let p;
+  getLobby(platform, user){
+    let p = 'psn';
     if(platform == 'PS'){
       p= 'psn';
     } else if( platform == "Xbox"){
@@ -214,7 +215,7 @@ export class MyorderComponent implements OnInit {
     }else if( platform == "Win"){
       p= 'acti'
     }
-    this._rapidApi.getLobbies(p,this.user)
+    this._rapidApi.getLobbies(p,user)
       .subscribe(res => {
         this.lobbies = res
         console.log(this.lobbies)
