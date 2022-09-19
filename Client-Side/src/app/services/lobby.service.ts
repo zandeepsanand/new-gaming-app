@@ -14,6 +14,10 @@ export class LobbyService {
   joinLobby(lobby: any, user : any, gamerId: string) {
     return this.http.post<any>(`${this.server_address}/lobby/join/subscriber`, { user: user, lobby: lobby, gamerId: gamerId });
   }
+  
+  editDescAndLink(details: any) {
+    return this.http.put<any>(`${this.server_address}/lobby/edit/descandlink`, { details: details});
+  }
 
   getProLobbiesWithGamerId(gamerId: any) {
     return this.http.get<any>(`${this.server_address}/lobby/pro/gamer-id/${gamerId}`);

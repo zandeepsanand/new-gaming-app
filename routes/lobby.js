@@ -60,7 +60,18 @@ router.get('/pro/gamer-id/:id', async(req, res) => {
 router.get('/match-id/:id', async(req, res) => {
   const lobbyExist = await SubscriberLobby.findOne({
     matchId: req.params.id
-  });
+  })
+  .populate("members.id")
+  res.send({data: lobbyExist});
+});
+
+router.put('/edit/descandlink', async (req, res) => {
+  const lobbyExist = await SubscriberLobby.findOne({
+    matchId: req.body.details.matchId
+  })
+  lobbyExist.lobbyDescription=req.body.details.desc;
+  lobbyExist.invite_link=req.body.details.link;
+  await lobbyExist.save();
   res.send({data: lobbyExist});
 });
 

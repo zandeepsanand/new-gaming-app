@@ -4,7 +4,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const childSchema = new Schema({
-  id: mongoose.Types.ObjectId,
+  id: [{ 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "userdata"
+ }],
   type: String,
   timeSpent: String
 });
@@ -23,7 +26,8 @@ const SubscriberLobbySchema = new Schema(
     isPrivate: Boolean,
     startedAt: Date,
     stoppedAt: Date,
-    lobbyData: {}
+    lobbyData: {},
+    invite_link: String
   },
   {
     timestamps: true,
