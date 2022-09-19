@@ -41,6 +41,8 @@ import { ViewPartyComponent } from './ggera/view-party/view-party.component';
 import { ProUserGuard } from './common/guards/pro-user.guard';
 import { AdminTemplateComponent } from './template/admin-template/admin-template.component';
 import { AdminGuard } from './common/guards/admin.guard';
+import { LobbyListingSubscriberComponent } from './ggera/lobby/lobby-listing-subscriber/lobby-listing-subscriber.component';
+import { LobbyProComponent } from './ggera/lobby/lobby-pro/lobby-pro.component';
 
 
 
@@ -83,7 +85,10 @@ const routes: Routes = [
    
     {path: 'make-me-pro', component: JobTemplateComponent, loadChildren: () => import('./ggera/jobs/jobs.module').then(e => e.JobsModule)},
     {path: 'admin', component: AdminTemplateComponent, canActivateChild: [AdminGuard], loadChildren: () => import('./ggera/admin/admin.module').then(e => e.AdminModule)},
-  
+
+    { path: 'lobby-listing-subscriber', canActivate: [AuthGuard ],  component: LobbyListingSubscriberComponent },
+    { path: 'pro/enterlobby/:matchId', canActivate: [AuthGuard ],  component: LobbyProComponent },
+
     { path: '**', canActivate: [AuthGuard], component: UnderconstructionComponent },
 
 ];

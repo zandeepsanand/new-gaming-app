@@ -341,8 +341,10 @@ export class SigninComponent implements OnInit {
           if(this.user.discord_id && this.user.phone_number && this.user.email && this.user.country && this.user.gamerID){
             if(res.isAdmin) {
               this.router.navigate(['/admin/dashboard'])
+            }else if(this.user.proPlayer) {
+              this.router.navigate(['/profile'])
             } else{
-              this.router.navigate(['/pro-home'])
+              this.router.navigate(['/lobby-listing-subscriber'])
             }
           }else{
             this.router.navigate(['/profile'])

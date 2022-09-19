@@ -77,6 +77,8 @@ import { PartyPaymentFailedComponent } from './ggera/party-payment-failed/party-
 import { ViewPartyComponent } from './ggera/view-party/view-party.component';
 import { AdminTemplateComponent } from './template/admin-template/admin-template.component';
 import { AdminNavbarComponent } from './common/components/admin-navbar/admin-navbar.component';
+import { LobbyListingSubscriberComponent } from './ggera/lobby/lobby-listing-subscriber/lobby-listing-subscriber.component';
+import { LobbyProComponent } from './ggera/lobby/lobby-pro/lobby-pro.component';
 
 
 @NgModule({
@@ -133,7 +135,9 @@ import { AdminNavbarComponent } from './common/components/admin-navbar/admin-nav
       PartyPaymentFailedComponent,
       ViewPartyComponent,
       AdminTemplateComponent,
-      AdminNavbarComponent
+      AdminNavbarComponent,
+      LobbyListingSubscriberComponent,
+      LobbyProComponent,
 
 
     
