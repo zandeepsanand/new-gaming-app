@@ -83,33 +83,27 @@ router.get(
     res.send({ data: data, error: null });
   }
 );
+
 router.get(
   '/pro-list',
   async (req, res) => {
     const data = await UserData.find(
       {proPlayer:true}
     );
+    console.log('ssss pro-list')
     res.send({ data: data, error: null });
   }
 );
 router.get(
-  '/pro-list/:id',
+  '/view-profile/:id',
   async (req,res)=>{
     console.log('entered')
     var id=req.params.id;
-    console.log(id)
+    console.log('id ',id)
   }
 )
-// router.get(
-//   '/pro-list',
-//   async (req, res) => {
-//     const data = await UserData.find(
-//       {proPlayer:true}
-//     );
-//     console.log(data)
-//     res.send({ data: data, error: null });
-//   }
-// );
+
+
 router.get(
   '/earnings',
    async(req,res)=>{

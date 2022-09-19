@@ -19,7 +19,7 @@ export class ProListComponent implements OnInit {
   }
   getProfile(id){
     this.adminservice.getProfile(id)
-    console.log('id',id)
+    // console.log('id',id)
 
   }
 

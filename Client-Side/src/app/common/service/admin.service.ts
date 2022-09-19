@@ -82,6 +82,15 @@ export class AdminService {
         )
         .pipe(map((e) => e.data));
     }
+    getProUser(id:string){
+        console.log('id in service',id)
+        return this.http.
+        get<ApiResponse<string>>(
+            `${this.host}/admin/view-profile/${id}`    
+        ).pipe(map((e) => e.data));
+        
+
+    }
     
     
 
