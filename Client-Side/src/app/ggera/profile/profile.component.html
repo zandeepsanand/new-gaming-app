@@ -228,19 +228,19 @@
 
 
 
-                                            <div class="col-lg-3 col-md-3">
+                                            <div class="col-lg-3 col-md-3" *ngIf="!_auth.isNormal()">
                                                 <div class="form-group">
                                                     <label>Pro Cost <span class="required">*</span></label>
                                                     <input type="text" class="form-control" formControlName="pro_cost" readonly>
                                                 </div>
                                             </div>
 
-                                            <!-- <div class="col-lg-3 col-md-3">
+                                            <div class="col-lg-3 col-md-3"  *ngIf="!_auth.isNormal()">
                                                 <div class="form-group">
                                                     <label>VIP Cost <span class="required">*</span></label>
                                                     <input type="text" class="form-control" formControlName="vip_cost">
                                                 </div>
-                                            </div> -->
+                                            </div>
 
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
