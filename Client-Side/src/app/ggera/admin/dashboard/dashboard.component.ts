@@ -12,6 +12,7 @@ import { AdminService } from 'src/app/common/service/admin.service';
 })
 export class DashboardComponent implements OnInit {
   stats$: Observable<AdminDashboardUserStatsModel> = null;
+  proEarning:any=0;
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
   // Pie
@@ -45,6 +46,13 @@ export class DashboardComponent implements OnInit {
     this.stats$ = this.adminService.getDashboardDetails().pipe(tap(e => {
       this.pieChartData.datasets[0] = {data: [e.subscriber, e.proUsers, e.proRequest]}
     }));
+    this.adminService.getProEarnings().subscribe(res=>{
+      console.log(res)
+      this.proEarning=res.data
+    })
+    //console.log(this.proEarning)
   }
+  
+    
 
 }

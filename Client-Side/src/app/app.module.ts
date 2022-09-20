@@ -79,6 +79,7 @@ import { AdminTemplateComponent } from './template/admin-template/admin-template
 import { AdminNavbarComponent } from './common/components/admin-navbar/admin-navbar.component';
 import { LobbyListingSubscriberComponent } from './ggera/lobby/lobby-listing-subscriber/lobby-listing-subscriber.component';
 import { LobbyProComponent } from './ggera/lobby/lobby-pro/lobby-pro.component';
+import { IndexComponent } from './index/index.component';
 
 
 @NgModule({
@@ -138,6 +139,7 @@ import { LobbyProComponent } from './ggera/lobby/lobby-pro/lobby-pro.component';
       AdminNavbarComponent,
       LobbyListingSubscriberComponent,
       LobbyProComponent,
+      IndexComponent
 
 
     

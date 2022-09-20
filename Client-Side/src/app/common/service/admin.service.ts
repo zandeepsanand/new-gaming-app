@@ -54,4 +54,48 @@ export class AdminService {
             )
             .pipe(map((e) => e.data));
     }
+    getSubscriberUsers(){
+        return this.http
+        .get<ApiResponse<{ users: UserDetailedModel }>>(
+            `${this.host}/admin/subscriber-list`
+        )
+        .pipe(map((e) => e.data));
+    }
+    getProUsers(){
+        return this.http
+        .get<ApiResponse<{ users: UserDetailedModel }>>(
+            `${this.host}/admin/pro-list`
+        )
+        .pipe(map((e) => e.data));
+    }
+    getProEarnings(){
+        return this.http
+        .get<ApiResponse<{ users: UserDetailedModel }>>(
+            `${this.host}/admin/earnings`
+        )
+    }
+    getProfile(id:string){
+        console.log('id in service',id)
+        return this.http
+        .get<ApiResponse<string>>(
+            `${this.host}/admin/pro-list/${id}`    
+        )
+        .pipe(map((e) => e.data));
+    }
+    getProUser(id:string){
+        console.log('id in service',id)
+        return this.http.
+        get<ApiResponse<string>>(
+            `${this.host}/admin/view-profile/${id}`    
+        )
+        
+
+    }
+    updateProfile(profile: any, id: any) {
+        return this.http.put<ApiResponse<string>>(
+            `${this.host}/admin/update-profile/${id}` , { profile: profile, id: id });
+      }
+    
+    
+
 }
