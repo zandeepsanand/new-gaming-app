@@ -18,6 +18,10 @@ export class WalletService {
   addMoney(amount: any,userId: any) {
     return this.http.post<any>(`${this.server_address}/wallet/add/money`, { userId: userId, amount: amount });
   }
+  
+  addMoneyToAdmin(amount: any, partyData: any) {
+    return this.http.post<any>(`${this.server_address}/wallet/add/money/admin`, { partyData: partyData, amount: amount });
+  }
 
   addMoneyWithStripe(data:any){
     return this.http.post<any>(`${this.server_address}/stripe/addtowallet`,{data});
@@ -33,5 +37,8 @@ export class WalletService {
   }
   reduceMoney( userId:any, amount:any){
     return this.http.post<any>(`${this.server_address}/wallet/reduce/money`, { userId: userId, amount: amount }); 
+  }
+  getBalanceWithUserId( userId:any){
+    return this.http.get<any>(`${this.server_address}/wallet/balance/${userId}`); 
   }
 }

@@ -69,8 +69,8 @@ export class HomePageNew1Component implements OnInit {
           timer: 1500
         }).then(() => {
           console.log("Fund available");
-          // this.reduceFundFromUser(res,partyData)
-          this.router.navigate([`/party/${partyData.partyId}/payment/success`])
+          this.reduceFundFromUser(res,partyData)
+          // this.router.navigate([`/party/${partyData.partyId}/payment/success`])
         })
       } else {
         Swal.fire({
@@ -86,9 +86,29 @@ export class HomePageNew1Component implements OnInit {
       }
     }
     reduceFundFromUser(walletData, partyData){
-      console.log(walletData, partyData)
-      this._walletService.reduceMoney(walletData.userId, partyData.price).
+      // console.log(walletData, partyData)
+        // this.addFundToAdmin(walletData, partyData);
+      this._walletService.reduceMoney(walletData.userId, 10).
       subscribe(res => {
+        this.addFundToAdmin(walletData, partyData);
+        // this.router.navigate([`/party/${partyData.partyId}/payment/success`])
+      })
+    }
+
+    addFundToAdmin(walletData, partyData){
+      console.log("ddd");
+      console.log(partyData);
+      this._walletService.addMoneyToAdmin(2, partyData).
+      subscribe(res => {
+        console.log(res.data)
+        this.addMoneyToPro(2,partyData)
+        // this.router.navigate([`/party/${partyData.partyId}/payment/success`])
+      })
+    }
+    addMoneyToPro(amount, partyData){
+      this._walletService.addMoney(amount,partyData.partyCreatedBy  ).
+      subscribe(res => {
+        console.log(res.data)
         this.router.navigate([`/party/${partyData.partyId}/payment/success`])
       })
     }
