@@ -59,19 +59,20 @@ export class LobbyListingSubscriberComponent implements OnInit {
   }
 
   joinLobby(lobby: any){
-    // console.log(lobby)
+    console.log(lobby)
     // console.log(this.user._id)
     this._lobby.joinLobby(lobby,this.user, 'Amartin743')
       .subscribe(res => {
         // console.log(res)
         if(res.data == 'exist'){
           Swal.fire({
-            icon: 'error',
+            icon: 'success',
             title: 'Already Joined in this lobby',
             showConfirmButton: false,
             timer: 1500
           }).then(() => {
-            this.router.navigate(['/lobby-listing-subscriber'])
+            // this.router.navigate(['/lobby-listing-subscriber'])
+            this.router.navigate([`/pro/enterlobby/${lobby}`])
           })
         } 
         if(res.data == 'joined'){
@@ -81,7 +82,8 @@ export class LobbyListingSubscriberComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           }).then(() => {
-            this.router.navigate(['/lobby-listing-subscriber'])
+            // this.router.navigate(['/lobby-listing-subscriber'])
+            this.router.navigate([`/pro/enterlobby/${lobby}`])
           })
         } 
         if(res.data == 'Lobby Full'){

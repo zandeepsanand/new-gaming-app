@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { auditTime, interval, map, Subscription } from 'rxjs';
 import { HeroService } from 'src/app/hero.service';
 import { LobbyService } from 'src/app/services/lobby.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import Swal from 'sweetalert2';
+import { Socket } from "ngx-socket-io";
 
 @Component({
   selector: 'app-lobby-pro',
@@ -19,7 +21,8 @@ export class LobbyProComponent implements OnInit {
     private _hero: HeroService,
     private fb: FormBuilder,
     private router: Router,
-    private websocketService: WebsocketService
+    private websocketService: WebsocketService,
+    private socket: Socket
     ) {
      }
 
@@ -32,6 +35,9 @@ export class LobbyProComponent implements OnInit {
   content = '';
   received = [];
   sent = [];
+  data: any = [];
+
+  mySub: Subscription;
 
   DescForm: any = new FormGroup({
     'matchId': new FormControl(''),
@@ -39,12 +45,20 @@ export class LobbyProComponent implements OnInit {
     'link': new FormControl(''),
   })
 
+  chatForm: any = new FormGroup({
+    'chat': new FormControl(''),
+  })
+
   ngOnInit(): void {
     this.matchId = this.activeRoute.snapshot.paramMap.get("matchId");
     this.getLobby();
     this.getAllUsers();
     this.userData()
-    // this.websocketService.joinRoom(this.matchId)
+    setTimeout(() => {
+      this.websocketService.joinRoom(this.matchId)
+      this.fetchChat()
+  }, 5000);
+    
   }
   
   getLobby(){
@@ -119,4 +133,33 @@ export class LobbyProComponent implements OnInit {
     this.sent.push(message);
     this.websocketService.messages.next(message);
   }
+  sendChat(){
+    this.websocketService.sendChat(this.matchId, this.user._id, this.user.username, this.chatForm.value.chat)
+    this.fetchChat()
+    this.chatForm.reset();
+  }
+
+  fetchChat(){
+    // console.log("Fetching Chat");
+    // const data = this.websocketService.fetchChat();
+    // console.log(data);
+
+    return (
+      this.socket
+        .fromEvent("new-message")
+        // .pipe(auditTime(1000))
+        .subscribe(res => {
+          if(!this.data.includes(res)){
+            this.data.push(res);
+          }
+          console.log(this.data);
+          console.log("=========");
+        })
+    );
+
+    // this.socket.fromEvent('new-message').subscribe(res => console.log(res));
+    // return this.socket.fromEvent('new-message').pipe(map((data) => console.log(data)));
+    // console.log(this.data)
+  }
+  
 }
