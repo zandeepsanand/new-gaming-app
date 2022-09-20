@@ -108,10 +108,14 @@
                         <img style="width:100px ;" src="assets/img/circle gry black gredient.png" alt="logo">
                     </a>
                     <a class="navbar-brand">
-                        <div class="custom-select" style="width:120px; background-color: black;">
+                        <div class="custom-select" style="width:500px; background-color: black;">
                             <select title="Select Game" style="background-color: black;" [formControl]="selectedGame">
                                 <option value="0">Select game:</option>
-                                <option *ngFor="let game of games" value={{game._id}}>{{game.name}}</option>
+                                <option *ngFor="let game of games"  value={{game._id}}> 
+                                   {{game.name}}
+                                   <img class="optionImage" src="{{game.image}}" alt="{{game.name}}" >
+
+                                </option>
                                 <!-- <option value="warzone" selected>COD: Warzone</option>
                           <option value="apexlegends">Apex Legends</option>
                           <option value="fortnight">Fortnight</option> -->

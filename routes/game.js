@@ -6,6 +6,7 @@ router.post('/', async (req, res) => {
   try {
     let item = {
       name: req.body.name,
+      image:req.body.image
     };
     const data = new GameData(item);
     const savedIdData = await data.save();

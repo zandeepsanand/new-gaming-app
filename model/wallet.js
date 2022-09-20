@@ -10,6 +10,9 @@ const WalletSchema = new Schema({
     balance: Number,
 
 
+},
+{
+  timestamps: true,
 });
 
 var Wallet = mongoose.model('wallet', WalletSchema);

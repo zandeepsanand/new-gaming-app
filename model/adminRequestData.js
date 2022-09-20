@@ -14,6 +14,9 @@ const AdminReqSchema = new Schema({
     approve:Boolean
 
     
+},
+{
+  timestamps: true,
 });
 
 //Model creation
