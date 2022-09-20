@@ -10,6 +10,9 @@ const CoachDataSchema = new Schema({
     username:String
     
 
+},
+{
+  timestamps: true,
 });
 
 var coachData = mongoose.model('coachProData', CoachDataSchema);

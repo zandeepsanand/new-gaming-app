@@ -81,6 +81,7 @@ import { LobbyListingSubscriberComponent } from './ggera/lobby/lobby-listing-sub
 import { LobbyProComponent } from './ggera/lobby/lobby-pro/lobby-pro.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
+import { IndexComponent } from './index/index.component';
 
 const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
 
@@ -141,6 +142,7 @@ const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
       AdminNavbarComponent,
       LobbyListingSubscriberComponent,
       LobbyProComponent,
+      IndexComponent
 
 
     

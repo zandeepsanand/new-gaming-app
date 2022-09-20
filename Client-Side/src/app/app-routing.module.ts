@@ -43,14 +43,16 @@ import { AdminTemplateComponent } from './template/admin-template/admin-template
 import { AdminGuard } from './common/guards/admin.guard';
 import { LobbyListingSubscriberComponent } from './ggera/lobby/lobby-listing-subscriber/lobby-listing-subscriber.component';
 import { LobbyProComponent } from './ggera/lobby/lobby-pro/lobby-pro.component';
+import { IndexComponent } from './index/index.component';
 
 
 
 
 const routes: Routes = [
     
-
-    { path: '', canActivate: [AuthGuard ], component: HomePageComponent, },
+    { path: '', redirectTo:'index',pathMatch: 'full'},
+    // { path: '', canActivate: [AuthGuard ], component: HomePageComponent, redirectTo:'index',pathMatch: 'full'},
+    { path: 'index',  component: IndexComponent },
     { path: 'login',  component: SigninComponent },
     { path: 'account', canActivate: [AuthGuard ],  component: AccountDetailsComponent },
     { path: 'profile', canActivate: [AuthGuard ],  component: ProfileComponent },
@@ -82,7 +84,6 @@ const routes: Routes = [
     { path: 'support', canActivate: [AuthGuard ],  component: SupportComponent },
     { path: 'settings', canActivate: [AuthGuard ],  component: SettingsComponent },
     { path: 'subscriptions', canActivate: [AuthGuard ],  component: SubscriptionsComponent },
-   
     {path: 'make-me-pro', component: JobTemplateComponent, loadChildren: () => import('./ggera/jobs/jobs.module').then(e => e.JobsModule)},
     {path: 'admin', component: AdminTemplateComponent, canActivateChild: [AdminGuard], loadChildren: () => import('./ggera/admin/admin.module').then(e => e.AdminModule)},
 
