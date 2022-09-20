@@ -13,14 +13,18 @@ import { SubscriberListComponent } from './subscriber-list/subscriber-list.compo
 import { ProListComponent } from './pro-list/pro-list.component';
 import { EarningsComponent } from './earnings/earnings.component';
 import { ViewprofileComponent } from './viewprofile/viewprofile.component';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { ViewSubscriberProfileComponent } from './view-subscriber-profile/view-subscriber-profile.component';
 
 @NgModule({
-    declarations: [DashboardComponent, ProRequestComponent, ProUserWithdrawRequestComponent, SubscriberListComponent, ProListComponent, EarningsComponent, ViewprofileComponent],
+    declarations: [DashboardComponent, ProRequestComponent, ProUserWithdrawRequestComponent, SubscriberListComponent, ProListComponent, EarningsComponent, ViewprofileComponent, ViewSubscriberProfileComponent],
     imports: [
         CommonModule,
         NgChartsModule,
         HttpClientModule,
         AdminRoutingModule,
+        FormsModule,
+         ReactiveFormsModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

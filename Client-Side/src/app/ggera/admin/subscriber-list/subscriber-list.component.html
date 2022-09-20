@@ -3,6 +3,7 @@
         <div class="row g-6" >
             <div *ngFor="let user of subUsers" class="col-5 m-5 card text-bg-dark">
                 <div class="card-body">
+                  <a class="btn btn-success m-5" [routerLink]="['/admin','view-subscriber-profile',user._id]">View Profile</a>
                     <h5 class="card-title">NAME:&nbsp;{{user.username}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">GAMER ID:&nbsp;{{user.gamerID}}</h6>
                     <p class="card-text">KD:&nbsp;{{user.kd}}</p>

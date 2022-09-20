@@ -97,9 +97,21 @@ router.get(
 router.get(
   '/view-profile/:id',
   async (req,res)=>{
-    console.log('entered')
+    try{
+      console.log('entered')
     var id=req.params.id;
-    console.log('id ',id)
+    const data = await UserData.find(
+      {_id:id}
+    );
+    console.log('data',data)
+
+    res.send(data)
+
+    }
+    catch(err){
+     console.log(err);
+    }
+    
   }
 )
 
@@ -139,5 +151,18 @@ router.patch(
     res.send({ data: 'OK', error: null });
   }
 );
+router.put('/update-profile/:id',
+async (req,res)=>{
+  var id=req.params.id;
+  var profile=req.body.profile;
+  console.log(profile)
+  console.log('update',id)
+  await UserData.findOneAndUpdate(
+    {_id:id},
+    profile
+  )
+
+  res.send({ data: 'OK', error: null });
+})
 
 module.exports = router;

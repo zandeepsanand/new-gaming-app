@@ -33,6 +33,10 @@ const routes: Routes = [
         component:ViewprofileComponent
     },
     {
+        path:"view-subscriber-profile/:userid",
+        component:ViewprofileComponent
+    },
+    {
         path: "",
         pathMatch: "full",
         redirectTo: "dashboard",

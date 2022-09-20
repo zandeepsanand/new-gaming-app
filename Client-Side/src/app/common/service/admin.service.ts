@@ -87,10 +87,14 @@ export class AdminService {
         return this.http.
         get<ApiResponse<string>>(
             `${this.host}/admin/view-profile/${id}`    
-        ).pipe(map((e) => e.data));
+        )
         
 
     }
+    updateProfile(profile: any, id: any) {
+        return this.http.put<ApiResponse<string>>(
+            `${this.host}/admin/update-profile/${id}` , { profile: profile, id: id });
+      }
     
     
 
