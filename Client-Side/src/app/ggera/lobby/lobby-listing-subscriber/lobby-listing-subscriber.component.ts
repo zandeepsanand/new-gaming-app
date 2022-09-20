@@ -63,7 +63,7 @@ export class LobbyListingSubscriberComponent implements OnInit {
     // console.log(this.user._id)
     this._lobby.joinLobby(lobby,this.user, 'Amartin743')
       .subscribe(res => {
-        // console.log(res)
+        console.log(res)
         if(res.data == 'exist'){
           Swal.fire({
             icon: 'success',

@@ -8,8 +8,10 @@ const UserData = require('../model/userData');
 
 router.post('/join/subscriber', async (req, res) => {
   const lobbyExist = await SubscriberLobby.findOne({
-    matchId: req.body.lobby.matchID,
+    matchId: req.body.lobby,
   });
+  // console.log(req.body.lobby)
+  // console.log(lobbyExist)
   if(!lobbyExist){
     const item = {
       matchId: req.body.lobby.matchID,
