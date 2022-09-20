@@ -43,6 +43,9 @@ const userDataSchema = new Schema({
         selectedGame: String, default: ''
     }
 
+},
+{
+  timestamps: true,
 });
 
 var UserData = mongoose.model('userdata', userDataSchema);

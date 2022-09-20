@@ -117,7 +117,7 @@ Step1Component.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_2__[
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](9, "Your Country");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](10, "div", 6)(11, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](12, " Please note that we do work with residence and citizens of Crime region, Cuba, Iran, North Korea, Syria, Eastern Ukraine and Transnistria ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](12, " We will manually verify your request, once you have send us your game tracker ");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](13, "div", 7);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](14, " Cuba ");
@@ -145,24 +145,12 @@ class Step2Component {
     }
 }
 Step2Component.ɵfac = function Step2Component_Factory(t) { return new (t || Step2Component)(); };
-Step2Component.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: Step2Component, selectors: [["app-step2"]], decls: 15, vars: 0, consts: [[1, "stepper"], [1, "heading"], [1, "content"]], template: function Step2Component_Template(rf, ctx) { if (rf & 1) {
+Step2Component.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: Step2Component, selectors: [["app-step2"]], decls: 6, vars: 0, consts: [[1, "stepper"], [1, "heading"], [1, "content"]], template: function Step2Component_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0)(1, "h1", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Your Country");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Verification Process");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 2)(4, "ul")(5, "li");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "1. You can verify instantly via your gaming platform or manually with some additional details");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "li");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, "2. We will very that you are the account owner and check your tracker / API statistics");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "li");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, "3. If your stats meet the requirement, you will automatically get access to the order dashboard and knowledge base");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "li");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, "Good Luck!");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "h2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "Select the game in which you have the highest KD");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 2)(4, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "If your stats meet the requirements then you will be invited for a skill test");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
     } }, styles: [".stepper[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: start;\n  flex-direction: column;\n}\n.stepper[_ngcontent-%COMP%]   .heading[_ngcontent-%COMP%] {\n  color: #ff7019;\n  font-size: 5rem;\n}\n.stepper[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%] {\n  padding: 1rem 2rem;\n  border: 1px solid #913c0d;\n  background-color: rgba(145, 60, 13, 0.4);\n}\n.stepper[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%]   ul[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] {\n  font-size: 2rem;\n}\n.stepper[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  font-size: 3rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0ZXAyLmNvbXBvbmVudC5zY3NzIiwiLi5cXC4uXFwuLlxcLi5cXC4uXFwuLlxcLi5cXC4uXFwuLlxcUGVyc29uYWwlMjBXb3Jrc1xcRnJlZWxhbmNlJTIwV2Vic2l0ZXNcXHppbmJsZS1hbmd1bGFyLWVzcG9ydHMtZ2FtaW5nLXRlbXBsYXRlXFxDbGllbnQtU2lkZVxcc3JjXFxhcHBcXGdnZXJhXFxqb2JzXFxzdGVwMlxcc3RlcDIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxzQkFBQTtBQ0NKO0FEQUk7RUFDSSxjQUFBO0VBQ0EsZUFBQTtBQ0VSO0FEQUk7RUFDSSxrQkFBQTtFQUNBLHlCQUFBO0VBQ0Esd0NBQUE7QUNFUjtBRERRO0VBQ0ksZUFBQTtBQ0daO0FERFE7RUFDSSxlQUFBO0FDR1oiLCJmaWxlIjoic3RlcDIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc3RlcHBlciB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBzdGFydDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICAuaGVhZGluZyB7XHJcbiAgICAgICAgY29sb3I6ICNmZjcwMTk7XHJcbiAgICAgICAgZm9udC1zaXplOiA1cmVtO1xyXG4gICAgfVxyXG4gICAgLmNvbnRlbnQge1xyXG4gICAgICAgIHBhZGRpbmc6IDFyZW0gMnJlbTtcclxuICAgICAgICBib3JkZXI6IDFweCBzb2xpZCAjOTEzYzBkO1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoJGNvbG9yOiAjOTEzYzBkLCAkYWxwaGE6IDAuNCk7XHJcbiAgICAgICAgdWwgbGkge1xyXG4gICAgICAgICAgICBmb250LXNpemU6IDJyZW07XHJcbiAgICAgICAgfVxyXG4gICAgICAgIGgyIHtcclxuICAgICAgICAgICAgZm9udC1zaXplOiAzcmVtO1xyXG4gICAgICAgIH1cclxuICAgIH1cclxufVxyXG4iLCIuc3RlcHBlciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogc3RhcnQ7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG59XG4uc3RlcHBlciAuaGVhZGluZyB7XG4gIGNvbG9yOiAjZmY3MDE5O1xuICBmb250LXNpemU6IDVyZW07XG59XG4uc3RlcHBlciAuY29udGVudCB7XG4gIHBhZGRpbmc6IDFyZW0gMnJlbTtcbiAgYm9yZGVyOiAxcHggc29saWQgIzkxM2MwZDtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgxNDUsIDYwLCAxMywgMC40KTtcbn1cbi5zdGVwcGVyIC5jb250ZW50IHVsIGxpIHtcbiAgZm9udC1zaXplOiAycmVtO1xufVxuLnN0ZXBwZXIgLmNvbnRlbnQgaDIge1xuICBmb250LXNpemU6IDNyZW07XG59Il19 */"] });
 
@@ -192,7 +180,7 @@ Step3Component.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__[
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Thank You");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 2)(4, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, " We are reviewing your request. It usually takes no more than 2 days. Once the decision is made you will receive the details via discord. ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, " Upon passing the skills test, you will automatically gain access to the order dashboard and knowledge base. Then you will be given a tour by a GGera representative and shown how to use the platform ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
     } }, styles: [".stepper[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: start;\n  flex-direction: column;\n}\n.stepper[_ngcontent-%COMP%]   .heading[_ngcontent-%COMP%] {\n  color: #ff7019;\n  font-size: 5rem;\n}\n.stepper[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%] {\n  padding: 1rem 2rem;\n  border: 1px solid #913c0d;\n  background-color: rgba(145, 60, 13, 0.4);\n}\n.stepper[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%]   *[_ngcontent-%COMP%] {\n  font-size: 2rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0ZXAzLmNvbXBvbmVudC5zY3NzIiwiLi5cXC4uXFwuLlxcLi5cXC4uXFwuLlxcLi5cXC4uXFwuLlxcUGVyc29uYWwlMjBXb3Jrc1xcRnJlZWxhbmNlJTIwV2Vic2l0ZXNcXHppbmJsZS1hbmd1bGFyLWVzcG9ydHMtZ2FtaW5nLXRlbXBsYXRlXFxDbGllbnQtU2lkZVxcc3JjXFxhcHBcXGdnZXJhXFxqb2JzXFxzdGVwM1xcc3RlcDMuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxzQkFBQTtBQ0NKO0FEQUk7RUFDSSxjQUFBO0VBQ0EsZUFBQTtBQ0VSO0FEQUk7RUFJSSxrQkFBQTtFQUNBLHlCQUFBO0VBQ0Esd0NBQUE7QUNEUjtBREpRO0VBQ0ksZUFBQTtBQ01aIiwiZmlsZSI6InN0ZXAzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnN0ZXBwZXIge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGp1c3RpZnktY29udGVudDogc3RhcnQ7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgLmhlYWRpbmcge1xyXG4gICAgICAgIGNvbG9yOiAjZmY3MDE5O1xyXG4gICAgICAgIGZvbnQtc2l6ZTogNXJlbTtcclxuICAgIH1cclxuICAgIC5jb250ZW50IHtcclxuICAgICAgICAqIHtcclxuICAgICAgICAgICAgZm9udC1zaXplOiAycmVtO1xyXG4gICAgICAgIH1cclxuICAgICAgICBwYWRkaW5nOiAxcmVtIDJyZW07XHJcbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgIzkxM2MwZDtcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKCRjb2xvcjogIzkxM2MwZCwgJGFscGhhOiAwLjQpO1xyXG4gICAgfVxyXG59IiwiLnN0ZXBwZXIge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHN0YXJ0O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xufVxuLnN0ZXBwZXIgLmhlYWRpbmcge1xuICBjb2xvcjogI2ZmNzAxOTtcbiAgZm9udC1zaXplOiA1cmVtO1xufVxuLnN0ZXBwZXIgLmNvbnRlbnQge1xuICBwYWRkaW5nOiAxcmVtIDJyZW07XG4gIGJvcmRlcjogMXB4IHNvbGlkICM5MTNjMGQ7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMTQ1LCA2MCwgMTMsIDAuNCk7XG59XG4uc3RlcHBlciAuY29udGVudCAqIHtcbiAgZm9udC1zaXplOiAycmVtO1xufSJdfQ== */"] });
 

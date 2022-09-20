@@ -12,6 +12,9 @@ const privatemsgSchema= new schema({
     time:String,
     month:String,
     imgfile:String
+},
+{
+  timestamps: true,
 });
 
 // model
