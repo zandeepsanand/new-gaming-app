@@ -6,7 +6,8 @@ const createError = require('http-errors')
 const CoachData = require('../model/coachData')
 
 const Wallet = require('../model/wallet')
-const Transaction = require('../model/transaction')
+const Transaction = require('../model/transaction');
+const UserData = require('../model/userData');
 
 router.post('/add/money', async (req, res) => {
 
@@ -75,6 +76,54 @@ router.post('/reduce/money', async (req, res) => {
     data.balance= data.balance - req.body.amount;
     const updatedData = await data.save();
     res.send(updatedData);
+})
+
+router.post('/add/money/admin', async (req, res) => {
+    const user = await UserData.findOne({superAdmin : true});
+    const data = await Wallet.findOne({userId: user._id});
+    console.log(user)
+    let transaction = {
+        userId: user._id,
+        type: 'addMoneyToWallet',
+        amount: req.body.amount,
+        status: "success",
+        date: Date.now()
+    }
+    if(data){
+        data.balance= data.balance + req.body.amount;
+        await data.save();
+
+        const data1 = new Transaction(transaction)
+        await data1.save()
+
+        res.send(data)
+    }else{
+        
+        let item = {
+            userId: user._id,
+            balance: req.body.amount
+        }
+        const USER = new Wallet(item)
+        const savedIdData = await USER.save()
+
+        const data = new Transaction(transaction)
+        await data.save()
+
+        res.send(savedIdData)
+    }
+})
+
+router.get('/balance/:id', async (req, res) => {
+    try {
+
+        let id = req.params.id
+        const userLists = await Wallet.findOne({
+            userId: id
+        })
+        res.send(userLists)
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 module.exports = router;
