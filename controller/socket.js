@@ -3,14 +3,29 @@ const MESSAGE = require('../model/Message')
 const roomChatData = require('../model/roomChatData')
 const privateData = require('../model/privateData')
 
+const doc ={};
 
 module.exports = (io) => {
     io.on('connection', (socket) => {
         console.log("a user connected"+ socket.id);
-        socket.on('join', (data) => {
-            socket.join(data.room);
-            socket.broadcast.to(data.room).emit('user joined');
-        });
+        // socket.on('join', (data) => {
+        //     socket.join(data.room);
+        //     socket.broadcast.to(data.room).emit('user joined');
+        // });
+
+        socket.on('joinRoom',function(data){
+          io.in(data.room).emit('startChatRooms', {message: "welcome"});
+          socket.broadcast.to(data).emit('user joined');
+        })
+        socket.on('sendChat',function(data){
+          // console.log(data);
+          io.emit('new-message', data );
+          // io.in(data.room).emit('startChatRoom', {message: "welcome", user:data.room});
+          // socket.broadcast.to(data).emit('user joined');
+      
+        })
+
+
     
         socket.on('sendindvmsg',function(data){
                 console.log(data);

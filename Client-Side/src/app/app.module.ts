@@ -79,7 +79,10 @@ import { AdminTemplateComponent } from './template/admin-template/admin-template
 import { AdminNavbarComponent } from './common/components/admin-navbar/admin-navbar.component';
 import { LobbyListingSubscriberComponent } from './ggera/lobby/lobby-listing-subscriber/lobby-listing-subscriber.component';
 import { LobbyProComponent } from './ggera/lobby/lobby-pro/lobby-pro.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
 
+const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
 
 @NgModule({
   declarations: [
@@ -156,7 +159,8 @@ import { LobbyProComponent } from './ggera/lobby/lobby-pro/lobby-pro.component';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    NgxStripeModule.forRoot('pk_test_51LT4FJSBGyD7UYjV7Uzl35ECOGv6TAtzwwYlAokpfqWpLNoXEZq1Ov3RoijNAxrN5fRhYqxzedauoF7tyFlbgr9q002zPPPLTa')
+    NgxStripeModule.forRoot('pk_test_51LT4FJSBGyD7UYjV7Uzl35ECOGv6TAtzwwYlAokpfqWpLNoXEZq1Ov3RoijNAxrN5fRhYqxzedauoF7tyFlbgr9q002zPPPLTa'),
+    SocketIoModule.forRoot(config)
   ],
   providers: [HeroService,AuthGuard,
     {

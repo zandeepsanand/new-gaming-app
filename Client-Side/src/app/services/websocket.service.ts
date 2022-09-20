@@ -2,9 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, Observer } from 'rxjs';
 import { AnonymousSubject, Subject } from 'rxjs/internal/Subject';
-import { io, Socket } from 'socket.io-client';
+import {  Socket } from 'socket.io-client';
 
-const CHAT_URL = "http://localhost:8887";
+import {Socket  as alias} from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
+
+const CHAT_URL = environment.wsUrl;
 
 export interface Message {
     source: string;
@@ -17,12 +20,15 @@ export interface Message {
 })
 export class WebsocketService {
 
+  data: any = [];
+  
   private socket: Socket;
   private subject: AnonymousSubject<MessageEvent>;
   public messages: Subject<Message>;
 
-  constructor(private http: HttpClient) {
-    this.socket = io(CHAT_URL,{ transports: ['websocket','polling', 'flashback']})
+  constructor(private http: HttpClient, private sockets: alias) {
+    // this.socket = io(CHAT_URL,{ transports: ['websocket','polling', 'flashback']})
+
       // this.messages = <Subject<Message>>this.connect(CHAT_URL).pipe(
       //     map(
       //         (response: MessageEvent): Message => {
@@ -32,6 +38,7 @@ export class WebsocketService {
       //         }
       //     )
       // );
+      
   }
 
   public connect(url): AnonymousSubject<MessageEvent> {
@@ -63,7 +70,23 @@ export class WebsocketService {
       return new AnonymousSubject<MessageEvent>(observer, observable);
   }
   joinRoom(room:any){
-    return this.http.post<any>(`${CHAT_URL}/joinRoom`,{room})
-
+    this.sockets.emit('JoinRoom', {room: room});
   }
+  sendChat(room:any,userId: string, name: string,message: string){
+    
+    this.sockets.emit('sendChat', {room:room, userId: userId,name: name, message:message});
+    // return this.socket.emit('sendChat',{room:room, userId: userId, message:message});
+  }
+
+  // public fetchChat() {
+  //   return (
+  //     this.sockets
+  //       .fromEvent("new-message")
+  //       // .pipe(auditTime(1000))
+  //       .subscribe(res => {
+  //         // this.data.push(res)
+  //         console.log(res);
+  //       })
+  //   );
+  // }
 }
